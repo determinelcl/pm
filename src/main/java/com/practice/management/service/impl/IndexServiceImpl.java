@@ -1,7 +1,7 @@
 package com.practice.management.service.impl;
 
 import com.practice.management.bean.entity.Student;
-import com.practice.management.bean.entity.User;
+import com.practice.management.bean.entity.Account;
 import com.practice.management.mapper.StudentMapper;
 import com.practice.management.mapper.UserMapper;
 import com.practice.management.service.IndexService;
@@ -20,7 +20,7 @@ public class IndexServiceImpl implements IndexService {
     private StudentMapper studentMapper;
 
     @Override
-    public User login(String username, String password) {
+    public Account login(String username, String password) {
 
         return null;
     }

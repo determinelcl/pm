@@ -2,13 +2,14 @@ package com.practice.management.bean.entity;
 
 import java.util.Date;
 
-public class Student {
+public class Student extends Account{
 
     private int id;
     private String name;
     private String phone;
     private String email;
     private Date birthday;
+    private String classes;
 
     public int getId() {
         return id;
@@ -48,5 +49,13 @@ public class Student {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String classes) {
+        this.classes = classes;
     }
 }

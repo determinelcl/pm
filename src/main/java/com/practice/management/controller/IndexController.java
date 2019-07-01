@@ -1,8 +1,8 @@
 package com.practice.management.controller;
 
 import com.practice.management.bean.dto.ResultModel;
+import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.Student;
-import com.practice.management.bean.entity.User;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +29,13 @@ public class IndexController extends BaseController {
      * @return 登录成功返回User对象否则返回null
      */
     @PostMapping("/login")
-    public ResultModel<User> login(String username, String password) {
-        return success(new User());
+    public ResultModel<Account> login(String username, String password) {
+        return success(new Account());
     }
 
 
     @PostMapping("/register")
-    public ResultModel<String> register(User user) {
+    public ResultModel<String> register(Account account) {
 
         return success("this is test");
     }

@@ -1,7 +1,7 @@
 package com.practice.management.service;
 
+import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.Student;
-import com.practice.management.bean.entity.User;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public interface IndexService {
      * @param password 密码
      * @return 登录成功返回User对象否则返回null
      */
-    User login(String username, String password);
+    Account login(String username, String password);
 
     List<Student> studentList();
 }
