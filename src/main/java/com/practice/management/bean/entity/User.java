@@ -1,15 +1,21 @@
 package com.practice.management.bean.entity;
 
-public class User {
-    private String username;
-    private String password;
+import java.io.Serializable;
 
-    public String getUsername() {
-        return username;
+/**
+ * 用户：可以表示学生、学校负责人和企业负责人
+ */
+public class User implements Serializable {
+    private String account;
+    private String password;
+    private Integer type;
+
+    public String getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPassword() {
@@ -18,5 +24,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

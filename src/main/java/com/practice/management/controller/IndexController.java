@@ -1,21 +1,19 @@
 package com.practice.management.controller;
 
 import com.practice.management.bean.dto.ResultModel;
-import com.practice.management.bean.entity.Student;
 import com.practice.management.bean.entity.User;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 注册、登录
  */
-@RestController("/")
+@RestController
+@RequestMapping("/")
 public class IndexController extends BaseController {
 
     @Autowired
@@ -40,10 +38,5 @@ public class IndexController extends BaseController {
         return success("this is test");
     }
 
-
-    @GetMapping("/list")
-    public ResultModel<List<Student>> studentList() {
-        return success(indexService.studentList());
-    }
 
 }

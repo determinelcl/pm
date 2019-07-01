@@ -1,9 +1,6 @@
 package com.practice.management.service;
 
-import com.practice.management.bean.entity.Student;
 import com.practice.management.bean.entity.User;
-
-import java.util.List;
 
 /**
  * 登录、注册服务
@@ -19,5 +16,4 @@ public interface IndexService {
      */
     User login(String username, String password);
 
-    List<Student> studentList();
 }
