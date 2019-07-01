@@ -1,6 +1,6 @@
 package com.practice.management.mapper;
 
-import com.practice.management.bean.entity.User;
+import com.practice.management.bean.entity.Account;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,9 +8,9 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user(id, username, password) " +
+    @Insert("insert into account(id, username, password) " +
             "values(#{id}, #{username}, #{password})")
-    User add(User user);
+    Account add(Account account);
 
     /**
      * 根据指定的用户名查询用户
