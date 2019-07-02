@@ -1,45 +1,11 @@
 package com.practice.management.bean.entity;
 
-public class SchoolResponsibility {
-    private int id;
-    private String name;
-    private int age;
-    private String gender;
+public class SchoolResponsibility extends Account {
     private String rank;
-    private String phone;
-    private String email;
 
-    public int getId() {
-        return id;
-    }
+    private int majorId;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    private int schoolId;
 
     public String getRank() {
         return rank;
@@ -49,20 +15,20 @@ public class SchoolResponsibility {
         this.rank = rank;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getMajorId() {
+        return majorId;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMajorId(int majorId) {
+        this.majorId = majorId;
     }
 
-    public String getEmail() {
-        return email;
+    public int getSchoolId() {
+        return schoolId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
     }
 }
 

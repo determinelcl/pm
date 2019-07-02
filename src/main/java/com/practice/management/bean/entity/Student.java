@@ -1,55 +1,14 @@
 package com.practice.management.bean.entity;
 
-import java.util.Date;
+public class Student extends Account {
 
-public class Student extends Account{
-
-    private int id;
-    private String name;
-    private String phone;
-    private String email;
-    private Date birthday;
     private String classes;
 
-    public int getId() {
-        return id;
-    }
+    private int enterpriseId;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int enterpriseProgrammeId;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+    private int majorId;
 
     public String getClasses() {
         return classes;
@@ -57,5 +16,29 @@ public class Student extends Account{
 
     public void setClasses(String classes) {
         this.classes = classes;
+    }
+
+    public int getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(int enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
+
+    public int getEnterpriseProgrammeId() {
+        return enterpriseProgrammeId;
+    }
+
+    public void setEnterpriseProgrammeId(int enterpriseProgrammeId) {
+        this.enterpriseProgrammeId = enterpriseProgrammeId;
+    }
+
+    public int getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(int majorId) {
+        this.majorId = majorId;
     }
 }

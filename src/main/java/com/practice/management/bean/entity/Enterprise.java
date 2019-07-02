@@ -1,13 +1,11 @@
 package com.practice.management.bean.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 /**
  * 企业
  */
-public class Enterprise extends Account {
+public class Enterprise {
     private int id;
     private String name;
     private String introduce;

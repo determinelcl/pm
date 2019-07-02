@@ -1,16 +1,14 @@
 package com.practice.management.bean.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 /**
  * 学校
- * **/
-
-public class School extends Account {
+ */
+public class School {
     private int id;
     private String name;
+    private String introduce;
     private Date serviceST;
     private Date serviceET;
 
@@ -28,6 +26,14 @@ public class School extends Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
     public Date getServiceST() {

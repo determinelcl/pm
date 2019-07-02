@@ -2,49 +2,13 @@ package com.practice.management.bean.entity;
 
 
 /*
-* 企业责任人
-* */
+ * 企业责任人
+ * */
 
-public class EnterpriseResponsilbility {
-    private int id;
-    private String name;
-    private int age;
-    private String gender;
+public class EnterpriseResponsilbility extends Account {
     private String rank;
-    private String phone;
-    private String email;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    private int enterpriseId;
 
     public String getRank() {
         return rank;
@@ -54,19 +18,11 @@ public class EnterpriseResponsilbility {
         this.rank = rank;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getEnterpriseId() {
+        return enterpriseId;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEnterpriseId(int enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }
