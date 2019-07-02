@@ -1,8 +1,8 @@
 package com.practice.management.bean.entity;
 
-public class EnterpriseLesson {
+public class Filetype {
     private int id;
-    private String name;
+    private String typeName;
 
     public int getId() {
         return id;
@@ -12,11 +12,11 @@ public class EnterpriseLesson {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

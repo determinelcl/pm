@@ -18,6 +18,9 @@ public class MonthReport {
     private String year;
     private String enterpriseOpinion;
     private String schoolExamine;
+    private int enterpriseId;
+    private int schoolId;
+    private int studentId;
 
     public int getId() {
         return id;
@@ -89,5 +92,29 @@ public class MonthReport {
 
     public void setSchoolExamine(String schoolExamine) {
         this.schoolExamine = schoolExamine;
+    }
+
+    public int getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(int enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

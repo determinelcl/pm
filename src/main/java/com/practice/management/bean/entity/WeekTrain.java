@@ -13,6 +13,9 @@ public class WeekTrain {
     private String weekStuLearn;
     private String feedbackFocus;
     private String trainSituation;
+    private int majorId;
+    private int schoolId;
+    private int enterpriseId;
 
     public int getId() {
         return id;
@@ -84,5 +87,29 @@ public class WeekTrain {
 
     public void setTrainSituation(String trainSituation) {
         this.trainSituation = trainSituation;
+    }
+
+    public int getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(int majorId) {
+        this.majorId = majorId;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public int getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(int enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 }

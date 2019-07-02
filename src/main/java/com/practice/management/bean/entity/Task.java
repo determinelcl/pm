@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Task {
     private int id;
-    private String project_name;
+    private String projectName;
     private String year;
     private Date submitTime;
     private String enterpiseTeracherName;
@@ -15,6 +15,9 @@ public class Task {
     private String enclosureUrl;
     private String enterpriseOpinion;
     private String schoolEamine;
+    private int enterpriseId;
+    private int schoolId;
+    private int studentId;
 
     public int getId() {
         return id;
@@ -24,12 +27,12 @@ public class Task {
         this.id = id;
     }
 
-    public String getProject_name() {
-        return project_name;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setProject_name(String project_name) {
-        this.project_name = project_name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public String getYear() {
@@ -110,5 +113,29 @@ public class Task {
 
     public void setSchoolEamine(String schoolEamine) {
         this.schoolEamine = schoolEamine;
+    }
+
+    public int getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(int enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

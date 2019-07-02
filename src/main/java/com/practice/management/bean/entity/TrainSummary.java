@@ -5,6 +5,9 @@ public class TrainSummary {
     private String trainSummary;
     private String trainReportUrl;
     private String trainDesignUrl;
+    private int schoolId;
+    private int studentId;
+
 
     public int getId() {
         return id;
@@ -36,5 +39,21 @@ public class TrainSummary {
 
     public void setTrainDesignUrl(String trainDesignUrl) {
         this.trainDesignUrl = trainDesignUrl;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

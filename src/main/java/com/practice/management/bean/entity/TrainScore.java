@@ -8,6 +8,10 @@ public class TrainScore {
     private double stageThree;
     private double stageFour;
     private double stageFire;
+    private int coefficientId;
+    private int majorId;
+    private int schoolId;
+
 
     public int getId() {
         return id;
@@ -63,5 +67,29 @@ public class TrainScore {
 
     public void setStageFire(double stageFire) {
         this.stageFire = stageFire;
+    }
+
+    public int getCoefficientId() {
+        return coefficientId;
+    }
+
+    public void setCoefficientId(int coefficientId) {
+        this.coefficientId = coefficientId;
+    }
+
+    public int getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(int majorId) {
+        this.majorId = majorId;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
     }
 }
