@@ -1,23 +1,23 @@
 package com.practice.management.bean.entity;
 
 public class TrainScore {
-    private int id;
+    private Long id;
     private String lessonName;
     private double stageOne;
     private double stageTwo;
     private double stageThree;
     private double stageFour;
     private double stageFire;
-    private int coefficientId;
-    private int majorId;
-    private int schoolId;
+    private Long coefficientId;
+    private Long majorId;
+    private Long schoolId;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -69,27 +69,27 @@ public class TrainScore {
         this.stageFire = stageFire;
     }
 
-    public int getCoefficientId() {
+    public Long getCoefficientId() {
         return coefficientId;
     }
 
-    public void setCoefficientId(int coefficientId) {
+    public void setCoefficientId(Long coefficientId) {
         this.coefficientId = coefficientId;
     }
 
-    public int getMajorId() {
+    public Long getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(int majorId) {
+    public void setMajorId(Long majorId) {
         this.majorId = majorId;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 }

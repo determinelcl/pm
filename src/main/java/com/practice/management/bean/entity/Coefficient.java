@@ -5,18 +5,18 @@ package com.practice.management.bean.entity;
 * */
 
 public class Coefficient {
-    private int id;
+    private Long id;
     private double stageOneC;
     private double stageTwoC;
     private double stageThreeC;
     private double stageFourC;
     private double stageFireC;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

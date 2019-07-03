@@ -4,31 +4,31 @@ package com.practice.management.bean.entity;
  * 菜单负责人
  */
 public class MenuRole {
-    private int id;
-    private int menuId;
-    private int roleId;
+    private Long id;
+    private Long menuId;
+    private Long roleId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getMenuId() {
+    public Long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(int menuId) {
+    public void setMenuId(Long menuId) {
         this.menuId = menuId;
     }
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 }

@@ -1,7 +1,7 @@
 package com.practice.management.bean.entity;
 
 public class Menu {
-    private int id;
+    private Long id;
     private int sequence;
     private String logo;
     private String menuName;
@@ -9,11 +9,11 @@ public class Menu {
     private Integer menuParent;
     private int menuLevel;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

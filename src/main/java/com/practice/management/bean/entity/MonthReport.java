@@ -4,12 +4,10 @@ package com.practice.management.bean.entity;
 * 月报
 * */
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 
 public class MonthReport {
-    private int id;
+    private Long id;
     private Date startTime;
     private Date endTime;
     private String trainContent;
@@ -18,15 +16,15 @@ public class MonthReport {
     private String year;
     private String enterpriseOpinion;
     private String schoolExamine;
-    private int enterpriseId;
-    private int schoolId;
-    private int studentId;
+    private Long enterpriseId;
+    private Long schoolId;
+    private Long studentId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -94,27 +92,27 @@ public class MonthReport {
         this.schoolExamine = schoolExamine;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 
-    public int getStudentId() {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 }

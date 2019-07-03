@@ -5,10 +5,10 @@ package com.practice.management.bean.entity;
  * 企业责任人
  * */
 
-public class EnterpriseResponsilbility extends Account {
+public class EnterpriseResponsibility extends Account {
     private String rank;
 
-    private int enterpriseId;
+    private Long enterpriseId;
 
     public String getRank() {
         return rank;
@@ -18,11 +18,11 @@ public class EnterpriseResponsilbility extends Account {
         this.rank = rank;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 }

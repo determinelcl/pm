@@ -1,19 +1,19 @@
 package com.practice.management.bean.entity;
 
 public class TrainSummary {
-    private int id;
+    private Long id;
     private String trainSummary;
     private String trainReportUrl;
     private String trainDesignUrl;
-    private int schoolId;
-    private int studentId;
+    private Long schoolId;
+    private Long studentId;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,19 +41,19 @@ public class TrainSummary {
         this.trainDesignUrl = trainDesignUrl;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 
-    public int getStudentId() {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 }

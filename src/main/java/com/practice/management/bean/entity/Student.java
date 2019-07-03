@@ -4,11 +4,11 @@ public class Student extends Account {
 
     private String classes;
 
-    private int enterpriseId;
+    private Long enterpriseId;
 
-    private int enterpriseProgrammeId;
+    private Long enterpriseProgrammeId;
 
-    private int majorId;
+    private Long majorId;
 
     public String getClasses() {
         return classes;
@@ -18,27 +18,27 @@ public class Student extends Account {
         this.classes = classes;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
-    public int getEnterpriseProgrammeId() {
+    public Long getEnterpriseProgrammeId() {
         return enterpriseProgrammeId;
     }
 
-    public void setEnterpriseProgrammeId(int enterpriseProgrammeId) {
+    public void setEnterpriseProgrammeId(Long enterpriseProgrammeId) {
         this.enterpriseProgrammeId = enterpriseProgrammeId;
     }
 
-    public int getMajorId() {
+    public Long getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(int majorId) {
+    public void setMajorId(Long majorId) {
         this.majorId = majorId;
     }
 }

@@ -1,16 +1,16 @@
 package com.practice.management.bean.entity;
 
 public class EnterpriseProgramme {
-    private int id;
+    private Long id;
     private String name;
-    private int enterpriseId;
+    private Long enterpriseId;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -22,11 +22,11 @@ public class EnterpriseProgramme {
         this.name = name;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 }

@@ -4,19 +4,19 @@ package com.practice.management.bean.entity;
 * 就业
 * */
 public class Employment {
-    private int id;
+    private Long id;
     private String name;
     private String city;
     private String post;
     private int salary;
-    private int enterpriseId;
-    private int studentid;
+    private Long enterpriseId;
+    private Long studentid;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,19 +52,19 @@ public class Employment {
         this.salary = salary;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
-    public int getStudentid() {
+    public Long getStudentid() {
         return studentid;
     }
 
-    public void setStudentid(int studentid) {
+    public void setStudentid(Long studentid) {
         this.studentid = studentid;
     }
 }

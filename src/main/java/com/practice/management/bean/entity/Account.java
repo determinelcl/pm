@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Account {
-    private int id;
+    private Long id;
     private String account;
     private String password;
     private String name;
@@ -12,7 +12,7 @@ public class Account {
     private String gender;
     private String phone;
     private String email;
-    private int roleId;
+    private Long roleId;
 
     // 用户维护token字段
     private List<Role> roles;
@@ -20,11 +20,11 @@ public class Account {
     private Date addTime;
     private String remarks;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -84,11 +84,11 @@ public class Account {
         this.email = email;
     }
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

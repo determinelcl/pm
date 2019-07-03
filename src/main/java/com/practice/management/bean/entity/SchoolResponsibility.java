@@ -3,9 +3,9 @@ package com.practice.management.bean.entity;
 public class SchoolResponsibility extends Account {
     private String rank;
 
-    private int majorId;
+    private Long majorId;
 
-    private int schoolId;
+    private Long schoolId;
 
     public String getRank() {
         return rank;
@@ -15,19 +15,19 @@ public class SchoolResponsibility extends Account {
         this.rank = rank;
     }
 
-    public int getMajorId() {
+    public Long getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(int majorId) {
+    public void setMajorId(Long majorId) {
         this.majorId = majorId;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 }

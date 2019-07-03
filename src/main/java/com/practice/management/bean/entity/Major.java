@@ -1,17 +1,17 @@
 package com.practice.management.bean.entity;
 
 public class Major {
-    private int id;
+    private Long id;
     private String facultyName;
     private String name;
     private String introduce;
-    private int schoolId;
+    private Long schoolId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class Major {
         this.introduce = introduce;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 }

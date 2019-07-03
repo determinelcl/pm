@@ -4,7 +4,7 @@ package com.practice.management.bean.entity;
 import java.util.Date;
 
 public class WeekTrain {
-    private int id;
+    private Long id;
     private int trainTimes;
     private Date startTime;
     private Date EndTime;
@@ -13,15 +13,15 @@ public class WeekTrain {
     private String weekStuLearn;
     private String feedbackFocus;
     private String trainSituation;
-    private int majorId;
-    private int schoolId;
-    private int enterpriseId;
+    private Long majorId;
+    private Long schoolId;
+    private Long enterpriseId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -89,27 +89,27 @@ public class WeekTrain {
         this.trainSituation = trainSituation;
     }
 
-    public int getMajorId() {
+    public Long getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(int majorId) {
+    public void setMajorId(Long majorId) {
         this.majorId = majorId;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 }

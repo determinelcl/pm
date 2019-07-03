@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Role {
-    private int id;
+    private Long id;
     private String type;
     private int query;
     private int save;
@@ -14,11 +14,11 @@ public class Role {
     private int upd;
     private String en;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

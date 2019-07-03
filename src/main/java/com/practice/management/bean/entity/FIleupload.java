@@ -6,20 +6,20 @@ import java.util.Date;
  * 文件上传
  * */
 public class FIleupload {
-    private int id;
+    private Long id;
     private String title;
     private String year;
     private String enclosure;
     private Date submitTime;
-    private int enterpriseId;
-    private int fileTypeId;
-    private int schoolId;
+    private Long enterpriseId;
+    private Long fileTypeId;
+    private Long schoolId;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,27 +55,27 @@ public class FIleupload {
         this.submitTime = submitTime;
     }
 
-    public int getEnterpriseId() {
+    public Long getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(int enterpriseId) {
+    public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
-    public int getFileTypeId() {
+    public Long getFileTypeId() {
         return fileTypeId;
     }
 
-    public void setFileTypeId(int fileTypeId) {
+    public void setFileTypeId(Long fileTypeId) {
         this.fileTypeId = fileTypeId;
     }
 
-    public int getSchoolId() {
+    public Long getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(int schoolId) {
+    public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
     }
 }
