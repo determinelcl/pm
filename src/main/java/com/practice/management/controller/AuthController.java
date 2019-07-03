@@ -1,6 +1,6 @@
 package com.practice.management.controller;
 
-import com.practice.management.bean.dto.ResultModel;
+import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.entity.SchoolResponsibility;

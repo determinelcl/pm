@@ -1,5 +1,5 @@
 
-package com.practice.management.bean.dto;
+package com.practice.management.bean.model;
 
 import java.io.Serializable;
 

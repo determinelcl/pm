@@ -1,4 +1,4 @@
-package com.practice.management.bean.dto;
+package com.practice.management.bean.model;
 
 public class UploadFileResponseModel {
     private String fileName;

@@ -1,7 +1,7 @@
 package com.practice.management.controller.common;
 
 
-import com.practice.management.bean.dto.ResultModel;
+import com.practice.management.bean.model.ResultModel;
 
 public class BaseController {
 

@@ -1,7 +1,7 @@
 package com.practice.management.controller;
 
-import com.practice.management.bean.dto.ResultModel;
-import com.practice.management.bean.dto.UploadFileResponseModel;
+import com.practice.management.bean.model.ResultModel;
+import com.practice.management.bean.model.UploadFileResponseModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.FileService;
 import org.slf4j.Logger;

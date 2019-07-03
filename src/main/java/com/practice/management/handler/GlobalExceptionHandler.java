@@ -1,6 +1,6 @@
 package com.practice.management.handler;
 
-import com.practice.management.bean.dto.GlobalExceptionInfoModel;
+import com.practice.management.bean.model.GlobalExceptionInfoModel;
 import com.practice.management.constrant.ResultCode;
 import com.practice.management.exception.IdentificationException;
 import org.springframework.http.HttpStatus;
