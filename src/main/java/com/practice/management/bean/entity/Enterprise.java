@@ -14,6 +14,9 @@ public class Enterprise {
     private Date addTime;
     private String remarks;
 
+    // 企业负责人id：非实体属性，用于查询
+    private Long erId;
+
     public Long getId() {
         return id;
     }
@@ -68,5 +71,13 @@ public class Enterprise {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public Long getErId() {
+        return erId;
+    }
+
+    public void setErId(Long erId) {
+        this.erId = erId;
     }
 }

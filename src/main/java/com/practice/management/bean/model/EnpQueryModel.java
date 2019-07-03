@@ -10,9 +10,13 @@ public class EnpQueryModel {
      */
     private Long enpId;
     /**
+     * 企业负责人id
+     */
+    private Long erId;
+    /**
      * 企业老师工号：account
      */
-    private String erId;
+    private Long account;
     /**
      * 企业老师姓名：name
      */
@@ -26,12 +30,20 @@ public class EnpQueryModel {
         this.enpId = enpId;
     }
 
-    public String getErId() {
+    public Long getErId() {
         return erId;
     }
 
-    public void setErId(String erId) {
+    public void setErId(Long erId) {
         this.erId = erId;
+    }
+
+    public Long getAccount() {
+        return account;
+    }
+
+    public void setAccount(Long account) {
+        this.account = account;
     }
 
     public String getName() {

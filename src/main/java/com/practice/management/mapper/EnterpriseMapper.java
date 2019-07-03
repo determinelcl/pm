@@ -1,10 +1,7 @@
 package com.practice.management.mapper;
 
 import com.practice.management.bean.entity.Enterprise;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface EnterpriseMapper {
@@ -18,4 +15,10 @@ public interface EnterpriseMapper {
 
     @Select("select * from enterprise where id=#{id}")
     Enterprise findById(@Param("id") Long enpId);
+
+    @Update("update enterprise " +
+            "set name=#{name}, introduce=#{introduce}, service_start_time=#{serviceStartTime}, " +
+            "service_end_time=#{serviceEndTime}, addtime=#{addTime}, remarks=#{remarks} " +
+            "where id=#{id}")
+    void updateById(Enterprise enterprise);
 }

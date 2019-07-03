@@ -34,4 +34,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             throw new RuntimeException("企业：" + enpId + "不存在");
         return enterprise;
     }
+
+    @Override
+    public void updateById(Enterprise enterprise) {
+        findById(enterprise.getId());
+        enterpriseMapper.updateById(enterprise);
+    }
 }
