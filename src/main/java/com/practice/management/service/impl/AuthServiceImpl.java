@@ -44,8 +44,11 @@ public class AuthServiceImpl implements AuthService {
         final String username = account.getAccount();
         int type = getTableType(account);
 
-
-        if (accountMapper.findByAccount(username, type) != null) return;
+        // 验证账号是否已经存在
+        for (int i = 1; i <= 3; i++) {
+            if (accountMapper.findByAccount(username, i) != null)
+                throw new RuntimeException(String.format("账号：%s已存在！", username));
+        }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String password = account.getPassword();
@@ -54,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
         account.setLastPasswordResetDate(new Date());
         account.setAddTime(new Date());
         account.setRemarks("");
+
 
         accountMapper.add(account, type);
     }

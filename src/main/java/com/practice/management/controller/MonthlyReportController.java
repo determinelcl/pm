@@ -7,8 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 月报：CURD
+ * 角色：学生：CURD
+ *      老师：审核
+ *      企业：意见
+ */
 @RestController
-@RequestMapping("/monthly")
+@RequestMapping("/mr")
 public class MonthlyReportController extends BaseController {
 
     @Autowired

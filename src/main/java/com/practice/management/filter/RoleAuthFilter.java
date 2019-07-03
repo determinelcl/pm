@@ -43,7 +43,7 @@ public class RoleAuthFilter extends OncePerRequestFilter {
         int roleId = user.getRoleId();
 
         // 验证url是否具有访问权限
-        String requestURL = request.getRequestURL().toString();
+        String requestURL = request.getRequestURI();
         List<Menu> menuList = menuMapper.findByRoleId(roleId);
         for (Menu menu : menuList) {
             if (!menu.getMenuUrl().equals(requestURL)) continue;

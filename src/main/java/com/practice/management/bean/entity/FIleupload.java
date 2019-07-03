@@ -3,8 +3,8 @@ package com.practice.management.bean.entity;
 import java.util.Date;
 
 /*
-* 文件上传
-* */
+ * 文件上传
+ * */
 public class FIleupload {
     private int id;
     private String title;

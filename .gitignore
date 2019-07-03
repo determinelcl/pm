@@ -21,6 +21,7 @@ mvnw
 .DS_Store
 src/test
 target
+upload-files
 
 
 ### NetBeans ###
