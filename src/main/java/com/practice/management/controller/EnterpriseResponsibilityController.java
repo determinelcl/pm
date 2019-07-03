@@ -1,5 +1,9 @@
 package com.practice.management.controller;
 
+import com.practice.management.bean.dto.AddEnterpriseTeacherDto;
+import com.practice.management.bean.dto.UpdEnterpriseDto;
+import com.practice.management.bean.dto.UpdEnterpriseTeacherDto;
+import com.practice.management.bean.dto.UpdErDto;
 import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EnpQueryModel;
@@ -25,12 +29,12 @@ public class EnterpriseResponsibilityController extends BaseController {
      * 企业负责人更新企业信息
      * 角色：企业负责人
      *
-     * @param er 负责人添加的企业
+     * @param dto 负责人添加的企业
      * @return 添加是否成功的消息
      */
     @PostMapping("/enp/upd")
-    public ResultModel<String> updEnterprise(@RequestBody EnterpriseResponsibility er) {
-        erService.updEnterprise(er);
+    public ResultModel<String> updEnterprise(@RequestBody UpdEnterpriseDto dto) {
+        erService.updEnterprise(dto);
         return success("添加成功");
     }
 
@@ -39,38 +43,38 @@ public class EnterpriseResponsibilityController extends BaseController {
      * 企业负责人添加企业老师
      * 角色：企业负责人
      *
-     * @param er 企业负责人
+     * @param dto 企业负责人
      * @return 添加是否成功的消息
      */
     @PostMapping("/teacher/add")
-    public ResultModel<String> addTeacher(EnterpriseResponsibility er) {
-        erService.addTeacher(er);
+    public ResultModel<String> addTeacher(AddEnterpriseTeacherDto dto) {
+        erService.addTeacher(dto);
         return success("添加成功");
     }
 
     /**
-     * 更新企业负责人个人信息/企业负责人还可以更新企业老师信息
+     * 更新企业负责人个人信息
      * 角色：企业负责人、企业老师
      *
-     * @param er 企业负责人
+     * @param dto 企业负责人
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<EnterpriseResponsibility> updateER(EnterpriseResponsibility er) {
-        erService.updEr(er);
-        return success(er);
+    public ResultModel<EnterpriseResponsibility> updateER(UpdErDto dto) {
+        erService.updEr(dto);
+        return success("更新成功");
     }
 
     /**
      * 企业负责人更新企业老师信息
      * 角色：企业负责人
      *
-     * @param er 企业老师信息
+     * @param dto 企业老师信息
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<EnterpriseResponsibility> updateERTeacher(EnterpriseResponsibility er) {
-        erService.updErTeacher(er);
+    public ResultModel<EnterpriseResponsibility> updateERTeacher(UpdEnterpriseTeacherDto dto) {
+        EnterpriseResponsibility er = erService.updErTeacher(dto);
         return success(er);
     }
 
@@ -80,12 +84,14 @@ public class EnterpriseResponsibilityController extends BaseController {
      * 角色：企业负责人
      *
      * @param id 企业老师id
-     * @return 删除结果
+     * @return 删除的企业老师信息
      */
     @DeleteMapping("/del/{erId:\\d+}/{id:\\d+}")
-    public ResultModel<String> deleteER(@PathVariable("erId") Long erId, @PathVariable("id") Long id) {
-        erService.deleteById(erId, id);
-        return success("删除成功");
+    public ResultModel<EnterpriseResponsibility> deleteER(
+            @PathVariable("erId") Long erId, @PathVariable("id") Long id) {
+
+        EnterpriseResponsibility et = erService.deleteById(erId, id);
+        return success(et);
     }
 
     /**

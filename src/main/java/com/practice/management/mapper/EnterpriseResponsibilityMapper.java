@@ -1,5 +1,8 @@
 package com.practice.management.mapper;
 
+import com.practice.management.bean.dto.AddEnterpriseTeacherDto;
+import com.practice.management.bean.dto.UpdEnterpriseTeacherDto;
+import com.practice.management.bean.dto.UpdErDto;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EnpQueryModel;
 import org.apache.ibatis.annotations.*;
@@ -17,18 +20,18 @@ public interface EnterpriseResponsibilityMapper {
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.rank}, #{account.phone}, " +
             "       #{account.email}, #{account.account}, #{account.password}, #{account.enterpriseId}, " +
             "       #{account.roleId}, #{account.addTime}, #{account.remarks})")
-    void insert(@Param("account") EnterpriseResponsibility er);
+    void insert(@Param("account") AddEnterpriseTeacherDto dto);
 
     @Update("update enterpriseresponsibility " +
             "set name=#{name}, age=#{age}, gender=#{gender}, rank=#{rank}, phone=#{phone}, " +
-            "email=#{email},  remarks=#{remarks} where id=#{id} ")
-    void updateErById(EnterpriseResponsibility er);
+            "email=#{email},  remarks=#{remarks} where id=#{erId} ")
+    void updateErById(UpdErDto dto);
 
 
     @Update("update enterpriseresponsibility " +
             "set name=#{name}, age=#{age}, gender=#{gender}, rank=#{rank}, phone=#{phone}, " +
-            "email=#{email}, role_id=#{roleId},  remarks=#{remarks} where id=#{id} ")
-    void updateErTeacherById(EnterpriseResponsibility er);
+            "email=#{email}, role_id=#{roleId},  remarks=#{remarks} where id=#{etId} ")
+    void updateErTeacherById(UpdEnterpriseTeacherDto dto);
 
     @Delete("delete from enterpriseresponsibility where id=#{id}")
     void deleteById(@Param("id") Long id);
