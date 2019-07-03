@@ -14,5 +14,5 @@ public interface RoleMapper {
     void add(Role role);
 
     @Select("select * from role where id=#{id}")
-    Role findById(@Param("id") int id);
+    Role findById(@Param("id") Long id);
 }

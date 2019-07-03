@@ -7,6 +7,9 @@ public class SchoolResponsibility extends Account {
 
     private Long schoolId;
 
+    // 用于注册用户时同时添加学校，非实体属性
+    private School school;
+
     public String getRank() {
         return rank;
     }
@@ -29,6 +32,14 @@ public class SchoolResponsibility extends Account {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }
 

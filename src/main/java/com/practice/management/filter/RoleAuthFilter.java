@@ -40,7 +40,7 @@ public class RoleAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        int roleId = user.getRoleId();
+        Long roleId = user.getRoleId();
 
         // 验证url是否具有访问权限
         String requestURL = request.getRequestURI();
@@ -65,7 +65,7 @@ public class RoleAuthFilter extends OncePerRequestFilter {
      * @param method 请求方法
      * @return 如果具有操作权限返回true，否则返回false
      */
-    private boolean isHasAuthority(int roleId, String method) {
+    private boolean isHasAuthority(Long roleId, String method) {
         Role role = roleMapper.findById(roleId);
         return role.getAuthorities().contains(method);
     }

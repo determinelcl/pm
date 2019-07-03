@@ -2,9 +2,10 @@ package com.practice.management.controller;
 
 import com.practice.management.bean.dto.ResultModel;
 import com.practice.management.bean.entity.Account;
-import com.practice.management.bean.entity.EnterpriseResponsilbility;
+import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.entity.Student;
+import com.practice.management.bean.model.AuthModel;
+import com.practice.management.constrant.SchoolAndEnpEnum;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,52 @@ public class AuthController extends BaseController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/auth")
-    public ResultModel<String> createAuthenticationToken(@RequestBody Account request) {
-        final String token = authService.login(request.getAccount(), request.getPassword());
+    /**
+     * 学生账户登录
+     * 角色：学校学生
+     *
+     * @param authModel 认证的信息Model
+     * @return 认证成功之后返回Token
+     */
+    @PostMapping("/auth/st")
+    public ResultModel<String> createAuthTokenForStudent(@RequestBody AuthModel authModel) {
+        final String token = authService.login(authModel, SchoolAndEnpEnum.STUDENT);
         return success(token);
     }
 
+    /**
+     * 学校账户登录
+     * 角色：学校负责人、学校老师
+     *
+     * @param authModel 认证的信息Model
+     * @return 认证成功之后返回Token
+     */
+    @PostMapping("/auth/sc")
+    public ResultModel<String> createAuthTokenForSchool(@RequestBody AuthModel authModel) {
+        final String token = authService.login(authModel, SchoolAndEnpEnum.SCHOOL);
+        return success(token);
+    }
+
+    /**
+     * 企业登录
+     * 角色：企业负责人、企业老师
+     *
+     * @param authModel 认证的信息Model
+     * @return 认证成功之后返回Token
+     */
+    @PostMapping("/auth/enp")
+    public ResultModel<String> createAuthTokenForEnterprise(@RequestBody AuthModel authModel) {
+        final String token = authService.login(authModel, SchoolAndEnpEnum.ENTERPRISE);
+        return success(token);
+    }
+
+    /**
+     * 刷新Token
+     * 角色：所有登录的用户
+     *
+     * @param request 用户的请求对象
+     * @return 刷新之后的Token
+     */
     @GetMapping("/refresh")
     public ResultModel<String> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
@@ -42,23 +83,32 @@ public class AuthController extends BaseController {
             return success(refreshToken);
     }
 
-    @PostMapping("/auth/st/reg")
-    public ResultModel<Account> registerStudent(@RequestBody Student student) {
-        authService.register(student);
-
-        return success("注册成功");
-    }
-
+    /**
+     * 注册学校负责人
+     * 角色：学校负责人、学校老师
+     *
+     * @param sr 学校负责人数据对象
+     * @return 注册的结果信息
+     */
     @PostMapping("/auth/sr/reg")
-    public ResultModel<Account> registerSR(@RequestBody SchoolResponsibility schoolResponsibility) {
-        authService.register(schoolResponsibility);
+    public ResultModel<Account> registerSR(@RequestBody SchoolResponsibility sr) {
+        sr.setForeignId(sr.getSchoolId());
+        authService.register(sr);
 
         return success("注册成功");
     }
 
+    /**
+     * 注册企业负责人
+     * 角色：企业负责人、企业老师
+     *
+     * @param er 企业负责人数据对象
+     * @return 册的结果信息
+     */
     @PostMapping("/auth/er/reg")
-    public ResultModel<Account> registerStudent(@RequestBody EnterpriseResponsilbility enterpriseResponsilbility) {
-        authService.register(enterpriseResponsilbility);
+    public ResultModel<Account> registerEr(@RequestBody EnterpriseResponsibility er) {
+        er.setForeignId(er.getEnterpriseId());
+        authService.register(er);
 
         return success("注册成功");
     }

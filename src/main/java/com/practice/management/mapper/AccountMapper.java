@@ -9,12 +9,17 @@ import org.apache.ibatis.annotations.Select;
 public interface AccountMapper {
     @Select("<script>" +
             "select * from " +
-            "<if test=\"tableType == 1\"> student </if> " +
-            "<if test=\"tableType == 2\"> schoolresponsibility </if> " +
-            "<if test=\"tableType == 3\"> enterpriseresponsibility </if> " +
-            "where account=#{account}" +
+            "<if test=\"tableType == 1\"> " +
+            "   student where account=#{account} and major_id in (select id from major where school_id=#{id})" +
+            "</if> " +
+            "<if test=\"tableType == 2\"> " +
+            "   schoolresponsibility where account=#{account} and school_id=#{id}" +
+            "</if> " +
+            "<if test=\"tableType == 3\"> " +
+            "   enterpriseresponsibility where account=#{account} and enterprise_id=#{id}" +
+            "</if> " +
             "</script>")
-    Account findByAccount(@Param("account") String account, @Param("tableType") int type);
+    Account findByAccount(@Param("id") Long foreignId, @Param("account") String account, @Param("tableType") int type);
 
     @Select("<script>" +
             "insert into " +

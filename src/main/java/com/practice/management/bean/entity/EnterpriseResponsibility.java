@@ -10,6 +10,9 @@ public class EnterpriseResponsibility extends Account {
 
     private Long enterpriseId;
 
+    // 用于注册用户时同时添加企业，非实体属性
+    private Enterprise enterprise;
+
     public String getRank() {
         return rank;
     }
@@ -24,5 +27,13 @@ public class EnterpriseResponsibility extends Account {
 
     public void setEnterpriseId(Long enterpriseId) {
         this.enterpriseId = enterpriseId;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 }

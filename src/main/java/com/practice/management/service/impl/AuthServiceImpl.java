@@ -1,12 +1,14 @@
 package com.practice.management.service.impl;
 
-import com.practice.management.bean.entity.Account;
-import com.practice.management.bean.entity.EnterpriseResponsilbility;
-import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.entity.Student;
+import com.practice.management.bean.entity.*;
+import com.practice.management.bean.model.AuthModel;
 import com.practice.management.bean.model.JwtUser;
+import com.practice.management.constrant.SchoolAndEnpEnum;
+import com.practice.management.constrant.UserAuth;
 import com.practice.management.mapper.AccountMapper;
 import com.practice.management.service.AuthService;
+import com.practice.management.service.EnterpriseService;
+import com.practice.management.service.SchoolService;
 import com.practice.management.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -39,16 +42,21 @@ public class AuthServiceImpl implements AuthService {
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    @Autowired
+    private SchoolService schoolService;
+
+    @Autowired
+    private EnterpriseService enterpriseService;
+
+    @Transactional
     @Override
     public void register(Account account) {
         final String username = account.getAccount();
         int type = getTableType(account);
 
         // 验证账号是否已经存在
-        for (int i = 1; i <= 3; i++) {
-            if (accountMapper.findByAccount(username, i) != null)
-                throw new RuntimeException(String.format("账号：%s已存在！", username));
-        }
+        if (accountMapper.findByAccount(account.getForeignId(), username, type) != null)
+            throw new RuntimeException(String.format("账号：%s已存在！", username));
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String password = account.getPassword();
@@ -57,7 +65,6 @@ public class AuthServiceImpl implements AuthService {
         account.setLastPasswordResetDate(new Date());
         account.setAddTime(new Date());
         account.setRemarks("");
-
 
         accountMapper.add(account, type);
     }
@@ -70,21 +77,60 @@ public class AuthServiceImpl implements AuthService {
      */
     private int getTableType(Account account) {
         int type = -1;
-        if (account instanceof Student) type = 1;
-        else if (account instanceof SchoolResponsibility) type = 2;
-        else if (account instanceof EnterpriseResponsilbility) type = 3;
+        if (account instanceof Student) {
+            type = 1;
+        } else if (account instanceof SchoolResponsibility) {
+            validateSchool((SchoolResponsibility) account);
+            type = 2;
+        } else if (account instanceof EnterpriseResponsibility) {
+            validateEnterprise((EnterpriseResponsibility) account);
+            type = 3;
+        }
         return type;
     }
 
+    /**
+     * 验证企业负责人和企业老师关联的企业
+     *
+     * @param erTemp 企业负责人和企业老师的对象
+     */
+    private void validateEnterprise(EnterpriseResponsibility erTemp) {
+        if (erTemp.getEnterpriseId() != null) {
+            enterpriseService.findById(erTemp.getEnterpriseId());
+            return;
+        }
+
+        Enterprise enterprise = enterpriseService.add(erTemp.getEnterprise());
+        erTemp.setEnterpriseId(enterprise.getId());
+    }
+
+    /**
+     * 验证学校负责人和学校老师关联的企业
+     *
+     * @param srTemp 学校负责人和学校老师的对象
+     */
+    private void validateSchool(SchoolResponsibility srTemp) {
+        if (srTemp.getSchoolId() != null) {
+            schoolService.findById(srTemp.getSchoolId());
+            return;
+        }
+
+        School school = schoolService.add(srTemp.getSchool());
+        srTemp.setSchoolId(school.getId());
+    }
+
     @Override
-    public String login(String account, String password) {
+    public String login(AuthModel authModel, SchoolAndEnpEnum type) {
+        String realAccount = authModel.getForeignId() + UserAuth.USERNAME_SEP
+                + authModel.getAccount() + UserAuth.USERNAME_SEP + type.name();
+
         UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(account, password);
+                new UsernamePasswordAuthenticationToken(realAccount, authModel.getPassword());
 
         final Authentication authenticate = authenticationManager.authenticate(authentication);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(account);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(realAccount);
 
         return jwtTokenUtil.generateToken(userDetails);
     }

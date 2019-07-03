@@ -9,8 +9,10 @@ public class Enterprise {
     private Long id;
     private String name;
     private String introduce;
-    private Date ServiceST;
-    private Date ServiceET;
+    private Date serviceStartTime;
+    private Date serviceEndTime;
+    private Date addTime;
+    private String remarks;
 
     public Long getId() {
         return id;
@@ -36,19 +38,35 @@ public class Enterprise {
         this.introduce = introduce;
     }
 
-    public Date getServiceST() {
-        return ServiceST;
+    public Date getServiceStartTime() {
+        return serviceStartTime;
     }
 
-    public void setServiceST(Date serviceST) {
-        ServiceST = serviceST;
+    public void setServiceStartTime(Date serviceStartTime) {
+        this.serviceStartTime = serviceStartTime;
     }
 
-    public Date getServiceET() {
-        return ServiceET;
+    public Date getServiceEndTime() {
+        return serviceEndTime;
     }
 
-    public void setServiceET(Date serviceET) {
-        ServiceET = serviceET;
+    public void setServiceEndTime(Date serviceEndTime) {
+        this.serviceEndTime = serviceEndTime;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 }

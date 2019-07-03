@@ -20,6 +20,9 @@ public class Account {
     private Date addTime;
     private String remarks;
 
+    // 业务验证字段，非数据库字段
+    private Long foreignId;
+
     public Long getId() {
         return id;
     }
@@ -122,5 +125,13 @@ public class Account {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public Long getForeignId() {
+        return foreignId;
+    }
+
+    public void setForeignId(Long foreignId) {
+        this.foreignId = foreignId;
     }
 }

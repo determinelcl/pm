@@ -14,16 +14,15 @@ import java.util.stream.Collectors;
 
 public class JwtUser implements UserDetails {
 
-    private final Integer id;
+    private final Long id;
     private final String username;
     private final String password;
     private final String email;
-    private final int roleId;
+    private final Long roleId;
     private final Collection<? extends GrantedAuthority> authorities;
     private final Date lastPasswordResetDate;
 
     public JwtUser(Account user) {
-
         this.id = user.getId();
         this.username = user.getAccount();
         this.password = user.getPassword();
@@ -49,7 +48,7 @@ public class JwtUser implements UserDetails {
     }
 
     @JsonIgnore
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -103,7 +102,7 @@ public class JwtUser implements UserDetails {
         return email;
     }
 
-    public int getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 }

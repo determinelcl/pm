@@ -13,7 +13,7 @@ public interface MenuMapper {
 
     @Select("select * from menu where id in (" +
             "select menu_id from menurole where role_id=#{roleId})")
-    List<Menu> findByRoleId(@Param("roleId") int roleId);
+    List<Menu> findByRoleId(@Param("roleId") Long roleId);
 
     @Insert("add into menu(sequence, logo, menu_name, menu_url, menu_parent, menu_level) " +
             "values(#{sequence}, #{logo}, #{menuName}, #{menuUrl}, #{menuParent}, #{menuLevel})")
