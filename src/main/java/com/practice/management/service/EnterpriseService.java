@@ -1,5 +1,6 @@
 package com.practice.management.service;
 
+import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
 
 public interface EnterpriseService {
@@ -25,5 +26,5 @@ public interface EnterpriseService {
      *
      * @param enterprise 企业信息对象
      */
-    void updateById(Enterprise enterprise);
+    void updateById(UpdEnterpriseParamDto enterprise);
 }

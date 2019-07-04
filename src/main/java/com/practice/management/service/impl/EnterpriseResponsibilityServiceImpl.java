@@ -1,17 +1,16 @@
 package com.practice.management.service.impl;
 
-import com.practice.management.bean.dto.AddEnterpriseTeacherDto;
-import com.practice.management.bean.dto.UpdEnterpriseDto;
-import com.practice.management.bean.dto.UpdEnterpriseTeacherDto;
-import com.practice.management.bean.dto.UpdErDto;
+import com.practice.management.bean.dto.*;
 import com.practice.management.bean.entity.Enterprise;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EnpQueryModel;
 import com.practice.management.mapper.EnterpriseResponsibilityMapper;
+import com.practice.management.service.AuthService;
 import com.practice.management.service.EnterpriseResponsibilityService;
 import com.practice.management.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +23,18 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
     @Autowired
     private EnterpriseService enterpriseService;
 
+    @Autowired
+    private AuthService authService;
+
+    @Transactional
     @Override
     public void updEnterprise(UpdEnterpriseDto dto) {
         EnterpriseResponsibility er = findById(dto.getErId());
+        if (er == null)
+            throw new RuntimeException("企业负责人id:" + dto.getErId() + "不存在！");
+
         Long enterpriseId = er.getEnterpriseId();
-        Enterprise enterprise = dto.getEnterprise();
+        UpdEnterpriseParamDto enterprise = dto.getEnterprise();
 
         // 企业负责人的企业id应和修改的企业id相等
         if (!enterprise.getId().equals(enterpriseId))
@@ -45,6 +51,7 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         return er;
     }
 
+    @Transactional
     @Override
     public void addTeacher(AddEnterpriseTeacherDto dto) {
         EnterpriseResponsibility enterpriseResponsibility = findById(dto.getErId());
@@ -52,9 +59,10 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         Long enterpriseId = enterpriseResponsibility.getEnterpriseId();
         dto.setEnterpriseId(enterpriseId);
 
-        erMapper.insert(dto);
+        authService.register(dto);
     }
 
+    @Transactional
     @Override
     public EnterpriseResponsibility updEr(UpdErDto dto) {
         EnterpriseResponsibility er = findById(dto.getErId());
@@ -65,9 +73,10 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         return findById(dto.getErId());
     }
 
+    @Transactional
     @Override
     public EnterpriseResponsibility updErTeacher(UpdEnterpriseTeacherDto dto) {
-        validateErAndEt(dto.getEtId(), dto.getEtId());
+        validateErAndEt(dto.getErId(), dto.getEtId());
         erMapper.updateErTeacherById(dto);
 
         return findById(dto.getEtId());
@@ -96,6 +105,7 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         return et;
     }
 
+    @Transactional
     @Override
     public EnterpriseResponsibility deleteById(Long erId, Long etId) {
         EnterpriseResponsibility et = validateErAndEt(erId, etId);

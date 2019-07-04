@@ -1,10 +1,12 @@
 package com.practice.management.service.impl;
 
+import com.practice.management.bean.dto.UpdSchoolParamDto;
 import com.practice.management.bean.entity.School;
 import com.practice.management.mapper.SchoolMapper;
 import com.practice.management.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Autowired
     private SchoolMapper schoolMapper;
 
+    @Transactional
     @Override
     public School add(School school) {
         School temp = schoolMapper.findByName(school.getName());
@@ -35,5 +38,14 @@ public class SchoolServiceImpl implements SchoolService {
             throw new RuntimeException("学校：" + schoolId + "不存在");
 
         return school;
+    }
+
+    @Transactional
+    @Override
+    public School updateById(UpdSchoolParamDto school) {
+        findById(school.getId());
+
+        schoolMapper.updateSchoolById(school);
+        return findById(school.getId());
     }
 }

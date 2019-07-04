@@ -1,12 +1,14 @@
 package com.practice.management.controller;
 
-import com.practice.management.bean.model.ResultModel;
+import com.practice.management.bean.dto.*;
 import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.School;
 import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.entity.Student;
+import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.model.SchoolQueryModel;
 import com.practice.management.controller.common.BaseController;
+import com.practice.management.service.SchoolResponsibilityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,30 +20,32 @@ import java.util.List;
 @RequestMapping("/sr")
 public class SchoolResponsibilityController extends BaseController {
 
+    @Autowired
+    private SchoolResponsibilityService srService;
 
     /**
      * 学校负责人添加学校
      * 角色：学校负责人
      *
-     * @param school 学校负责人添加的学校
+     * @param dto 学校负责人添加的学校
      * @return 添加是否成功的消息
      */
     @PostMapping("/sc/add")
-    public ResultModel<String> addSchool(@RequestParam("srId") Integer srId, @RequestParam("school") School school) {
-        return success("添加成功");
+    public ResultModel<School> updSchool(@RequestBody UpdSchoolDto dto) {
+        School school = srService.updSchool(dto);
+        return success(school);
     }
 
     /**
      * 添加学生
      * 角色：学校老师
      *
-     * @param student 学生信息实体对象
+     * @param dto 学生信息对象
      * @return 添加是否成功
      */
     @PostMapping("/stu/add")
-    public ResultModel<Account> addStudent(@RequestBody Student student) {
-//        authService.register(student);
-
+    public ResultModel<Account> addStudent(@RequestBody AddStudentDto dto) {
+        srService.addStudent(dto);
         return success("注册成功");
     }
 
@@ -50,11 +54,12 @@ public class SchoolResponsibilityController extends BaseController {
      * 学校负责人添加学校老师
      * 角色：学校负责人
      *
-     * @param sr 学校负责人
+     * @param dto 学校老师dto
      * @return 添加是否成功的消息
      */
     @PostMapping("/teacher/add")
-    public ResultModel<String> addTeacher(SchoolResponsibility sr) {
+    public ResultModel<String> addTeacher(@RequestBody AddSchoolTeacherDto dto) {
+        srService.addSchoolTeacher(dto);
         return success("添加成功");
     }
 
@@ -62,25 +67,42 @@ public class SchoolResponsibilityController extends BaseController {
      * 更新学校负责人个人信息/学校负责人还可以更新老师信息
      * 角色：学校负责人、学校老师
      *
-     * @param sr 学校负责人
+     * @param dto 学校负责人
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<SchoolResponsibility> updateSR(SchoolResponsibility sr) {
-        return success(new SchoolResponsibility());
+    public ResultModel<SchoolResponsibility> updateSR(UpdSrDto dto) {
+        SchoolResponsibility sr = srService.updateSr(dto);
+        return success(sr);
+    }
+
+    /**
+     * 学校负责人更新学校老师信息
+     * 角色：学校负责人
+     *
+     * @param dto 学校老师dto
+     * @return 更新的老师信息
+     */
+    @PutMapping("/upd/teacher")
+    public ResultModel<SchoolResponsibility> updateSrTeacher(UpdSchoolTeacherDto dto) {
+        SchoolResponsibility sr = srService.updSrTeacher(dto);
+        return success(sr);
     }
 
 
     /**
-     * 根据指定的学校老师id删除学校负责人
+     * 学校老师根据指定的学校老师id删除学校老师
      * 角色：学校负责人
      *
-     * @param id 学校老师id
-     * @return 删除结果
+     * @param srId 学校负责人id
+     * @param stId 学校老师id
+     * @return 删除的学校老师信息
      */
-    @DeleteMapping("/del/{id:\\d+}")
-    public ResultModel<String> deleteSR(@PathVariable("id") int id) {
-        return success("删除成功");
+    @DeleteMapping("/del/{srId:\\d+}/{stId:\\d+}")
+    public ResultModel<SchoolResponsibility> deleteSR(
+            @PathVariable("srId") Long srId, @PathVariable("stId") Long stId) {
+        SchoolResponsibility sr = srService.deleteById(srId, stId);
+        return success(sr);
     }
 
     /**
@@ -93,8 +115,8 @@ public class SchoolResponsibilityController extends BaseController {
      */
     @GetMapping("/query")
     public ResultModel<List<SchoolResponsibility>> query(SchoolQueryModel queryCondition) {
-
-        return success(null);
+        List<SchoolResponsibility> list = srService.queryByCondition(queryCondition);
+        return success(list);
     }
 
 }

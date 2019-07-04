@@ -1,5 +1,6 @@
 package com.practice.management.mapper;
 
+import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
 import org.apache.ibatis.annotations.*;
 
@@ -17,8 +18,7 @@ public interface EnterpriseMapper {
     Enterprise findById(@Param("id") Long enpId);
 
     @Update("update enterprise " +
-            "set name=#{name}, introduce=#{introduce}, service_start_time=#{serviceStartTime}, " +
-            "service_end_time=#{serviceEndTime}, addtime=#{addTime}, remarks=#{remarks} " +
+            "set name=#{name}, introduce=#{introduce} remarks=#{remarks} " +
             "where id=#{id}")
-    void updateById(Enterprise enterprise);
+    void updateById(UpdEnterpriseParamDto enterprise);
 }

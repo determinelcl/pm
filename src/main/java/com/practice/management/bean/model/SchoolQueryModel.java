@@ -7,7 +7,15 @@ package com.practice.management.bean.model;
  */
 public class SchoolQueryModel {
 
+    /**
+     * 学校id
+     */
     private Long schoolId;
+
+    /**
+     * 学校负责人id
+     */
+    private Long srId;
 
     /**
      * 专业名称
@@ -31,6 +39,14 @@ public class SchoolQueryModel {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public Long getSrId() {
+        return srId;
+    }
+
+    public void setSrId(Long srId) {
+        this.srId = srId;
     }
 
     public String getMajorName() {

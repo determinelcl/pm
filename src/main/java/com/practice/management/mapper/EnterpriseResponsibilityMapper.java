@@ -40,13 +40,13 @@ public interface EnterpriseResponsibilityMapper {
             "select * from enterpriseresponsibility " +
             "where 1=1 " +
             "<if test=\"enpId != null\"> " +
-            "   enterprise_id=#{enpId}" +
+            "   and enterprise_id=#{enpId}" +
             "</if>" +
             "<if test=\"account != null\"> " +
-            "   account=#{account}" +
+            "   and account=#{account}" +
             "</if>" +
             "<if test=\"name != null\"> " +
-            "   name=#{name}" +
+            "   and name=#{name}" +
             "</if>" +
             "</script>")
     List<EnterpriseResponsibility> queryByCondition(EnpQueryModel queryCondition);

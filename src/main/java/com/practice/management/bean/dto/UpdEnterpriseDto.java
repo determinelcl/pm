@@ -1,7 +1,5 @@
 package com.practice.management.bean.dto;
 
-import com.practice.management.bean.entity.Enterprise;
-
 public class UpdEnterpriseDto {
     /**
      * 企业负责人id
@@ -11,7 +9,7 @@ public class UpdEnterpriseDto {
     /**
      * 企业对象
      */
-    private Enterprise enterprise;
+    private UpdEnterpriseParamDto enterprise;
 
     public Long getErId() {
         return erId;
@@ -21,11 +19,11 @@ public class UpdEnterpriseDto {
         this.erId = erId;
     }
 
-    public Enterprise getEnterprise() {
+    public UpdEnterpriseParamDto getEnterprise() {
         return enterprise;
     }
 
-    public void setEnterprise(Enterprise enterprise) {
+    public void setEnterprise(UpdEnterpriseParamDto enterprise) {
         this.enterprise = enterprise;
     }
 }

@@ -47,7 +47,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 添加是否成功的消息
      */
     @PostMapping("/teacher/add")
-    public ResultModel<String> addTeacher(AddEnterpriseTeacherDto dto) {
+    public ResultModel<String> addTeacher(@RequestBody AddEnterpriseTeacherDto dto) {
         erService.addTeacher(dto);
         return success("添加成功");
     }
@@ -60,9 +60,9 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<EnterpriseResponsibility> updateER(UpdErDto dto) {
-        erService.updEr(dto);
-        return success("更新成功");
+    public ResultModel<EnterpriseResponsibility> updateER(@RequestBody UpdErDto dto) {
+        EnterpriseResponsibility er = erService.updEr(dto);
+        return success(er);
     }
 
     /**
@@ -72,8 +72,8 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @param dto 企业老师信息
      * @return 更新结果
      */
-    @PutMapping("/upd")
-    public ResultModel<EnterpriseResponsibility> updateERTeacher(UpdEnterpriseTeacherDto dto) {
+    @PutMapping("/upd/teacher")
+    public ResultModel<EnterpriseResponsibility> updateERTeacher(@RequestBody UpdEnterpriseTeacherDto dto) {
         EnterpriseResponsibility er = erService.updErTeacher(dto);
         return success(er);
     }
@@ -83,14 +83,15 @@ public class EnterpriseResponsibilityController extends BaseController {
      * 根据指定的企业老师id删除企业老师
      * 角色：企业负责人
      *
-     * @param id 企业老师id
+     * @param erId 企业负责人id
+     * @param etId 企业老师id
      * @return 删除的企业老师信息
      */
-    @DeleteMapping("/del/{erId:\\d+}/{id:\\d+}")
+    @DeleteMapping("/del/{erId:\\d+}/{etId:\\d+}")
     public ResultModel<EnterpriseResponsibility> deleteER(
-            @PathVariable("erId") Long erId, @PathVariable("id") Long id) {
+            @PathVariable("erId") Long erId, @PathVariable("etId") Long etId) {
 
-        EnterpriseResponsibility et = erService.deleteById(erId, id);
+        EnterpriseResponsibility et = erService.deleteById(erId, etId);
         return success(et);
     }
 
@@ -103,7 +104,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 查询到的企业负责人信息
      */
     @GetMapping("/query")
-    public ResultModel<List<EnterpriseResponsibility>> query(EnpQueryModel queryCondition) {
+    public ResultModel<List<EnterpriseResponsibility>> query(@RequestBody EnpQueryModel queryCondition) {
         List<EnterpriseResponsibility> list = erService.queryByCondition(queryCondition);
         return success(list);
     }

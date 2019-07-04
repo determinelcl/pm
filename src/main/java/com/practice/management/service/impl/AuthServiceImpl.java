@@ -8,6 +8,7 @@ import com.practice.management.constrant.UserAuth;
 import com.practice.management.mapper.AccountMapper;
 import com.practice.management.service.AuthService;
 import com.practice.management.service.EnterpriseService;
+import com.practice.management.service.RoleService;
 import com.practice.management.service.SchoolService;
 import com.practice.management.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,16 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private EnterpriseService enterpriseService;
 
+    @Autowired
+    private RoleService roleService;
+
     @Transactional
     @Override
     public void register(Account account) {
         final String username = account.getAccount();
         int type = getTableType(account);
+        // 验证关联的角色id是否存在
+        roleService.findById(account.getRoleId());
 
         // 验证账号是否已经存在
         if (accountMapper.findByAccount(account.getForeignId(), username, type) != null)
@@ -75,7 +81,8 @@ public class AuthServiceImpl implements AuthService {
      * @param account 指定的账户对象
      * @return 学生：1，学校负责人：2，企业负责人：3
      */
-    private int getTableType(Account account) {
+    @Transactional
+    public int getTableType(Account account) {
         int type = -1;
         if (account instanceof Student) {
             type = 1;
@@ -94,7 +101,8 @@ public class AuthServiceImpl implements AuthService {
      *
      * @param erTemp 企业负责人和企业老师的对象
      */
-    private void validateEnterprise(EnterpriseResponsibility erTemp) {
+    @Transactional
+    public void validateEnterprise(EnterpriseResponsibility erTemp) {
         if (erTemp.getEnterpriseId() != null) {
             enterpriseService.findById(erTemp.getEnterpriseId());
             return;
@@ -109,7 +117,8 @@ public class AuthServiceImpl implements AuthService {
      *
      * @param srTemp 学校负责人和学校老师的对象
      */
-    private void validateSchool(SchoolResponsibility srTemp) {
+    @Transactional
+    public void validateSchool(SchoolResponsibility srTemp) {
         if (srTemp.getSchoolId() != null) {
             schoolService.findById(srTemp.getSchoolId());
             return;
@@ -119,6 +128,7 @@ public class AuthServiceImpl implements AuthService {
         srTemp.setSchoolId(school.getId());
     }
 
+    @Transactional
     @Override
     public String login(AuthModel authModel, SchoolAndEnpEnum type) {
         String realAccount = authModel.getForeignId() + UserAuth.USERNAME_SEP
@@ -135,6 +145,7 @@ public class AuthServiceImpl implements AuthService {
         return jwtTokenUtil.generateToken(userDetails);
     }
 
+    @Transactional
     @Override
     public String refresh(String oldToken) {
         final String token = oldToken.substring(tokenHead.length());

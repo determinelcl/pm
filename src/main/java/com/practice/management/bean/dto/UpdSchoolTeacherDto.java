@@ -1,14 +1,14 @@
 package com.practice.management.bean.dto;
 
-public class UpdEnterpriseTeacherDto {
+public class UpdSchoolTeacherDto {
     /**
-     * 企业负责人id
+     * 学校负责人id
      */
-    private Long erId;
+    private Long srId;
     /**
-     * 企业老师id
+     * 学校老师id
      */
-    private Long etId;
+    private Long stId;
     private String name;
     private int age;
     private String gender;
@@ -17,22 +17,22 @@ public class UpdEnterpriseTeacherDto {
     private String rank;
     private String remarks;
     private Long roleId;
+    private Long majorId;
 
-
-    public Long getErId() {
-        return erId;
+    public Long getSrId() {
+        return srId;
     }
 
-    public void setErId(Long erId) {
-        this.erId = erId;
+    public void setSrId(Long srId) {
+        this.srId = srId;
     }
 
-    public Long getEtId() {
-        return etId;
+    public Long getStId() {
+        return stId;
     }
 
-    public void setEtId(Long etId) {
-        this.etId = etId;
+    public void setStId(Long stId) {
+        this.stId = stId;
     }
 
     public String getName() {
@@ -97,5 +97,13 @@ public class UpdEnterpriseTeacherDto {
 
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
+    }
+
+    public Long getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(Long majorId) {
+        this.majorId = majorId;
     }
 }

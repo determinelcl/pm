@@ -73,6 +73,9 @@ public class UserService implements UserDetailsService {
 
         Long roleId = account.getRoleId();
         Role role = roleMapper.findById(roleId);
+        if (role == null)
+            throw new RuntimeException("用户角色id:" + roleId + "不存在");
+
         account.setRoles(Collections.singletonList(role));
         account.setAccount(username);
         return new JwtUser(account);

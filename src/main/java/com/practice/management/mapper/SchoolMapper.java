@@ -1,5 +1,6 @@
 package com.practice.management.mapper;
 
+import com.practice.management.bean.dto.UpdSchoolParamDto;
 import com.practice.management.bean.entity.School;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,4 +19,9 @@ public interface SchoolMapper {
 
     @Select("select * from school where id=#{id}")
     School findById(@Param("id") Long schoolId);
+
+    @Select("update school " +
+            "set name=#{name}, introduce=#{introduce} remarks=#{remarks} " +
+            "where id=#{id}")
+    void updateSchoolById(UpdSchoolParamDto school);
 }

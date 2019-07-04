@@ -1,10 +1,12 @@
 package com.practice.management.service.impl;
 
+import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
 import com.practice.management.mapper.EnterpriseMapper;
 import com.practice.management.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     @Autowired
     private EnterpriseMapper enterpriseMapper;
 
+    @Transactional
     @Override
     public Enterprise add(Enterprise enterprise) {
         Enterprise temp = enterpriseMapper.findByName(enterprise.getName());
@@ -35,8 +38,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         return enterprise;
     }
 
+    @Transactional
     @Override
-    public void updateById(Enterprise enterprise) {
+    public void updateById(UpdEnterpriseParamDto enterprise) {
         findById(enterprise.getId());
         enterpriseMapper.updateById(enterprise);
     }
