@@ -17,6 +17,14 @@ public interface SchoolResponsibilityService {
     School updSchool(UpdSchoolDto dto);
 
     /**
+     * 根据指定的学校负责人/老师id验证是否存在
+     *
+     * @param srId 学校负责人/老师id
+     * @return 如果存在则返回学校负责人/老师信息，否则报告异常信息
+     */
+    SchoolResponsibility findById(Long srId);
+
+    /**
      * 学校负责人添加学生信息
      *
      * @param dto 学生信息对象

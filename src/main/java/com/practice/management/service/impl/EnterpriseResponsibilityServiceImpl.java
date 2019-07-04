@@ -8,6 +8,7 @@ import com.practice.management.mapper.EnterpriseResponsibilityMapper;
 import com.practice.management.service.AuthService;
 import com.practice.management.service.EnterpriseResponsibilityService;
 import com.practice.management.service.EnterpriseService;
+import com.practice.management.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,9 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Transactional
     @Override
@@ -59,6 +63,8 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         Long enterpriseId = enterpriseResponsibility.getEnterpriseId();
         dto.setEnterpriseId(enterpriseId);
 
+        // 验证角色：企业老师的权限不可比企业负责人的权限高
+        roleService.authorityValidate(enterpriseResponsibility.getRoleId(), dto.getRoleId());
         authService.register(dto);
     }
 
@@ -77,8 +83,10 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
     @Override
     public EnterpriseResponsibility updErTeacher(UpdEnterpriseTeacherDto dto) {
         validateErAndEt(dto.getErId(), dto.getEtId());
-        erMapper.updateErTeacherById(dto);
 
+        // 验证角色：企业老师的权限不可比企业负责人的权限高
+        roleService.authorityValidate(findById(dto.getErId()).getRoleId(), dto.getRoleId());
+        erMapper.updateErTeacherById(dto);
         return findById(dto.getEtId());
     }
 

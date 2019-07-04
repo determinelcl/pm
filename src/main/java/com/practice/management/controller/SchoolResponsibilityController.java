@@ -1,7 +1,9 @@
 package com.practice.management.controller;
 
-import com.practice.management.bean.dto.*;
-import com.practice.management.bean.entity.Account;
+import com.practice.management.bean.dto.AddSchoolTeacherDto;
+import com.practice.management.bean.dto.UpdSchoolDto;
+import com.practice.management.bean.dto.UpdSchoolTeacherDto;
+import com.practice.management.bean.dto.UpdSrDto;
 import com.practice.management.bean.entity.School;
 import com.practice.management.bean.entity.SchoolResponsibility;
 import com.practice.management.bean.model.ResultModel;
@@ -34,19 +36,6 @@ public class SchoolResponsibilityController extends BaseController {
     public ResultModel<School> updSchool(@RequestBody UpdSchoolDto dto) {
         School school = srService.updSchool(dto);
         return success(school);
-    }
-
-    /**
-     * 添加学生
-     * 角色：学校老师
-     *
-     * @param dto 学生信息对象
-     * @return 添加是否成功
-     */
-    @PostMapping("/stu/add")
-    public ResultModel<Account> addStudent(@RequestBody AddStudentDto dto) {
-        srService.addStudent(dto);
-        return success("注册成功");
     }
 
 

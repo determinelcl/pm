@@ -30,6 +30,9 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
     @Autowired
     private SchoolEnterpriseService seService;
 
+    @Autowired
+    private RoleService roleService;
+
     @Transactional
     @Override
     public School updSchool(UpdSchoolDto dto) {
@@ -44,13 +47,8 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         return schoolService.updateById(school);
     }
 
-    /**
-     * 根据指定的学校负责人/老师id验证是否存在
-     *
-     * @param srId 学校负责人/老师id
-     * @return 如果存在则返回学校负责人/老师信息，否则报告异常信息
-     */
-    private SchoolResponsibility findById(Long srId) {
+    @Override
+    public SchoolResponsibility findById(Long srId) {
         SchoolResponsibility sr = srMapper.findById(srId);
         if (sr == null)
             throw new RuntimeException("学校负责人id:" + srId + "不存在！");
@@ -65,6 +63,8 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         // 验证校企合作
         seService.findByScIdAndEnpId(sr.getSchoolId(), dto.getEnterpriseId());
 
+        // 验证角色：学校学生的权限不可比老师的权限高
+        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
         studentService.addStudent(dto, sr.getSchoolId());
     }
 
@@ -75,6 +75,8 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         SchoolResponsibility sr = findById(srId);
         dto.setSchoolId(sr.getSchoolId());
 
+        // 验证角色：学校老师的权限不可比学校负责人的权限高
+        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
         authService.register(dto);
     }
 
@@ -91,8 +93,11 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
     @Override
     public SchoolResponsibility updSrTeacher(UpdSchoolTeacherDto dto) {
         validateSrAndSt(dto.getSrId(), dto.getStId());
-        srMapper.updateSrTeacherById(dto);
 
+        // 验证角色：学校老师的权限不可比学校负责人的权限高
+        roleService.authorityValidate(findById(dto.getSrId()).getRoleId(), dto.getRoleId());
+
+        srMapper.updateSrTeacherById(dto);
         return findById(dto.getStId());
     }
 
