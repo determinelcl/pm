@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface RoleMapper {
 
-    @Insert("add into role(type, query, save, del, upd, en) " +
-            "values(#{type}, #{query}, #{save}, #{del}, #{upd}, #{en})")
+    @Insert("add into role(type, queryByCondition, save, del, upd, en) " +
+            "values(#{type}, #{queryByCondition}, #{save}, #{del}, #{upd}, #{en})")
     void add(Role role);
 
     @Select("select * from role where id=#{id}")

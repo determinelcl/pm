@@ -1,6 +1,10 @@
 package com.practice.management.controller;
 
+import com.practice.management.bean.dto.UpdErMReportDto;
+import com.practice.management.bean.dto.UpdSrMReportDto;
+import com.practice.management.bean.dto.UpdStuMReportDto;
 import com.practice.management.bean.entity.MonthReport;
+import com.practice.management.bean.model.MonthlyReportQueryModel;
 import com.practice.management.bean.model.ResultModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.MonthlyReportService;
@@ -12,8 +16,8 @@ import java.util.List;
 /**
  * 月报：CURD
  * 角色：学生：CURD
- *      老师：审核
- *      企业：意见
+ * 老师：审核
+ * 企业：意见
  */
 @RestController
 @RequestMapping("/mr")
@@ -38,15 +42,39 @@ public class MonthlyReportController extends BaseController {
     /**
      * 修改月报信息
      * 角色：学生
-     *      企业负责人可以修改企业意见、
-     *      学校负责人可以审核
      *
-     * @param monthReport 月报
+     * @param dto 月报
      * @return 修改成功之后的月报对象
      */
-    @PutMapping("/upd")
-    public ResultModel<MonthReport> update(@RequestBody MonthReport monthReport) {
-        MonthReport mr = monthlyReportService.updateById(monthReport);
+    @PutMapping("/upd/stu")
+    public ResultModel<MonthReport> updateByStu(@RequestBody UpdStuMReportDto dto) {
+        MonthReport mr = monthlyReportService.updateByStu(dto);
+        return success(mr);
+    }
+
+    /**
+     * 学校修审核月报
+     * 角色：学校负责人
+     *
+     * @param dto 月报
+     * @return 审核的月报对象
+     */
+    @PutMapping("/upd/sr")
+    public ResultModel<MonthReport> updateBySr(@RequestBody UpdSrMReportDto dto) {
+        MonthReport mr = monthlyReportService.updateBySr(dto);
+        return success(mr);
+    }
+
+    /**
+     * 企业填写月报意见
+     * 角色：企业负责人
+     *
+     * @param dto 月报
+     * @return 修改成功之后的月报对象
+     */
+    @PutMapping("/upd/er")
+    public ResultModel<MonthReport> updateEr(@RequestBody UpdErMReportDto dto) {
+        MonthReport mr = monthlyReportService.updateByEr(dto);
         return success(mr);
     }
 
@@ -54,26 +82,28 @@ public class MonthlyReportController extends BaseController {
      * 删除月报信息
      * 角色：学生
      *
-     * @param mrId 月报id
-     * @return 修改成功之后的月报对象
+     * @param stuId         学生id
+     * @param monthReportId 月报id
+     * @return 删除成功之后的月报对象
      */
-    @PutMapping("/del/{id:\\d+}")
-    public ResultModel<MonthReport> delete(@PathVariable("id") Long mrId) {
-        MonthReport mr = monthlyReportService.deleteById(mrId);
+    @PutMapping("/del//{stuId:\\d+}/{mrId:\\d+}")
+    public ResultModel<MonthReport> delete(
+            @PathVariable("stuId") Long stuId, @PathVariable("mrId") Long monthReportId) {
+        MonthReport mr = monthlyReportService.deleteById(stuId, monthReportId);
         return success(mr);
     }
 
     /**
      * 查询月报信息
-     * 角色：所有登录用户和学生
+     * 角色：所有登录用户和月报属于的当前的学生
      * 条件：学生学号、提交时间、学校名称、企业name
      *
-     * @param monthReport 查询条件
+     * @param queryCondition 查询条件
      * @return 查询的月报信息列表
      */
-    @PutMapping("/upd")
-    public ResultModel<List<MonthReport>> query(@RequestBody MonthReport monthReport) {
-        List<MonthReport> list = monthlyReportService.query(monthReport);
+    @PutMapping("/query")
+    public ResultModel<List<MonthReport>> query(@RequestBody MonthlyReportQueryModel queryCondition) {
+        List<MonthReport> list = monthlyReportService.queryByCondition(queryCondition);
         return success(list);
     }
 }
