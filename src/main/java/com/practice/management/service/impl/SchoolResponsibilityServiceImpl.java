@@ -25,12 +25,6 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
     private AuthService authService;
 
     @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private SchoolEnterpriseService seService;
-
-    @Autowired
     private RoleService roleService;
 
     @Transactional
@@ -53,19 +47,6 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         if (sr == null)
             throw new RuntimeException("学校负责人id:" + srId + "不存在！");
         return sr;
-    }
-
-    @Transactional
-    @Override
-    public void addStudent(AddStudentDto dto) {
-        Long srId = dto.getSrId();
-        SchoolResponsibility sr = findById(srId);
-        // 验证校企合作
-        seService.findByScIdAndEnpId(sr.getSchoolId(), dto.getEnterpriseId());
-
-        // 验证角色：学校学生的权限不可比老师的权限高
-        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
-        studentService.addStudent(dto, sr.getSchoolId());
     }
 
     @Transactional

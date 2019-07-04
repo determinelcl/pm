@@ -7,7 +7,6 @@ import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.Student;
 import com.practice.management.bean.model.ResultModel;
 import com.practice.management.controller.common.BaseController;
-import com.practice.management.service.SchoolResponsibilityService;
 import com.practice.management.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/stu")
 public class StudentController extends BaseController {
-
-    @Autowired
-    private SchoolResponsibilityService srService;
 
     @Autowired
     private StudentService studentService;
@@ -34,8 +30,8 @@ public class StudentController extends BaseController {
      */
     @PostMapping("/add")
     public ResultModel<Account> addStudent(@RequestBody AddStudentDto dto) {
-        srService.addStudent(dto);
-        return success("添加成功");
+        Student student = studentService.addStudent(dto);
+        return success("添加成功", student);
     }
 
     /**
@@ -48,7 +44,7 @@ public class StudentController extends BaseController {
     @PutMapping("/upd")
     public ResultModel<Student> updStudent(@RequestBody UpdStudentDto dto) {
         Student student = studentService.updStudent(dto);
-        return success(student);
+        return success("修改成功", student);
     }
 
 
@@ -62,6 +58,6 @@ public class StudentController extends BaseController {
     @PutMapping("/sr/upd")
     public ResultModel<Student> updStudentBySr(@RequestBody UpdSrStudentDto dto) {
         Student student = studentService.updStudentBySr(dto);
-        return success(student);
+        return success("修改成功", student);
     }
 }

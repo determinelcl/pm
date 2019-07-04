@@ -7,13 +7,12 @@ import com.practice.management.bean.entity.Student;
 
 public interface StudentService {
     /**
-     * 根据学校添加学生信息
+     * 学校负责人添加学生信息
      *
      * @param dto 学生信息对象
-     * @param schoolId 学校id
-     * @return 添加之后的结果
+     * @return
      */
-    Student addStudent(AddStudentDto dto, Long schoolId);
+    Student addStudent(AddStudentDto dto);
 
     Student findById(Long stuId);
 

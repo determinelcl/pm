@@ -40,10 +40,22 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private SchoolEnterpriseService seService;
 
-
     @Transactional
     @Override
-    public Student addStudent(AddStudentDto dto, Long schoolId) {
+    public Student addStudent(AddStudentDto dto) {
+        Long srId = dto.getSrId();
+        SchoolResponsibility sr = srService.findById(srId);
+        // 验证校企合作
+        seService.findByScIdAndEnpId(sr.getSchoolId(), dto.getEnterpriseId());
+
+        // 验证角色：学校学生的权限不可比老师的权限高
+        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+
+        return addStudent(dto, sr.getSchoolId());
+    }
+
+
+    private Student addStudent(AddStudentDto dto, Long schoolId) {
         Long enterpriseId = dto.getEnterpriseId();
         Long majorId = dto.getMajorId();
         Long enterpriseProgrammeId = dto.getEnterpriseProgrammeId();

@@ -25,13 +25,6 @@ public interface SchoolResponsibilityService {
     SchoolResponsibility findById(Long srId);
 
     /**
-     * 学校负责人添加学生信息
-     *
-     * @param dto 学生信息对象
-     */
-    void addStudent(AddStudentDto dto);
-
-    /**
      * 添加学校老师信息
      *
      * @param dto 学校老师信息dto
