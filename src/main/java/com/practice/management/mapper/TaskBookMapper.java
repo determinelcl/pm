@@ -48,7 +48,7 @@ public interface TaskBookMapper {
     void deleteById(@Param("id") Long taskId);
 
     @Select("<script>" +
-            "select * from monthreport " +
+            "select * from task " +
             "where 1=1 " +
             "<if test=\"type == 1\"> " +
             "   and student_id=#{id} " +

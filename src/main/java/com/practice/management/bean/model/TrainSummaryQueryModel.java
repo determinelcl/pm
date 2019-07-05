@@ -1,8 +1,6 @@
 package com.practice.management.bean.model;
 
-import java.util.Date;
-
-public class TaskQueryModel {
+public class TrainSummaryQueryModel {
 
     /**
      * 查询用户的id
@@ -19,13 +17,7 @@ public class TaskQueryModel {
      */
     private String account;
 
-    private String projectName;
-
-    private Date submitTime;
-
     private String schoolName;
-
-    private String enpName;
 
     public Long getId() {
         return id;
@@ -51,35 +43,11 @@ public class TaskQueryModel {
         this.account = account;
     }
 
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public Date getSubmitTime() {
-        return submitTime;
-    }
-
-    public void setSubmitTime(Date submitTime) {
-        this.submitTime = submitTime;
-    }
-
     public String getSchoolName() {
         return schoolName;
     }
 
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
-    }
-
-    public String getEnpName() {
-        return enpName;
-    }
-
-    public void setEnpName(String enpName) {
-        this.enpName = enpName;
     }
 }

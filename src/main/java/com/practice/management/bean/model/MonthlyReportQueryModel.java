@@ -14,7 +14,7 @@ public class MonthlyReportQueryModel {
     /**
      * 查询用户类型
      */
-    private String type;
+    private Integer type;
 
     /**
      * 学生学号
@@ -35,11 +35,11 @@ public class MonthlyReportQueryModel {
         this.id = id;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
