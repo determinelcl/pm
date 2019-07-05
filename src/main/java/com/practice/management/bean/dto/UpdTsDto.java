@@ -1,7 +1,14 @@
-package com.practice.management.bean.entity;
+package com.practice.management.bean.dto;
 
-public class TrainScore {
-    private Long id;
+public class UpdTsDto {
+    /**
+     * 企业负责人/老师id
+     */
+    private Long erId;
+    /**
+     * 实训成绩id
+     */
+    private Long tsId;
     private String lessonName;
     private double stageOne;
     private double stageTwo;
@@ -9,24 +16,22 @@ public class TrainScore {
     private double stageFour;
     private double stageFire;
     private Long coefficientId;
-    private Long majorId;
-    private Long schoolId;
-    private Long studentId;
-    private Long enterpriseId;
     private Long enterpriseProgrammeId;
 
-    /**
-     * 阶段系数：非成绩表中的属性
-     */
-    private Coefficient coefficient;
-
-
-    public Long getId() {
-        return id;
+    public Long getErId() {
+        return erId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setErId(Long erId) {
+        this.erId = erId;
+    }
+
+    public Long getTsId() {
+        return tsId;
+    }
+
+    public void setTsId(Long tsId) {
+        this.tsId = tsId;
     }
 
     public String getLessonName() {
@@ -83,46 +88,6 @@ public class TrainScore {
 
     public void setCoefficientId(Long coefficientId) {
         this.coefficientId = coefficientId;
-    }
-
-    public Long getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(Long majorId) {
-        this.majorId = majorId;
-    }
-
-    public Long getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(Long schoolId) {
-        this.schoolId = schoolId;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public Coefficient getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(Coefficient coefficient) {
-        this.coefficient = coefficient;
-    }
-
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
     }
 
     public Long getEnterpriseProgrammeId() {
