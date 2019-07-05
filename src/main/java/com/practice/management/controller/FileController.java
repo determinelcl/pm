@@ -4,6 +4,7 @@ import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.model.UploadFileResponseModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.FileService;
+import com.practice.management.util.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -34,10 +34,7 @@ public class FileController extends BaseController {
         String fileName = fileService.saveFile(file, "sno");
 
         // 根据上传的文件路径生成下载路径
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/file/download/")
-                .path(fileName)
-                .toUriString();
+        String fileDownloadUri = FileUtil.getFileDownloadUri(fileName, "/file/download/");
 
         return success(new UploadFileResponseModel(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize()));
@@ -64,7 +61,7 @@ public class FileController extends BaseController {
             logger.info("未获取到文件的MIME类型.");
         }
 
-        // 如果不知道文件的MIME类型，则自动设置MIME类型
+        // 如果不知道文件的MIME类型，则自动设置MIME类型q
         if (contentType == null)
             contentType = "application/octet-stream";
 

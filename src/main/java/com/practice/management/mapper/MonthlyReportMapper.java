@@ -45,13 +45,13 @@ public interface MonthlyReportMapper {
     @Select("<script>" +
             "select * from monthreport " +
             "where 1=1 " +
-            "<if test=\"type == 'student'\"> " +
+            "<if test=\"type == 1\"> " +
             "   and student_id=#{id} " +
             "</if>" +
-            "<if test=\"type == 'school'\"> " +
+            "<if test=\"type == 2\"> " +
             "   and school_id=#{id} " +
             "</if>" +
-            "<if test=\"type == 'enterprise'\"> " +
+            "<if test=\"type == 3\"> " +
             "   and enterprise_id=#{id} " +
             "</if>" +
             "<if test=\"account != null\"> " +

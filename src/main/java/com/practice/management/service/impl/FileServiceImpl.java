@@ -72,7 +72,8 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public boolean removeFile(String filename) {
-        File file = new File(filename);
+        Path filePath = this.fileStorageLocation.resolve(filename).normalize();
+        File file = filePath.toFile();
 
         if (!file.exists())
             throw new FileException("文件" + filename + "不存在");
