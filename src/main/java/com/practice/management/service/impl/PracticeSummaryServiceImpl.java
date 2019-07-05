@@ -6,11 +6,13 @@ import com.practice.management.bean.entity.Major;
 import com.practice.management.bean.entity.Student;
 import com.practice.management.bean.entity.TrainSummary;
 import com.practice.management.bean.model.TrainSummaryQueryModel;
+import com.practice.management.constrant.FileConstrant;
 import com.practice.management.mapper.PracticeSummaryMapper;
 import com.practice.management.service.FileService;
 import com.practice.management.service.MajorService;
 import com.practice.management.service.PracticeSummaryService;
 import com.practice.management.service.StudentService;
+import com.practice.management.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -126,6 +128,13 @@ public class PracticeSummaryServiceImpl implements PracticeSummaryService {
 
     @Override
     public List<TrainSummary> queryByCondition(TrainSummaryQueryModel queryCondition) {
-        return summaryMapper.queryByCondition(queryCondition);
+        List<TrainSummary> trainSummaryList = summaryMapper.queryByCondition(queryCondition);
+        trainSummaryList.forEach(trainSummary -> {
+            trainSummary.setTrainReportUrl(
+                    FileUtil.getFileDownloadUri(trainSummary.getTrainReportUrl(), FileConstrant.FILE_DOWNLOAD_URI));
+            trainSummary.setTrainDesignUrl(
+                    FileUtil.getFileDownloadUri(trainSummary.getTrainDesignUrl(), FileConstrant.FILE_DOWNLOAD_URI));
+        });
+        return trainSummaryList;
     }
 }
