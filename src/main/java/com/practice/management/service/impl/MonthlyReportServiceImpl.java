@@ -47,8 +47,8 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
         monthReport.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
         monthReport.setStudentId(student.getId());
-        monthlyReportMapper.insert(monthReport);
-        return monthlyReportMapper.findBySubmitTimeAndStuId(submitTime, student.getId());
+        Long mrId = monthlyReportMapper.insert(monthReport);
+        return monthlyReportMapper.findById(mrId);
     }
 
     @Override

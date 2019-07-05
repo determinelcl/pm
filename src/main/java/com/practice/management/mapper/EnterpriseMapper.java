@@ -9,7 +9,8 @@ public interface EnterpriseMapper {
 
     @Insert("insert into enterprise(name, introduce, service_start_time, service_end_time, addtime, remarks)" +
             "values(#{name}, #{introduce}, #{serviceStartTime}, #{serviceEndTime}, #{addTime}, #{remarks})")
-    void insert(Enterprise enterprise);
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    Long insert(Enterprise enterprise);
 
     @Select("select * from enterprise where name=#{name}")
     Enterprise findByName(@Param("name") String name);

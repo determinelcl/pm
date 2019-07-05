@@ -16,7 +16,8 @@ public interface MonthlyReportMapper {
             "                       school_examine, submit_time, enterprise_id, school_id, student_id)" +
             " values(#{startTime}, #{endTime}, #{trainContent}, #{trainHarvest}, #{year}, #{enterpriseOpinion}," +
             "           #{schoolExamine}, #{submitTime}, #{enterpriseId}, #{schoolId}, #{studentId})")
-    void insert(MonthReport monthReport);
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    Long insert(MonthReport monthReport);
 
     @Select("select * from monthreport where submit_time=#{submitTime} and student_id=#{stuId}")
     MonthReport findBySubmitTimeAndStuId(@Param("submitTime") Date submitTime, @Param("stuId") Long stuId);

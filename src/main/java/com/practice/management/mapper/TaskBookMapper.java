@@ -23,7 +23,8 @@ public interface TaskBookMapper {
             "values(#{projectName}, #{year}, #{submitTime}, #{enterpiseTeracherName}, #{schoolTeacherName}," +
             "       #{trainContent}, #{projectDesignContent}, #{designRequirment}, #{enclosureUrl}," +
             "       #{enterpriseOpinion}, #{schoolEamine}, #{enterpriseId}, #{schoolId}, #{studentId})")
-    void insert(AddTaskDto task);
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    Long insert(AddTaskDto task);
 
     @Select("select * from task where submit_time=#{submitTime} and student_id=#{stuId}")
     Task findBySubmitTimeAndStuId(@Param("submitTime") Date submitTime, @Param("stuId") Long stuId);

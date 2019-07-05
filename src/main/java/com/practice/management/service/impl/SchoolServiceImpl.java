@@ -25,9 +25,9 @@ public class SchoolServiceImpl implements SchoolService {
 
         school.setAddTime(new Date());
         school.setRemarks("");
-        schoolMapper.insert(school);
+        Long schoolId = schoolMapper.insert(school);
 
-        return schoolMapper.findByName(school.getName());
+        return schoolMapper.findById(schoolId);
     }
 
     @Override

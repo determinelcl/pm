@@ -52,9 +52,9 @@ public class PracticeSummaryServiceImpl implements PracticeSummaryService {
         String designFilename = fileService.saveFile(summary.getTrainDesign(), identification);
         summary.setTrainDesignUrl(designFilename);
 
-        summaryMapper.insert(summary);
+        Long summaryId = summaryMapper.insert(summary);
 
-        return summaryMapper.findByFilename(reportFilename, designFilename);
+        return summaryMapper.findById(summaryId);
     }
 
     @Override

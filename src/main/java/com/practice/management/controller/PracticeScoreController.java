@@ -10,6 +10,8 @@ import com.practice.management.service.PracticeScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 实习成绩：
  * 角色：企业
@@ -73,9 +75,9 @@ public class PracticeScoreController extends BaseController {
      * @return 符合条件的实训成绩对象
      */
     @GetMapping("/query")
-    public ResultModel<TrainScore> query(@RequestBody TsQueryModel queryCondition) {
-        TrainScore score = scoreService.query(queryCondition);
-        return success("添加成功", score);
+    public ResultModel<List<TrainScore>> query(@RequestBody TsQueryModel queryCondition) {
+        List<TrainScore> scoreList = scoreService.query(queryCondition);
+        return success("添加成功", scoreList);
     }
 
 }

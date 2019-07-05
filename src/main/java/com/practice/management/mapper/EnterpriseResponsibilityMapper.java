@@ -20,7 +20,8 @@ public interface EnterpriseResponsibilityMapper {
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.rank}, #{account.phone}, " +
             "       #{account.email}, #{account.account}, #{account.password}, #{account.enterpriseId}, " +
             "       #{account.roleId}, #{account.addTime}, #{account.remarks})")
-    void insert(@Param("account") AddEnterpriseTeacherDto dto);
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    Long insert(@Param("account") AddEnterpriseTeacherDto dto);
 
     @Update("update enterpriseresponsibility " +
             "set name=#{name}, age=#{age}, gender=#{gender}, rank=#{rank}, phone=#{phone}, " +

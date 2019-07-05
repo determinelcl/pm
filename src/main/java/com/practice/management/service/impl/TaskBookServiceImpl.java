@@ -57,9 +57,9 @@ public class TaskBookServiceImpl implements TaskBookService {
         String filename = fileService.saveFile(task.getEnclosureFile(), identification);
         task.setEnclosureUrl(filename);
 
-        taskBookMapper.insert(task);
+        Long taskId = taskBookMapper.insert(task);
 
-        return taskBookMapper.findBySubmitTimeAndStuId(submitTime, student.getId());
+        return taskBookMapper.findById(taskId);
     }
 
     @Override

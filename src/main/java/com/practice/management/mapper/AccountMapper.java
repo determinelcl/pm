@@ -2,6 +2,7 @@ package com.practice.management.mapper;
 
 import com.practice.management.bean.entity.Account;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -46,5 +47,6 @@ public interface AccountMapper {
             "       #{account.roleId}, #{account.addTime}, #{account.remarks})" +
             "</if> " +
             "</script>")
-    void add(@Param("account") Account account, @Param("tableType") int type);
+    @Options(useGeneratedKeys = true, keyColumn = "id")
+    Long add(@Param("account") Account account, @Param("tableType") int type);
 }
