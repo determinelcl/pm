@@ -1,8 +1,13 @@
 package com.practice.management.bean.entity;
 
+import java.util.Date;
+
 public class EnterpriseProgramme {
     private Long id;
     private String name;
+    private String enclosure;
+    private Date addTime;
+    private String remarks;
     private Long enterpriseId;
 
 
@@ -20,6 +25,30 @@ public class EnterpriseProgramme {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEnclosure() {
+        return enclosure;
+    }
+
+    public void setEnclosure(String enclosure) {
+        this.enclosure = enclosure;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public Long getEnterpriseId() {
