@@ -108,6 +108,7 @@ public class AuthServiceImpl implements AuthService {
             return;
         }
 
+        erTemp.getEnterprise().setResponsibility_account(erTemp.getAccount());
         Enterprise enterprise = enterpriseService.add(erTemp.getEnterprise());
         erTemp.setEnterpriseId(enterprise.getId());
     }
@@ -124,6 +125,7 @@ public class AuthServiceImpl implements AuthService {
             return;
         }
 
+        srTemp.getSchool().setResponsibility_account(srTemp.getAccount());
         School school = schoolService.add(srTemp.getSchool());
         srTemp.setSchoolId(school.getId());
     }

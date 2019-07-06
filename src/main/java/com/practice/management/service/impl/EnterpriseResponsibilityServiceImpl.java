@@ -44,6 +44,11 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         if (!enterprise.getId().equals(enterpriseId))
             throw new RuntimeException("企业负责人:" + er.getName() + "不属于企业:" + enterprise.getName());
 
+        // 验证企业的负责人是否可以修改企业信息
+        Enterprise enp = enterpriseService.findById(enterpriseId);
+        if (!enp.getResponsibility_account().equals(er.getAccount()))
+            throw new RuntimeException("企业:" + enp.getName() + "的负责人不是:" + er.getName());
+
         enterpriseService.updateById(enterprise);
     }
 
