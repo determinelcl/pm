@@ -1,6 +1,6 @@
 package com.practice.management.bean.entity;
 
-public class Filetype {
+public class FileType {
     private Long id;
     private String typeName;
 

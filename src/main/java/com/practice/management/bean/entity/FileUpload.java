@@ -5,7 +5,7 @@ import java.util.Date;
 /*
  * 文件上传
  * */
-public class FIleupload {
+public class FileUpload {
     private Long id;
     private String title;
     private String year;
@@ -14,6 +14,9 @@ public class FIleupload {
     private Long enterpriseId;
     private Long fileTypeId;
     private Long schoolId;
+
+    // 文件的类型，非属性字段
+    private FileType filetype;
 
     public Long getId() {
         return id;
@@ -77,5 +80,13 @@ public class FIleupload {
 
     public void setSchoolId(Long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public FileType getFiletype() {
+        return filetype;
+    }
+
+    public void setFiletype(FileType filetype) {
+        this.filetype = filetype;
     }
 }
