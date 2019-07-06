@@ -66,4 +66,12 @@ public interface SchoolResponsibilityService {
      * @return 查询到的学校负责人信息
      */
     List<SchoolResponsibility> queryByCondition(SchoolQueryModel queryCondition);
+
+    /**
+     * 验证学校负责人是否正确
+     *
+     * @param srId 学校负责人id
+     * @return 验证通过的学校负责人对象
+     */
+    SchoolResponsibility validateSrAuthority(Long srId);
 }

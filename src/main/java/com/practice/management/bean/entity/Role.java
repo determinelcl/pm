@@ -14,6 +14,9 @@ public class Role {
     private int upd;
     private String en;
 
+    // 用于关联角色对应的菜单，非角色属性
+    private List<Menu> menuList;
+
     public Long getId() {
         return id;
     }
@@ -70,6 +73,13 @@ public class Role {
         this.en = en;
     }
 
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
 
     public List<String> getAuthorities() {
         List<String> list = new ArrayList<>();

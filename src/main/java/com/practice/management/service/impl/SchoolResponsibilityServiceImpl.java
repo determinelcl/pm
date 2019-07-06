@@ -130,4 +130,15 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         return srMapper.queryByCondition(queryCondition);
     }
 
+    @Override
+    public SchoolResponsibility validateSrAuthority(Long srId) {
+        SchoolResponsibility sr = findById(srId);
+        School school = schoolService.findById(sr.getSchoolId());
+
+        if (!school.getResponsibility_account().equals(sr.getAccount()))
+            throw new RuntimeException("学校:" + school.getName() + "的负责人不是:" + sr.getName());
+
+        return sr;
+    }
+
 }

@@ -12,4 +12,6 @@ public interface MenuRoleService {
      * @return 角色对应的菜单列表
      */
     List<MenuRole> findByRoleId(Long roleId);
+
+    void addBatch(Long roleId, List<Long> menuList);
 }

@@ -137,4 +137,15 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
 
         return erMapper.queryByCondition(queryCondition);
     }
+
+    @Override
+    public EnterpriseResponsibility validateErAuthority(Long erId) {
+        EnterpriseResponsibility er = findById(erId);
+        Enterprise enterprise = enterpriseService.findById(er.getEnterpriseId());
+
+        if (!enterprise.getResponsibility_account().equals(er.getAccount()))
+            throw new RuntimeException("企业:" + enterprise.getName() + "的负责人不是:" + er.getName());
+
+        return er;
+    }
 }

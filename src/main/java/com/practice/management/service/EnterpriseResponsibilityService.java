@@ -64,4 +64,12 @@ public interface EnterpriseResponsibilityService {
      * @return 查询到的信息实体对象
      */
     List<EnterpriseResponsibility> queryByCondition(EnpQueryModel queryCondition);
+
+    /**
+     * 验证企业负责人是否正确
+     *
+     * @param erId 企业负责人id
+     * @return 验证通过返回企业负责人信息
+     */
+    EnterpriseResponsibility validateErAuthority(Long erId);
 }
