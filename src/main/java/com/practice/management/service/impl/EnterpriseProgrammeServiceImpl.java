@@ -2,6 +2,7 @@ package com.practice.management.service.impl;
 
 import com.practice.management.bean.dto.AddEpDto;
 import com.practice.management.bean.dto.UpdEpDto;
+import com.practice.management.bean.entity.Enterprise;
 import com.practice.management.bean.entity.EnterpriseProgramme;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EpQueryModel;
@@ -9,6 +10,7 @@ import com.practice.management.constrant.FileConstrant;
 import com.practice.management.mapper.EnterpriseProgrammeMapper;
 import com.practice.management.service.EnterpriseProgrammeService;
 import com.practice.management.service.EnterpriseResponsibilityService;
+import com.practice.management.service.EnterpriseService;
 import com.practice.management.service.FileService;
 import com.practice.management.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
     private EnterpriseResponsibilityService erService;
 
     @Autowired
+    private EnterpriseService enterpriseService;
+
+    @Autowired
     private FileService fileService;
 
     @Override
@@ -42,6 +47,9 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
     public EnterpriseProgramme add(AddEpDto dto) {
         EnterpriseResponsibility er = erService.findById(dto.getErId());
         dto.setEnterpriseId(er.getEnterpriseId());
+
+        validateEr(dto.getEnterpriseId(), er.getAccount(), er.getName());
+
         dto.setAddTime(new Date());
         if (dto.getRemarks() == null)
             dto.setRemarks("");
@@ -78,7 +86,16 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
 
         if (!er.getEnterpriseId().equals(ep.getEnterpriseId()))
             throw new RuntimeException("企业负责人:" + er.getName() + "所在的企业没有开设课程:" + ep.getName());
+
+        validateEr(ep.getEnterpriseId(), er.getAccount(), er.getName());
+
         return ep;
+    }
+
+    private void validateEr(Long enterpriseId, String account, String erName) {
+        Enterprise enterprise = enterpriseService.findById(enterpriseId);
+        if (!enterprise.getResponsibility_account().equals(account))
+            throw new RuntimeException("企业:" + enterprise.getName() + "老师:" + erName + "没有企业课程的操作权限");
     }
 
     @Override
