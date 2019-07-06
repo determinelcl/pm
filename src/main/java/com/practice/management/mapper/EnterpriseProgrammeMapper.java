@@ -28,7 +28,7 @@ public interface EnterpriseProgrammeMapper {
     void deleteById(@Param("id") Long epId);
 
     @Select("<script>" +
-            "select * from task " +
+            "select * from enterpriseprogramme " +
             "where 1=1 " +
             "<if test=\"epName != null\"> " +
             "   and name=#{epName}" +
