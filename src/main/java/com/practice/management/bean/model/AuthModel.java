@@ -14,7 +14,7 @@ public class AuthModel {
     private String password;
 
     /**
-     * 认证关联的id：学校id/企业id
+     * 认证关联的id：学校id/企业id/管理员(0L)
      */
     private Long foreignId;
 

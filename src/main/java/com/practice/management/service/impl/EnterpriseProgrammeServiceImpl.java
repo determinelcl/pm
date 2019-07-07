@@ -15,6 +15,7 @@ import com.practice.management.service.FileService;
 import com.practice.management.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -43,12 +44,14 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
         return programme;
     }
 
+    @Transactional
     @Override
     public EnterpriseProgramme add(AddEpDto dto) {
         EnterpriseResponsibility er = erService.findById(dto.getErId());
         dto.setEnterpriseId(er.getEnterpriseId());
 
         validateEr(dto.getEnterpriseId(), er.getAccount(), er.getName());
+        validateEpUnique(dto.getEnterpriseId(), dto.getName());
 
         dto.setAddTime(new Date());
         if (dto.getRemarks() == null)
@@ -63,10 +66,19 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
         return programmeMapper.findById(epId);
     }
 
+    private void validateEpUnique(Long enterpriseId, String epName) {
+        List<EnterpriseProgramme> programmeList =
+                programmeMapper.findByNameAndEnterpriseId(epName, enterpriseId);
+        if (programmeList != null && programmeList.size() > 0)
+            throw new RuntimeException("企业已存在企业课程:" + epName);
+    }
+
+    @Transactional
     @Override
     public EnterpriseProgramme update(UpdEpDto dto) {
         EnterpriseProgramme ep = validateErAuthority(dto.getErId(), dto.getEpId());
 
+        validateEpUnique(ep.getEnterpriseId(), dto.getName());
         if (dto.getFile() == null)
             dto.setEnclosure(ep.getEnclosure());
         else {
@@ -98,6 +110,7 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
             throw new RuntimeException("企业:" + enterprise.getName() + "老师:" + erName + "没有企业课程的操作权限");
     }
 
+    @Transactional
     @Override
     public EnterpriseProgramme delete(Long erId, Long epId) {
         EnterpriseProgramme ep = validateErAuthority(erId, epId);

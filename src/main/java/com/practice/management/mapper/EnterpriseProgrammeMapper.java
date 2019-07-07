@@ -41,4 +41,8 @@ public interface EnterpriseProgrammeMapper {
             "</if>" +
             "</script>")
     List<EnterpriseProgramme> queryByCondition(EpQueryModel queryCondition);
+
+    @Select("select * from enterpriseprogramme where name=#{name} and enterprise_id=#{enterpriseId}")
+    List<EnterpriseProgramme> findByNameAndEnterpriseId(
+            @Param("name") String name, @Param("enterpriseId") Long enterpriseId);
 }

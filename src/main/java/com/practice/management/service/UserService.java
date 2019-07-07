@@ -1,18 +1,12 @@
 package com.practice.management.service;
 
 
-import com.practice.management.bean.entity.Account;
-import com.practice.management.bean.entity.Enterprise;
-import com.practice.management.bean.entity.Role;
-import com.practice.management.bean.entity.School;
+import com.practice.management.bean.entity.*;
 import com.practice.management.bean.model.JwtUser;
 import com.practice.management.constrant.SchoolAndEnpEnum;
 import com.practice.management.constrant.UserAuth;
 import com.practice.management.exception.IdentificationException;
-import com.practice.management.mapper.AccountMapper;
-import com.practice.management.mapper.EnterpriseMapper;
-import com.practice.management.mapper.RoleMapper;
-import com.practice.management.mapper.SchoolMapper;
+import com.practice.management.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -65,6 +59,10 @@ public class UserService implements UserDetailsService {
                 throw new IdentificationException("企业id：" + id + "不存在");
 
             account = accountMapper.findByAccount(id, name, 3);
+        } else if (type.equals(SchoolAndEnpEnum.ADMIN.name())) {    // 查询管理员
+            if (!id.equals(UserAuth.ADMIN_DEPT_ID))
+                throw new RuntimeException("使用管理登录错误，操作违法，请谨慎处理！");
+            account = accountMapper.findByAccount(id, name, 0);
         }
 
         if (account == null)

@@ -10,6 +10,9 @@ import org.apache.ibatis.annotations.Select;
 public interface AccountMapper {
     @Select("<script>" +
             "select * from " +
+            "<if test=\"tableType == 0\"> " +
+            "   admin where account=#{account} " +
+            "</if> " +
             "<if test=\"tableType == 1\"> " +
             "   student where account=#{account} and major_id in (select id from major where school_id=#{id})" +
             "</if> " +
