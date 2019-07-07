@@ -71,7 +71,7 @@ public class EnterpriseCultureController extends BaseController {
      * @param queryCondition 查询条件
      * @return 查询的企业课程列表
      */
-    @PostMapping("/upd")
+    @PostMapping("/query")
     public ResultModel<List<EnterpriseProgramme>> query(@RequestBody EpQueryModel queryCondition) {
         List<EnterpriseProgramme> programmeList = programmeService.query(queryCondition);
         return success("修改成功", programmeList);

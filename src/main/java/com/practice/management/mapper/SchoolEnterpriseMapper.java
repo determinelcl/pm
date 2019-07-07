@@ -1,9 +1,11 @@
 package com.practice.management.mapper;
 
 import com.practice.management.bean.entity.SchoolEnterprise;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+@Mapper
 public interface SchoolEnterpriseMapper {
 
     @Select("select * from schoolenterprise where school_id=#{scId} and enterprise_id=#{enpId}")

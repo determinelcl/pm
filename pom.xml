@@ -101,6 +101,7 @@
             <version>1.9.3</version>
         </dependency>
 
+        <!-- spring-boot 配置属性加载 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

@@ -20,7 +20,8 @@ public interface MenuRoleMapper {
             "insert into menurole(menu_id, role_id) " +
             "values" +
             "<foreach collection=\"mrList\" item=\"mr\" index=\"index\" separator=\",\">" +
-            "(#{mr.menuId}, #{mr.roleId})" +
+            "   (#{mr.menuId}, #{mr.roleId})" +
+            "</foreach>" +
             "</script>")
     void insertBatch(@Param("list") List<MenuRole> menuRoleList);
 }

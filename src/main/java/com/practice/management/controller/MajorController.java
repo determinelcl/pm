@@ -67,7 +67,7 @@ public class MajorController extends BaseController {
      * @param queryCondition 查询条件
      * @return 查询的学校专业列表
      */
-    @PostMapping("/upd")
+    @PostMapping("/query")
     public ResultModel<List<Major>> query(@RequestBody MajorQueryModel queryCondition) {
         List<Major> majorList = majorService.query(queryCondition);
         return success("修改成功", majorList);
