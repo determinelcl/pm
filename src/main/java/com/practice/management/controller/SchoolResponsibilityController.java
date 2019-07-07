@@ -7,7 +7,7 @@ import com.practice.management.bean.dto.UpdSrDto;
 import com.practice.management.bean.entity.School;
 import com.practice.management.bean.entity.SchoolResponsibility;
 import com.practice.management.bean.model.ResultModel;
-import com.practice.management.bean.model.SchoolQueryModel;
+import com.practice.management.bean.model.SrQueryModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.SchoolResponsibilityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +103,7 @@ public class SchoolResponsibilityController extends BaseController {
      * @return 查询到的学校负责人信息
      */
     @GetMapping("/query")
-    public ResultModel<List<SchoolResponsibility>> query(SchoolQueryModel queryCondition) {
+    public ResultModel<List<SchoolResponsibility>> query(SrQueryModel queryCondition) {
         List<SchoolResponsibility> list = srService.queryByCondition(queryCondition);
         return success(list);
     }

@@ -2,6 +2,9 @@ package com.practice.management.service;
 
 import com.practice.management.bean.dto.UpdSchoolParamDto;
 import com.practice.management.bean.entity.School;
+import com.practice.management.bean.model.SchoolQueryModel;
+
+import java.util.List;
 
 public interface SchoolService {
 
@@ -26,4 +29,13 @@ public interface SchoolService {
      * @return 更新的学校信息
      */
     School updateById(UpdSchoolParamDto school);
+
+    /**
+     * 根据查询学校
+     * 角色：admin
+     *
+     * @param queryCondition 查询条件对象
+     * @return 查询的学校列表
+     */
+    List<School> query(SchoolQueryModel queryCondition);
 }

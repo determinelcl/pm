@@ -2,6 +2,7 @@ package com.practice.management.service.impl;
 
 import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
+import com.practice.management.controller.EnterpriseQueryModel;
 import com.practice.management.mapper.EnterpriseMapper;
 import com.practice.management.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
@@ -43,5 +45,10 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     public void updateById(UpdEnterpriseParamDto enterprise) {
         findById(enterprise.getId());
         enterpriseMapper.updateById(enterprise);
+    }
+
+    @Override
+    public List<Enterprise> query(EnterpriseQueryModel queryCondition) {
+        return enterpriseMapper.queryByCondition(queryCondition);
     }
 }

@@ -3,7 +3,7 @@ package com.practice.management.service;
 import com.practice.management.bean.dto.*;
 import com.practice.management.bean.entity.School;
 import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.model.SchoolQueryModel;
+import com.practice.management.bean.model.SrQueryModel;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public interface SchoolResponsibilityService {
      * @param queryCondition 学校负责人实体的所有字段都可以作为查询条件
      * @return 查询到的学校负责人信息
      */
-    List<SchoolResponsibility> queryByCondition(SchoolQueryModel queryCondition);
+    List<SchoolResponsibility> queryByCondition(SrQueryModel queryCondition);
 
     /**
      * 验证学校负责人是否正确

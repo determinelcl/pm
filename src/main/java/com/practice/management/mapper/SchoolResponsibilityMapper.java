@@ -3,7 +3,7 @@ package com.practice.management.mapper;
 import com.practice.management.bean.dto.UpdSchoolTeacherDto;
 import com.practice.management.bean.dto.UpdSrDto;
 import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.model.SchoolQueryModel;
+import com.practice.management.bean.model.SrQueryModel;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -44,5 +44,5 @@ public interface SchoolResponsibilityMapper {
             "   and major_id in (select id from major where name=#{majorName})" +
             "</if>" +
             "</script>")
-    List<SchoolResponsibility> queryByCondition(SchoolQueryModel queryCondition);
+    List<SchoolResponsibility> queryByCondition(SrQueryModel queryCondition);
 }

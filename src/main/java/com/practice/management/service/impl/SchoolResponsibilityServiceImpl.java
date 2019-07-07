@@ -3,7 +3,7 @@ package com.practice.management.service.impl;
 import com.practice.management.bean.dto.*;
 import com.practice.management.bean.entity.School;
 import com.practice.management.bean.entity.SchoolResponsibility;
-import com.practice.management.bean.model.SchoolQueryModel;
+import com.practice.management.bean.model.SrQueryModel;
 import com.practice.management.mapper.SchoolResponsibilityMapper;
 import com.practice.management.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +120,7 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
     }
 
     @Override
-    public List<SchoolResponsibility> queryByCondition(SchoolQueryModel queryCondition) {
+    public List<SchoolResponsibility> queryByCondition(SrQueryModel queryCondition) {
         SchoolResponsibility sr = findById(queryCondition.getSrId());
         School school = schoolService.findById(queryCondition.getSchoolId());
 

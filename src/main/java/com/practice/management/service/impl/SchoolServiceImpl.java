@@ -2,6 +2,7 @@ package com.practice.management.service.impl;
 
 import com.practice.management.bean.dto.UpdSchoolParamDto;
 import com.practice.management.bean.entity.School;
+import com.practice.management.bean.model.SchoolQueryModel;
 import com.practice.management.mapper.SchoolMapper;
 import com.practice.management.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SchoolServiceImpl implements SchoolService {
@@ -47,5 +49,11 @@ public class SchoolServiceImpl implements SchoolService {
 
         schoolMapper.updateSchoolById(school);
         return findById(school.getId());
+    }
+
+    @Override
+    public List<School> query(SchoolQueryModel queryCondition) {
+
+        return schoolMapper.queryByCondition(queryCondition);
     }
 }
