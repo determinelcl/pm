@@ -3,10 +3,7 @@ package com.practice.management.mapper;
 import com.practice.management.bean.dto.UpdSrStudentDto;
 import com.practice.management.bean.dto.UpdStudentDto;
 import com.practice.management.bean.entity.Student;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface StudentMapper {
@@ -30,4 +27,6 @@ public interface StudentMapper {
     void updStudentBySr(UpdSrStudentDto dto);
 
 
+    @Delete("delete from student where id=#{id}")
+    void deleteById(@Param("id") Long stuId);
 }

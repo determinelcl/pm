@@ -130,4 +130,22 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.updStudentBySr(dto);
         return findById(dto.getStuId());
     }
+
+    @Override
+    public Student deleteById(Long srId, Long stuId) {
+        // 验证学生是否存在
+        Student student = findById(stuId);
+
+        // 验证学校老师是否存在
+        SchoolResponsibility sr = srService.findById(srId);
+        Long schoolId = sr.getSchoolId();
+
+        // 验证老师是否具有操作学生的权限
+        Major major = majorService.findById(student.getMajorId());
+        if (!major.getSchoolId().equals(schoolId))
+            throw new RuntimeException("学校负责人:" + sr.getName() + "和学生:" + student.getName() + "不属于同一所学校");
+
+        studentMapper.deleteById(stuId);
+        return student;
+    }
 }

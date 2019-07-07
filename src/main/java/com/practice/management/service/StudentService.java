@@ -33,4 +33,14 @@ public interface StudentService {
      * @return 更新之后的学生信息对象
      */
     Student updStudentBySr(UpdSrStudentDto dto);
+
+    /**
+     * 学校老师根据指定的学生id删除学生
+     * 角色：学校负责人
+     *
+     * @param srId  学校负责人id
+     * @param stuId 学生id
+     * @return 删除的学校老师信息
+     */
+    Student deleteById(Long srId, Long stuId);
 }

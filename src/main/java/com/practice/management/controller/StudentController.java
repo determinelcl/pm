@@ -47,6 +47,20 @@ public class StudentController extends BaseController {
         return success("修改成功", student);
     }
 
+    /**
+     * 学校老师根据指定的学生id删除学生
+     * 角色：学校负责人
+     *
+     * @param srId  学校负责人id
+     * @param stuId 学生id
+     * @return 删除的学校老师信息
+     */
+    @DeleteMapping("/del/{srId:\\d+}/{stId:\\d+}")
+    public ResultModel<Student> deleteSR(
+            @PathVariable("srId") Long srId, @PathVariable("stId") Long stuId) {
+        Student student = studentService.deleteById(srId, stuId);
+        return success("删除成功", student);
+    }
 
     /**
      * 学校老师更新学生信息
