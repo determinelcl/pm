@@ -1,12 +1,18 @@
 package com.practice.management.bean.entity;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * 企业责任人
  */
 public class EnterpriseResponsibility extends Account {
+
+    @NotBlank(message = "职称不能为空")
     private String rank;
 
+    @NotNull(message = "企业不能为空")
     private Long enterpriseId;
 
     // 用于注册用户时同时添加企业，非实体属性
