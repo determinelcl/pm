@@ -28,6 +28,19 @@ public class AuthController extends BaseController {
     private AuthService authService;
 
     /**
+     * 管理员账户登录
+     * 角色：管理员
+     *
+     * @param authModel 认证的信息Model
+     * @return 认证成功之后返回Token
+     */
+    @PostMapping("/auth/ad")
+    public ResultModel<String> createAuthTokenForAdmin(@Valid @RequestBody AuthModel authModel) {
+        final String token = authService.login(authModel, SchoolAndEnpEnum.ADMIN);
+        return success(token);
+    }
+
+    /**
      * 学生账户登录
      * 角色：学校学生
      *
@@ -35,7 +48,7 @@ public class AuthController extends BaseController {
      * @return 认证成功之后返回Token
      */
     @PostMapping("/auth/st")
-    public ResultModel<String> createAuthTokenForStudent(@RequestBody AuthModel authModel) {
+    public ResultModel<String> createAuthTokenForStudent(@Valid @RequestBody AuthModel authModel) {
         final String token = authService.login(authModel, SchoolAndEnpEnum.STUDENT);
         return success(token);
     }
@@ -61,7 +74,7 @@ public class AuthController extends BaseController {
      * @return 认证成功之后返回Token
      */
     @PostMapping("/auth/enp")
-    public ResultModel<String> createAuthTokenForEnterprise(@RequestBody AuthModel authModel) {
+    public ResultModel<String> createAuthTokenForEnterprise(@Valid @RequestBody AuthModel authModel) {
         final String token = authService.login(authModel, SchoolAndEnpEnum.ENTERPRISE);
         return success(token);
     }
@@ -92,7 +105,7 @@ public class AuthController extends BaseController {
      * @return 注册的结果信息
      */
     @PostMapping("/auth/sr/reg")
-    public ResultModel<Account> registerSR(@RequestBody SchoolResponsibility sr) {
+    public ResultModel<Account> registerSR(@Valid @RequestBody SchoolResponsibility sr) {
         sr.setForeignId(sr.getSchoolId());
         authService.register(sr);
 
@@ -107,7 +120,7 @@ public class AuthController extends BaseController {
      * @return 册的结果信息
      */
     @PostMapping("/auth/er/reg")
-    public ResultModel<Account> registerEr(@RequestBody EnterpriseResponsibility er) {
+    public ResultModel<Account> registerEr(@Valid @RequestBody EnterpriseResponsibility er) {
         er.setForeignId(er.getEnterpriseId());
         authService.register(er);
 

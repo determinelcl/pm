@@ -44,7 +44,7 @@ public class UserService implements UserDetailsService {
         if (type.equals(SchoolAndEnpEnum.STUDENT.name())) { // 查询学生
             School school = schoolMapper.findById(id);
             if (school == null)
-                throw new IdentificationException("学校id：" + id + "不存在");
+                throw new IdentificationException("学生id：" + id + "不存在");
 
             account = accountMapper.findByAccount(id, name, 1);
         } else if (type.equals(SchoolAndEnpEnum.SCHOOL.name())) { // 查询学校
