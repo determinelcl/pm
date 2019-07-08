@@ -1,28 +1,31 @@
-package com.practice.management.bean.entity;
+package com.practice.management.bean.dto;
 
+public class UpdWtDto {
+    private Long erId;
+    private Long wtId;
 
-import java.util.Date;
-
-public class WeekTrain {
-    private Long id;
     private Integer trainTimes;
     private Integer trainNumber;
-    private Date startTime;
-    private Date endTime;
     private String baseName;
     private String weekTeach;
     private String weekStudentLearn;
     private String feedbackFocus;
     private String trainAssessmentSituation;
-    private Long majorId;
-    private Long enterpriseId;
 
-    public Long getId() {
-        return id;
+    public Long getErId() {
+        return erId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setErId(Long erId) {
+        this.erId = erId;
+    }
+
+    public Long getWtId() {
+        return wtId;
+    }
+
+    public void setWtId(Long wtId) {
+        this.wtId = wtId;
     }
 
     public Integer getTrainTimes() {
@@ -39,22 +42,6 @@ public class WeekTrain {
 
     public void setTrainNumber(Integer trainNumber) {
         this.trainNumber = trainNumber;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public String getBaseName() {
@@ -95,21 +82,5 @@ public class WeekTrain {
 
     public void setTrainAssessmentSituation(String trainAssessmentSituation) {
         this.trainAssessmentSituation = trainAssessmentSituation;
-    }
-
-    public Long getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(Long majorId) {
-        this.majorId = majorId;
-    }
-
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
     }
 }
