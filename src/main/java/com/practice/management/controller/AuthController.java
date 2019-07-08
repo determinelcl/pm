@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 public class AuthController extends BaseController {
@@ -47,7 +48,7 @@ public class AuthController extends BaseController {
      * @return 认证成功之后返回Token
      */
     @PostMapping("/auth/sc")
-    public ResultModel<String> createAuthTokenForSchool(@RequestBody AuthModel authModel) {
+    public ResultModel<String> createAuthTokenForSchool(@Valid @RequestBody AuthModel authModel) {
         final String token = authService.login(authModel, SchoolAndEnpEnum.SCHOOL);
         return success(token);
     }

@@ -10,7 +10,7 @@ public class GlobalExceptionInfoModel<T> implements Serializable {
     private static final long serialVersionUID = -6937722414645880868L;
 
     private Integer code;
-    private String message;
+    private Object message;
     private T data;
     private String uri;
 
@@ -18,6 +18,13 @@ public class GlobalExceptionInfoModel<T> implements Serializable {
     }
 
     public GlobalExceptionInfoModel(Integer code, String message, T data, String uri) {
+        this.code = code;
+        this.message = message;
+        this.data = data;
+        this.uri = uri;
+    }
+
+    public GlobalExceptionInfoModel(Integer code, Object message, T data, String uri) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -32,11 +39,11 @@ public class GlobalExceptionInfoModel<T> implements Serializable {
         this.code = code;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 

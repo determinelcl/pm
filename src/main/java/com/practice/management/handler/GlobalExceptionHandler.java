@@ -3,15 +3,19 @@ package com.practice.management.handler;
 import com.practice.management.bean.model.GlobalExceptionInfoModel;
 import com.practice.management.constrant.ResultCode;
 import com.practice.management.exception.IdentificationException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 @ResponseBody
@@ -45,5 +49,18 @@ public class GlobalExceptionHandler {
         String simpleName = e.getClass().getSimpleName();
         return new GlobalExceptionInfoModel<>(
                 ResultCode.EXCEPTION_CODE, e.getMessage(), simpleName, request.getRequestURI());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public GlobalExceptionInfoModel<String> validationNotNull(
+            HttpServletRequest request, MethodArgumentNotValidException e) {
+        e.printStackTrace();
+
+        String simpleName = e.getClass().getSimpleName();
+        List<String> messageList = e.getBindingResult().getAllErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
+        return new GlobalExceptionInfoModel<>(
+                ResultCode.EXCEPTION_CODE, messageList, simpleName, request.getRequestURI());
     }
 }

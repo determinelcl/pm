@@ -1,5 +1,8 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * 登录认证对象模型
  */
@@ -7,6 +10,8 @@ public class AuthModel {
     /**
      * 账户
      */
+    @NotNull(message = "用户名不能为空")
+    @NotEmpty(message = "用户名不能为空2")
     private String account;
     /**
      * 密码

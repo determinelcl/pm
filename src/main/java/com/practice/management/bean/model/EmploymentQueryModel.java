@@ -1,20 +1,24 @@
-package com.practice.management.bean.entity;
+package com.practice.management.bean.model;
 
 import java.util.Date;
 
-/*
- * 就业
- * */
-public class Employment {
+public class EmploymentQueryModel {
+
+    /**
+     * 用户id
+     */
     private Long id;
-    private String name;
+    /**
+     * 用户类型：0:admin, 1:student, 2:school, 3:enterprise
+     */
+    private Integer type;
+
+    private String schoolName;
+    private String enpName;
     private String city;
     private String post;
     private Integer salary;
     private Date addTime;
-    private String remarks;
-    private Long enterpriseId;
-    private Long studentId;
 
     public Long getId() {
         return id;
@@ -24,12 +28,28 @@ public class Employment {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
+    }
+
+    public String getEnpName() {
+        return enpName;
+    }
+
+    public void setEnpName(String enpName) {
+        this.enpName = enpName;
     }
 
     public String getCity() {
@@ -62,29 +82,5 @@ public class Employment {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
     }
 }
