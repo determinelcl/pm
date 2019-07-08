@@ -85,12 +85,15 @@ public class AuthServiceImpl implements AuthService {
     public int getTableType(Account account) {
         int type = -1;
         if (account instanceof Student) {
+            account.setRoleId(1L);
             type = 1;
         } else if (account instanceof SchoolResponsibility) {
             validateSchool((SchoolResponsibility) account);
+            account.setRoleId(2L);
             type = 2;
         } else if (account instanceof EnterpriseResponsibility) {
             validateEnterprise((EnterpriseResponsibility) account);
+            account.setRoleId(3L);
             type = 3;
         }
         return type;

@@ -36,7 +36,7 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         Long schoolId = sr.getSchoolId();
         UpdSchoolParamDto school = dto.getSchool();
         if (!schoolId.equals(school.getId()))
-            throw new RuntimeException("企业负责人:" + sr.getName() + "不属于企业:" + school.getName());
+            throw new RuntimeException("学校负责人:" + sr.getName() + "不属于学校:" + school.getName());
 
         // 验证学校的负责人
         School temp = schoolService.findById(schoolId);
