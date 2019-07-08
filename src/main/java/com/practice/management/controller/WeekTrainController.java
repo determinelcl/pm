@@ -67,8 +67,8 @@ public class WeekTrainController extends BaseController {
      * @param queryCondition 查询条件
      * @return 查询到的每周实训对象列表
      */
-    @PostMapping("/add")
-    public ResultModel<List<WeekTrain>> add(@RequestBody WtQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<WeekTrain>> query(@RequestBody WtQueryModel queryCondition) {
         List<WeekTrain> weekTrainList = wtService.query(queryCondition);
         return success("查询完成", weekTrainList);
     }

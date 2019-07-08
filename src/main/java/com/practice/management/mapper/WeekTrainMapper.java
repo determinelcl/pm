@@ -17,8 +17,9 @@ public interface WeekTrainMapper {
 
 
     @Select("select * from weektrain where enterprise_id=#{enterpriseId} " +
-            "       and major_id=#{majorId} and start_time<=#{startTime} and end_time>=#{endTime}")
-    WeekTrain findByMajorIdAndSeTime(Long enterpriseId, Long majorId, Date startTime, Date endTime);
+            "       and major_id=#{majorId} and start_time <= #{startTime} and end_time >= #{endTime}")
+    WeekTrain findByMajorIdAndSeTime(@Param("enterpriseId") Long enterpriseId, @Param("majorId") Long majorId,
+                                     @Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
     @Insert("insert into weektrain(train_times, train_number, start_time, end_time, base_name, week_teach, " +
             "           week_student_learn, feedback_focus, train_assessment_situation, enterprise_id, major_id)" +
@@ -41,22 +42,22 @@ public interface WeekTrainMapper {
             "select * from weektrain " +
             "where 1=1 " +
             "<if test=\"type == 1\"> " +
-            "   and major_id in (select major_id from student where id=#{id} " +
+            "   and major_id in (select major_id from student where id=#{id})" +
             "</if>" +
             "<if test=\"type == 2\"> " +
-            "   and major_id in (select major_id from schoolresponsibility where id=#{id}))" +
+            "   and major_id in (select major_id from schoolresponsibility where id=#{id})" +
             "</if>" +
             "<if test=\"type == 3\"> " +
-            "   and enterprise_id in (select enterprise_id from enterpriseresponsibility where id=#{id})) " +
+            "   and enterprise_id in (select enterprise_id from enterpriseresponsibility where id=#{id}) " +
             "</if>" +
             "<if test=\"majorName != null\"> " +
-            "   and major_id in (select id from major where name=#{majorName} )" +
+            "   and major_id in (select id from major where name=#{majorName})" +
             "</if>" +
             "<if test=\"enpName != null\"> " +
             "   and enterprise_id in (select id from enterprise where name=#{enpName})" +
             "</if>" +
             "<if test=\"time != null\"> " +
-            "   and start_time <= #{time} and end_time >= #{time}" +
+            "   and <![CDATA[ start_time <= #{time} and end_time >= #{time} ]]>" +
             "</if>" +
             "</script>")
     List<WeekTrain> queryByCondition(WtQueryModel queryCondition);
