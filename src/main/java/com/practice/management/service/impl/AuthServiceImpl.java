@@ -6,10 +6,7 @@ import com.practice.management.bean.model.JwtUser;
 import com.practice.management.constrant.SchoolAndEnpEnum;
 import com.practice.management.constrant.UserAuth;
 import com.practice.management.mapper.AccountMapper;
-import com.practice.management.service.AuthService;
-import com.practice.management.service.EnterpriseService;
-import com.practice.management.service.RoleService;
-import com.practice.management.service.SchoolService;
+import com.practice.management.service.*;
 import com.practice.management.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +48,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MajorService majorService;
 
     @Transactional
     @Override
@@ -108,7 +108,7 @@ public class AuthServiceImpl implements AuthService {
             return;
         }
 
-        erTemp.getEnterprise().setResponsibility_account(erTemp.getAccount());
+        erTemp.getEnterprise().setAccount(erTemp.getAccount());
         Enterprise enterprise = enterpriseService.add(erTemp.getEnterprise());
         erTemp.setEnterpriseId(enterprise.getId());
     }
@@ -122,10 +122,14 @@ public class AuthServiceImpl implements AuthService {
     public void validateSchool(SchoolResponsibility srTemp) {
         if (srTemp.getSchoolId() != null) {
             schoolService.findById(srTemp.getSchoolId());
-            return;
+            Major major = majorService.findById(srTemp.getMajorId());
+            if (major.getSchoolId().equals(srTemp.getSchoolId()))
+                return;
+
+            throw new RuntimeException("学校没有开设相关专业");
         }
 
-        srTemp.getSchool().setResponsibility_account(srTemp.getAccount());
+        srTemp.getSchool().setAccount(srTemp.getAccount());
         School school = schoolService.add(srTemp.getSchool());
         srTemp.setSchoolId(school.getId());
     }

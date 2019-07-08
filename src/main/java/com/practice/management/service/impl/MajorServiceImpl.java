@@ -57,7 +57,7 @@ public class MajorServiceImpl implements MajorService {
 
     private void validateSr(Long schoolId, String account, String srName) {
         School school = schoolService.findById(schoolId);
-        if (!school.getResponsibility_account().equals(account))
+        if (!school.getAccount().equals(account))
             throw new RuntimeException("学校:" + school.getName() + "老师:" + srName + "没有添加专业的权限");
     }
 

@@ -14,7 +14,7 @@ public class School {
     private Date addTime;
     private String remarks;
 
-    private String responsibility_account;
+    private String account;
 
     public Long getId() {
         return id;
@@ -72,11 +72,11 @@ public class School {
         this.remarks = remarks;
     }
 
-    public String getResponsibility_account() {
-        return responsibility_account;
+    public String getAccount() {
+        return account;
     }
 
-    public void setResponsibility_account(String responsibility_account) {
-        this.responsibility_account = responsibility_account;
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

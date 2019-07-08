@@ -40,7 +40,7 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
 
         // 验证学校的负责人
         School temp = schoolService.findById(schoolId);
-        if (!temp.getResponsibility_account().equals(sr.getAccount()))
+        if (!temp.getAccount().equals(sr.getAccount()))
             throw new RuntimeException("学校:" + temp.getName() + "的负责人不是:" + sr.getName());
 
         return schoolService.updateById(school);
@@ -135,7 +135,7 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         SchoolResponsibility sr = findById(srId);
         School school = schoolService.findById(sr.getSchoolId());
 
-        if (!school.getResponsibility_account().equals(sr.getAccount()))
+        if (!school.getAccount().equals(sr.getAccount()))
             throw new RuntimeException("学校:" + school.getName() + "的负责人不是:" + sr.getName());
 
         return sr;

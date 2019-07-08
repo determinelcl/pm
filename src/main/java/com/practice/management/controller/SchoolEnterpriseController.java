@@ -32,7 +32,7 @@ public class SchoolEnterpriseController extends BaseController {
      * @param queryCondition 查询条件对象
      * @return 查询的学校列表
      */
-    @GetMapping("/School")
+    @GetMapping("/school")
     public ResultModel<List<School>> queryBySchool(@RequestBody SchoolQueryModel queryCondition) {
         List<School> schoolList = schoolService.query(queryCondition);
         return success("查询完成", schoolList);

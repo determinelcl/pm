@@ -13,10 +13,7 @@ public class Enterprise {
     private Date serviceEndTime;
     private Date addTime;
     private String remarks;
-    private String responsibility_account;
-
-    // 企业负责人id：非实体属性，用于查询
-    private Long erId;
+    private String account;
 
     public Long getId() {
         return id;
@@ -74,19 +71,11 @@ public class Enterprise {
         this.remarks = remarks;
     }
 
-    public String getResponsibility_account() {
-        return responsibility_account;
+    public String getAccount() {
+        return account;
     }
 
-    public void setResponsibility_account(String responsibility_account) {
-        this.responsibility_account = responsibility_account;
-    }
-
-    public Long getErId() {
-        return erId;
-    }
-
-    public void setErId(Long erId) {
-        this.erId = erId;
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

@@ -106,7 +106,7 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
 
     private void validateEr(Long enterpriseId, String account, String erName) {
         Enterprise enterprise = enterpriseService.findById(enterpriseId);
-        if (!enterprise.getResponsibility_account().equals(account))
+        if (!enterprise.getAccount().equals(account))
             throw new RuntimeException("企业:" + enterprise.getName() + "老师:" + erName + "没有企业课程的操作权限");
     }
 
