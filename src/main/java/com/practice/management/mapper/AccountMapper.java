@@ -29,7 +29,7 @@ public interface AccountMapper {
             "insert into " +
             "<if test=\"tableType == 1\"> " +
             "   student(name, age, gender, phone, email, account, password, classes, enterprise_id, " +
-            "                           enterprise_programme_id, major_id, role_id, addtime, remarks) " +
+            "                           enterprise_programme_id, major_id, role_id, add_time, remarks) " +
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.phone}, #{account.email}, " +
             "           #{account.account}, #{account.password}, #{account.classes}, #{account.enterpriseId}, " +
             "           #{account.enterpriseProgrammeId}, #{account.majorId}, #{account.roleId}, " +
@@ -37,14 +37,14 @@ public interface AccountMapper {
             "</if> " +
             "<if test=\"tableType == 2\"> " +
             "   schoolresponsibility(name, age, gender, rank, phone, email, account, password, major_id, " +
-            "                                                       role_id, school_id, addtime, remarks) " +
+            "                                                       role_id, school_id, add_time, remarks) " +
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.rank}, #{account.phone}, " +
             "                           #{account.email}, #{account.account}, #{account.password}, " +
             "#{account.majorId}, #{account.roleId}, #{account.schoolId}, #{account.addTime}, #{account.remarks})" +
             "</if> " +
             "<if test=\"tableType == 3\"> " +
             "   enterpriseresponsibility(name, age, gender, rank, phone, email, account, password, " +
-            "                                                       enterprise_id, role_id, addtime, remarks) " +
+            "                                                       enterprise_id, role_id, add_time, remarks) " +
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.rank}, #{account.phone}, " +
             "       #{account.email}, #{account.account}, #{account.password}, #{account.enterpriseId}, " +
             "       #{account.roleId}, #{account.addTime}, #{account.remarks})" +

@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface SchoolMapper {
 
-    @Insert("insert into school(name, introduce, service_start_time, service_end_time, addtime, remarks) " +
+    @Insert("insert into school(name, introduce, service_start_time, service_end_time, add_time, remarks) " +
             "values(#{name}, #{introduce}, #{serviceStartTime}, #{serviceEndTime}, #{addTime}, #{remarks})")
     @Options(useGeneratedKeys = true, keyColumn = "id")
     Long insert(School school);

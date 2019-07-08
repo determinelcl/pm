@@ -7,7 +7,6 @@ import com.practice.management.bean.entity.MonthReport;
 import com.practice.management.bean.model.MonthlyReportQueryModel;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -18,9 +17,6 @@ public interface MonthlyReportMapper {
             "           #{schoolExamine}, #{submitTime}, #{enterpriseId}, #{schoolId}, #{studentId})")
     @Options(useGeneratedKeys = true, keyColumn = "id")
     Long insert(MonthReport monthReport);
-
-    @Select("select * from monthreport where submit_time=#{submitTime} and student_id=#{stuId}")
-    MonthReport findBySubmitTimeAndStuId(@Param("submitTime") Date submitTime, @Param("stuId") Long stuId);
 
     @Select("select * from monthreport where id=#{id}")
     MonthReport findById(@Param("id") Long monthReportId);

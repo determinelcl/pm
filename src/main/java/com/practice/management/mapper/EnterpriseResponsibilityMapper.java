@@ -16,7 +16,7 @@ public interface EnterpriseResponsibilityMapper {
     EnterpriseResponsibility findById(@Param("id") Long id);
 
     @Insert("insert into enterpriseresponsibility(name, age, gender, rank, phone, email, account, password, " +
-            "                                                       enterprise_id, role_id, addtime, remarks) " +
+            "                                                       enterprise_id, role_id, add_time, remarks) " +
             "   values(#{account.name}, #{account.age}, #{account.gender}, #{account.rank}, #{account.phone}, " +
             "       #{account.email}, #{account.account}, #{account.password}, #{account.enterpriseId}, " +
             "       #{account.roleId}, #{account.addTime}, #{account.remarks})")

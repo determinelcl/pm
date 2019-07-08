@@ -16,10 +16,6 @@ public interface PracticeSummaryMapper {
     @Options(useGeneratedKeys = true, keyColumn = "id")
     Long insert(AddTrainSummaryDto summary);
 
-
-    @Select("select * from trainsummary where train_report_url=#{rName} and train_design_url=#{dName}")
-    TrainSummary findByFilename(@Param("rName") String reportFilename, @Param("dName") String designFilename);
-
     @Select("select * from trainsummary where id=#{id}")
     TrainSummary findById(@Param("id") Long summaryId);
 
