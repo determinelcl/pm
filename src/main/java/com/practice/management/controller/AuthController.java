@@ -106,6 +106,9 @@ public class AuthController extends BaseController {
      */
     @PostMapping("/auth/sr/reg")
     public ResultModel<Account> registerSR(@Valid @RequestBody SchoolResponsibility sr) {
+        if (sr.getSchoolId() == null && sr.getSchool() == null)
+            return error("学校id和学校必须其中一个不能为空");
+
         sr.setForeignId(sr.getSchoolId());
         authService.register(sr);
 
@@ -121,6 +124,9 @@ public class AuthController extends BaseController {
      */
     @PostMapping("/auth/er/reg")
     public ResultModel<Account> registerEr(@Valid @RequestBody EnterpriseResponsibility er) {
+        if (er.getEnterpriseId() == null && er.getEnterprise() == null)
+            return error("企业id和企业必须其中一个不能为空");
+
         er.setForeignId(er.getEnterpriseId());
         authService.register(er);
 

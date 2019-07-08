@@ -27,9 +27,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
         enterprise.setAddTime(new Date());
         enterprise.setRemarks("");
-        Long enterpriseId = enterpriseMapper.insert(enterprise);
+        enterpriseMapper.insert(enterprise);
 
-        return enterpriseMapper.findById(enterpriseId);
+        return enterprise;
     }
 
     @Override
