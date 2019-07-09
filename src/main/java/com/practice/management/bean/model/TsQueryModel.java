@@ -1,13 +1,17 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
+
 public class TsQueryModel {
     /**
      * 企业负责人/老师、学校负责人/老师、学生
      */
+    @NotNull(message = "用户id不能为空")
     private Long id;
     /**
      * 1：学生，2：老师，3：企业
      */
+    @NotNull(message = "用户类型不能为空")
     private Integer type;
 
     private String majorName;

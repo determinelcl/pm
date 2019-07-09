@@ -1,18 +1,40 @@
 package com.practice.management.bean.entity;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class TrainScore {
     private Long id;
+
+    @NotBlank(message = "课程名不能为空")
     private String lessonName;
+    @DecimalMax(value = "100", message = "成绩最大不能超过100")
+    @DecimalMin(value = "0", message = "成绩最小不能小于0")
+    @NotNull(message = "成绩不能为空")
     private double stageOne;
+    @DecimalMax(value = "100", message = "成绩最大不能超过100")
+    @DecimalMin(value = "0", message = "成绩最小不能小于0")
+    @NotNull(message = "成绩不能为空")
     private double stageTwo;
+    @DecimalMax(value = "100", message = "成绩最大不能超过100")
+    @DecimalMin(value = "0", message = "成绩最小不能小于0")
+    @NotNull(message = "成绩不能为空")
     private double stageThree;
+    @DecimalMax(value = "100", message = "成绩最大不能超过100")
+    @DecimalMin(value = "0", message = "成绩最小不能小于0")
+    @NotNull(message = "成绩不能为空")
     private double stageFour;
-    private double stageFire;
+    @DecimalMax(value = "100", message = "成绩最大不能超过100")
+    @DecimalMin(value = "0", message = "成绩最小不能小于0")
+    @NotNull(message = "成绩不能为空")
+    private double stageFive;
+    @NotNull(message = "阶段系数id不能为空")
     private Long coefficientId;
-    private Long majorId;
-    private Long schoolId;
+    @NotNull(message = "学校id不能为空")
     private Long studentId;
-    private Long enterpriseId;
+    @NotNull(message = "企业课程id不能为空")
     private Long enterpriseProgrammeId;
 
     /**
@@ -69,12 +91,12 @@ public class TrainScore {
         this.stageFour = stageFour;
     }
 
-    public double getStageFire() {
-        return stageFire;
+    public double getStageFive() {
+        return stageFive;
     }
 
-    public void setStageFire(double stageFire) {
-        this.stageFire = stageFire;
+    public void setStageFive(double stageFive) {
+        this.stageFive = stageFive;
     }
 
     public Long getCoefficientId() {
@@ -83,22 +105,6 @@ public class TrainScore {
 
     public void setCoefficientId(Long coefficientId) {
         this.coefficientId = coefficientId;
-    }
-
-    public Long getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(Long majorId) {
-        this.majorId = majorId;
-    }
-
-    public Long getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(Long schoolId) {
-        this.schoolId = schoolId;
     }
 
     public Long getStudentId() {
@@ -115,14 +121,6 @@ public class TrainScore {
 
     public void setCoefficient(Coefficient coefficient) {
         this.coefficient = coefficient;
-    }
-
-    public Long getEnterpriseId() {
-        return enterpriseId;
-    }
-
-    public void setEnterpriseId(Long enterpriseId) {
-        this.enterpriseId = enterpriseId;
     }
 
     public Long getEnterpriseProgrammeId() {

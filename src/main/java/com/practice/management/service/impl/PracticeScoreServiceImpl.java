@@ -35,12 +35,17 @@ public class PracticeScoreServiceImpl implements PracticeScoreService {
     @Autowired
     private EnterpriseProgrammeService epService;
 
+    @Autowired
+    private SchoolService schoolService;
+
+    @Autowired
+    private EnterpriseService enterpriseService;
+
 
     @Override
     public TrainScore add(AddTsDto dto) {
         Long erId = dto.getErId();
         EnterpriseResponsibility er = erService.findById(erId);
-        dto.setEnterpriseId(er.getEnterpriseId());
 
         // 设置实训成绩的实训成绩阶段系数id
         if (dto.getCoefficientId() == null)
@@ -48,39 +53,25 @@ public class PracticeScoreServiceImpl implements PracticeScoreService {
         else
             coefficientServices.findById(dto.getCoefficientId());
 
-        // 验证学校是否开设对应的专业
-        Major major = majorService.findById(dto.getMajorId());
-        if (!major.getSchoolId().equals(dto.getSchoolId()))
-            throw new RuntimeException("学校没有开设专业：" + major.getName());
-
         // 验证学生的专业是否正确
         Student student = studentService.findById(dto.getStudentId());
-        if (!student.getMajorId().equals(major.getId()))
-            throw new RuntimeException("学生:" + student.getName() + "不是专业:" + major.getName() + "的学生");
-
-        // 验证学校和企业是否进行了校企合作
-        Long enterpriseId = dto.getEnterpriseId();
-        seService.findByScIdAndEnpId(major.getSchoolId(), enterpriseId);
+        // 验证学校是否开设对应的专业
+        Major major = majorService.findById(student.getMajorId());
 
         // 验证企业是否开设了企业的课程
-        Long enterpriseProgrammeId = dto.getEnterpriseProgrammeId();
-        validateEpAuthority(enterpriseId, enterpriseProgrammeId);
+        EnterpriseProgramme ep = epService.findById(dto.getEnterpriseProgrammeId());
 
-        Long tsId = scoreMapper.insert(dto);
-        return scoreMapper.findById(tsId);
+        if (!er.getEnterpriseId().equals(ep.getEnterpriseId()))
+            throw new RuntimeException("企业老师所在的企业没有开设企业课程");
+
+        // 验证学校和企业是否进行了校企合作
+        seService.findByScIdAndEnpId(major.getSchoolId(), ep.getEnterpriseId());
+
+
+        scoreMapper.insert(dto);
+        return scoreMapper.findById(dto.getId());
     }
 
-    /**
-     * 验证企业是否开设了相关的企业课程
-     *
-     * @param enterpriseId 企业id
-     * @param epId 企业课程id
-     */
-    private void validateEpAuthority(Long enterpriseId, Long epId) {
-        EnterpriseProgramme ep = epService.findById(epId);
-        if (enterpriseId.equals(ep.getEnterpriseId()))
-            throw new RuntimeException("企业id" + ep.getEnterpriseId() + "未开设企业课程：" + ep.getName());
-    }
 
     @Override
     public TrainScore findById(Long tsId) {
@@ -95,10 +86,8 @@ public class PracticeScoreServiceImpl implements PracticeScoreService {
         Long tsId = dto.getTsId();
         Long erId = dto.getErId();
 
-        TrainScore trainScore = validateTrainScoreAuthority(erId, tsId);
-
+        validateTrainScoreAuthority(erId, tsId);
         coefficientServices.findById(dto.getCoefficientId());
-        validateEpAuthority(trainScore.getEnterpriseId(), dto.getEnterpriseProgrammeId());
 
         scoreMapper.updateById(dto);
         return scoreMapper.findById(tsId);
@@ -115,7 +104,9 @@ public class PracticeScoreServiceImpl implements PracticeScoreService {
         EnterpriseResponsibility er = erService.findById(erId);
 
         TrainScore trainScore = findById(tsId);
-        if (!trainScore.getEnterpriseId().equals(er.getEnterpriseId()))
+
+        EnterpriseProgramme enterpriseProgramme = epService.findById(trainScore.getEnterpriseProgrammeId());
+        if (!enterpriseProgramme.getEnterpriseId().equals(er.getEnterpriseId()))
             throw new RuntimeException(
                     "企业:" + er.getEnterpriseId() + "没有实训成绩:" + trainScore.getId() + "的操作权限");
 

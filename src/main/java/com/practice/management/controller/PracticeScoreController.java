@@ -10,6 +10,7 @@ import com.practice.management.service.PracticeScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,9 +34,9 @@ public class PracticeScoreController extends BaseController {
      * @return 添加完成的实训成绩对象
      */
     @PostMapping("/add")
-    public ResultModel<TrainScore> add(@RequestBody AddTsDto dto) {
+    public ResultModel<TrainScore> add(@Valid @RequestBody AddTsDto dto) {
         TrainScore score = scoreService.add(dto);
-        return success("添加成功", score);
+        return success(score);
     }
 
     /**
@@ -46,9 +47,9 @@ public class PracticeScoreController extends BaseController {
      * @return 修改完成的实训成绩对象
      */
     @PutMapping("/upd")
-    public ResultModel<TrainScore> update(@RequestBody UpdTsDto dto) {
+    public ResultModel<TrainScore> update(@Valid @RequestBody UpdTsDto dto) {
         TrainScore score = scoreService.update(dto);
-        return success("添加成功", score);
+        return success(score);
     }
 
     /**
@@ -63,7 +64,7 @@ public class PracticeScoreController extends BaseController {
     public ResultModel<TrainScore> delete(
             @PathVariable("erId") Long erId, @PathVariable("tsId") Long tsId) {
         TrainScore score = scoreService.deleteById(erId, tsId);
-        return success("添加成功", score);
+        return success(score);
     }
 
 
@@ -74,10 +75,10 @@ public class PracticeScoreController extends BaseController {
      * @param queryCondition 查询条件的模型对象
      * @return 符合条件的实训成绩对象
      */
-    @GetMapping("/query")
-    public ResultModel<List<TrainScore>> query(@RequestBody TsQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<TrainScore>> query(@Valid @RequestBody TsQueryModel queryCondition) {
         List<TrainScore> scoreList = scoreService.query(queryCondition);
-        return success("添加成功", scoreList);
+        return success(scoreList);
     }
 
 }
