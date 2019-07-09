@@ -90,17 +90,40 @@
     </div>
 </div>
 </body>
-<!--<script type="text/html" id="toolbarDemo">-->
-<!--<div class = "layui-btn-container" > -->
-<!--<button class = "layui-btn layui-btn-sm" lay-event = "getCheckData" > 获取选中行数据 </button>-->
-<!--<button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button > -->
-<!--<button class = "layui-btn layui-btn-sm" lay-event = "isAll" > 验证是否全选</button>-->
-<!--</div > -->
-<!--</script>-->
-<!--<script type="text/html" id="switchTpl">-->
-<!--&lt;!&ndash; 这里的checked的状态只是演示 &ndash;&gt;-->
-<!--<input type = "checkbox" name = "sex" value = "{{d.id}}" lay-skin = "switch"lay-text = "女|男" lay-filter = "sexDemo" {{ d.id == 10003 ? 'checked': ''}} >-->
-<!--</script>-->
+
+<script>
+
+
+    $(function () {
+        var  $.cookie('the_cookie')
+        var data={};
+        fetch('http://localhost:8080/practice/mr/query', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(function (res) {
+            return res.json();
+        }).then(function (json) {
+            var newres = new Object();
+            newres = json["result"];
+            for (var i=0;i<newres.length;i++){
+                $("#school").append('<option id='+newres[i]["id"]+' value='+newres[i]["name"]+'>'+newres[i]["name"]+'</option>');
+            }
+            console.log(json)
+        })
+    });
+
+
+
+</script>
+
+
+
+
+
+
 <script>layui.use('laydate',
     function () {
         var laydate = layui.laydate;
@@ -151,11 +174,6 @@
                 ;
             });
     });</script>
-<!--<script>var _hmt = _hmt || []; (function() {-->
-<!--var hm = document.createElement("script");-->
-<!--hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";-->
-<!--var s = document.getElementsByTagName("script")[0];-->
-<!--s.parentNode.insertBefore(hm, s);-->
-<!--})();</script>-->
+
 
 </html>
