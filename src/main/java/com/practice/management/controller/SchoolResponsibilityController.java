@@ -108,4 +108,19 @@ public class SchoolResponsibilityController extends BaseController {
         return success(list);
     }
 
+    /**
+     * 根据学校id和账号查询老师信息
+     *
+     * @param scId    学校id
+     * @param account 学校负责人/老师账号
+     * @return 学校负责人/老师个人信息
+     */
+    @GetMapping("/self/{scId:\\d+}/{account:\\S+}")
+    public ResultModel<SchoolResponsibility> getSrSelf(@PathVariable("scId") Long scId,
+                                                       @PathVariable("account") String account) {
+
+        SchoolResponsibility sr = srService.findByScIdAndAccount(scId, account);
+        return success(sr);
+    }
+
 }

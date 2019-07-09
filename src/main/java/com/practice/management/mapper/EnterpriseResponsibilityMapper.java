@@ -51,4 +51,7 @@ public interface EnterpriseResponsibilityMapper {
             "</if>" +
             "</script>")
     List<EnterpriseResponsibility> queryByCondition(EnpQueryModel queryCondition);
+
+    @Select("select * from enterpriseresponsibility where enterprise_id=#{eId} and account=#{account} ")
+    EnterpriseResponsibility findByEIdAndAccount(@Param("eId") Long eId, @Param("account") String account);
 }

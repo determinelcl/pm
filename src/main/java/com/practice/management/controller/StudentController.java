@@ -78,4 +78,19 @@ public class StudentController extends BaseController {
         Student student = studentService.updStudentBySr(dto);
         return success("修改成功", student);
     }
+
+    /**
+     * 根据学校id和学生账号查询学生信息
+     *
+     * @param scId  学校id
+     * @param account 学生账号
+     * @return 学生信息
+     */
+    @GetMapping("/self/{scId:\\d+}/{account:\\S+}")
+    public ResultModel<Student> getStudentSelf(@PathVariable("scId") Long scId,
+                                               @PathVariable("account") String account) {
+
+        Student student = studentService.findByScIdAndAccount(scId, account);
+        return success(student);
+    }
 }

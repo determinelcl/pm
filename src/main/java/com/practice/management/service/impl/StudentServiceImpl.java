@@ -140,6 +140,7 @@ public class StudentServiceImpl implements StudentService {
         return findById(dto.getStuId());
     }
 
+    @Transactional
     @Override
     public Student deleteById(Long srId, Long stuId) {
         // 验证学生是否存在
@@ -155,6 +156,17 @@ public class StudentServiceImpl implements StudentService {
             throw new RuntimeException("学校负责人:" + sr.getName() + "和学生:" + student.getName() + "不属于同一所学校");
 
         studentMapper.deleteById(stuId);
+        return student;
+    }
+
+    @Override
+    public Student findByScIdAndAccount(Long scId, String account) {
+        schoolService.findById(scId);
+
+        Student student = studentMapper.findByScIdAndAccount(scId, account);
+        if (student == null)
+            throw new RuntimeException("学生信息不存在");
+
         return student;
     }
 }

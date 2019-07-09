@@ -45,4 +45,7 @@ public interface SchoolResponsibilityMapper {
             "</if>" +
             "</script>")
     List<SchoolResponsibility> queryByCondition(SrQueryModel queryCondition);
+
+    @Select("select * from schoolresponsibility where school_id=#{scId} and account=#{account}")
+    SchoolResponsibility findByScIdAndAccount(@Param("scId") Long scId, @Param("account") String account);
 }

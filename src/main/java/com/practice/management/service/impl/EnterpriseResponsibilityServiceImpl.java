@@ -148,4 +148,16 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
 
         return er;
     }
+
+    @Override
+    public EnterpriseResponsibility findByEcIdAndAccount(Long eId, String account) {
+        enterpriseService.findById(eId);
+
+        EnterpriseResponsibility er = erMapper.findByEIdAndAccount(eId, account);
+
+        if (er == null)
+            throw new RuntimeException("企业老师信息不存在");
+
+        return er;
+    }
 }

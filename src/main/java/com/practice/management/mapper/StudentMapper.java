@@ -29,4 +29,8 @@ public interface StudentMapper {
 
     @Delete("delete from student where id=#{id}")
     void deleteById(@Param("id") Long stuId);
+
+    @Select("select * from student where account=#{account} " +
+            "       and major_id in (select id from major where school_id=#{scId})")
+    Student findByScIdAndAccount(@Param("scId") Long scId, @Param("account") String account);
 }

@@ -141,4 +141,15 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         return sr;
     }
 
+    @Override
+    public SchoolResponsibility findByScIdAndAccount(Long scId, String account) {
+        schoolService.findById(scId);
+
+        SchoolResponsibility sr = srMapper.findByScIdAndAccount(scId, account);
+        if (sr == null)
+            throw new RuntimeException("学校老师信息不存在");
+
+        return sr;
+    }
+
 }

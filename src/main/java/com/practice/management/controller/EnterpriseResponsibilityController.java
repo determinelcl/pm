@@ -4,9 +4,9 @@ import com.practice.management.bean.dto.AddEnterpriseTeacherDto;
 import com.practice.management.bean.dto.UpdEnterpriseDto;
 import com.practice.management.bean.dto.UpdEnterpriseTeacherDto;
 import com.practice.management.bean.dto.UpdErDto;
-import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EnpQueryModel;
+import com.practice.management.bean.model.ResultModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.EnterpriseResponsibilityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +107,20 @@ public class EnterpriseResponsibilityController extends BaseController {
     public ResultModel<List<EnterpriseResponsibility>> query(@RequestBody EnpQueryModel queryCondition) {
         List<EnterpriseResponsibility> list = erService.queryByCondition(queryCondition);
         return success(list);
+    }
+
+    /**
+     * 根据企业id和账号查询企业负责人/老师信息
+     *
+     * @param eId     企业id
+     * @param account 企业负责人/老师账号
+     * @return 企业负责人/老师个人信息
+     */
+    @GetMapping("/self/{eId:\\d+}/{account:\\S+}")
+    public ResultModel<EnterpriseResponsibility> getSrSelf(@PathVariable("eId") Long eId,
+                                                           @PathVariable("account") String account) {
+
+        EnterpriseResponsibility er = erService.findByEcIdAndAccount(eId, account);
+        return success(er);
     }
 }

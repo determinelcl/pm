@@ -72,4 +72,13 @@ public interface EnterpriseResponsibilityService {
      * @return 验证通过返回企业负责人信息
      */
     EnterpriseResponsibility validateErAuthority(Long erId);
+
+    /**
+     * 根据企业id和账号查询企业负责人/老师信息
+     *
+     * @param eId     企业id
+     * @param account 企业负责人/老师账号
+     * @return 企业负责人/老师个人信息
+     */
+    EnterpriseResponsibility findByEcIdAndAccount(Long eId, String account);
 }
