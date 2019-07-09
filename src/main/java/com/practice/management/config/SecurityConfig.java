@@ -62,6 +62,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 基于jwt验证所以不需要csrf
                 .csrf().disable()
 
+                .headers().frameOptions().disable()
+
+                .and()
+
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
 
                 .and()
