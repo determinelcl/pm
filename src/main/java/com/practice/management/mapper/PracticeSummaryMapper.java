@@ -13,7 +13,7 @@ public interface PracticeSummaryMapper {
 
     @Insert("insert into trainsummary(train_summary, train_report_url, train_design_url, school_id, student_id) " +
             "values(#{trainSummary}, #{trainReportUrl}, #{trainDesignUrl}, #{schoolId}, #{studentId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddTrainSummaryDto summary);
 
     @Select("select * from trainsummary where id=#{id}")
