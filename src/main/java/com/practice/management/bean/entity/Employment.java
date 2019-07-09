@@ -1,19 +1,29 @@
 package com.practice.management.bean.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-/*
+/**
  * 就业
- * */
+ */
 public class Employment {
     private Long id;
+
+    @NotBlank(message = "工作企业不能为空")
     private String name;
+    @NotBlank(message = "城市不能为空")
     private String city;
+    @NotBlank(message = "邮编不能为空")
     private String post;
+    @NotNull(message = "薪资不能为空")
     private Integer salary;
     private Date addTime;
+    @NotBlank(message = "备注不能为空")
     private String remarks;
+    @NotNull(message = "实习企业不能为空")
     private Long enterpriseId;
+    @NotNull(message = "学生id不能为空")
     private Long studentId;
 
     public Long getId() {

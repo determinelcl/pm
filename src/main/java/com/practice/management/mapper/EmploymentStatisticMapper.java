@@ -17,10 +17,10 @@ public interface EmploymentStatisticMapper {
     @Select("select * from employment where id=#{id}")
     Employment findById(@Param("id") Long eId);
 
-    @Insert("insert into employment(employment_name, city, post, salary, " +
+    @Insert("insert into employment(name, city, post, salary, " +
             "           add_time, remarks, enterprise_id, student_id)" +
             " values(#{name}, #{city}, #{post}, #{salary}, #{addTime}, #{remarks}, #{enterpriseId}, #{studentId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddEmploymentDto dto);
 
 
@@ -51,7 +51,7 @@ public interface EmploymentStatisticMapper {
             "</if>" +
             "<if test=\"schoolName != null\"> " +
             "   and student_id in (select id from student where major_id in " +
-            "           (select id from major where school_id in (select id from school where name=#{schoolName})" +
+            "           (select id from major where school_id in (select id from school where name=#{schoolName})))" +
             "</if>" +
             "<if test=\"enpName != null\"> " +
             "   and enterprise_id in (select id from enterprise where name=#{enpName})" +
@@ -60,7 +60,7 @@ public interface EmploymentStatisticMapper {
             "   and city=#{city}" +
             "</if>" +
             "<if test=\"post != null\"> " +
-            "   and city=#{post}" +
+            "   and post=#{post}" +
             "</if>" +
             "</script>")
     List<Employment> queryByCondition(EmploymentQueryModel queryCondition);

@@ -36,8 +36,8 @@ public class EmploymentStatisticServiceImpl implements EmploymentStatisticServic
             throw new RuntimeException("学生和企业没有实训的关联关系");
 
         dto.setAddTime(new Date());
-        Long eId = statisticMapper.insert(dto);
-        return statisticMapper.findById(eId);
+        statisticMapper.insert(dto);
+        return statisticMapper.findById(dto.getId());
     }
 
     @Override
@@ -52,12 +52,12 @@ public class EmploymentStatisticServiceImpl implements EmploymentStatisticServic
     @Override
     public Employment update(UpdEmploymentDto dto) {
         studentService.findById(dto.getStuId());
-        Employment employment = findById(dto.geteId());
+        Employment employment = findById(dto.getEId());
         if (!employment.getStudentId().equals(dto.getStuId()))
-            throw new RuntimeException("学生id:" + dto.getStuId() + "没有就业统计id:" + dto.geteId() + "的操作权限");
+            throw new RuntimeException("学生id:" + dto.getStuId() + "没有就业统计id:" + dto.getEId() + "的操作权限");
 
         statisticMapper.updateById(dto);
-        return statisticMapper.findById(dto.geteId());
+        return statisticMapper.findById(dto.getEId());
     }
 
     @Override

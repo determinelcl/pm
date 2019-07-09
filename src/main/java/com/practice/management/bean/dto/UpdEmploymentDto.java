@@ -1,13 +1,23 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdEmploymentDto {
+    @NotNull(message = "学生id不能为空")
     private Long stuId;
+    @NotNull(message = "结业统计id不能为空")
     private Long eId;
 
+    @NotBlank(message = "工作企业不能为空")
     private String eName;
+    @NotBlank(message = "城市不能为空")
     private String city;
+    @NotBlank(message = "邮编不能为空")
     private String post;
+    @NotNull(message = "薪资不能为空")
     private Integer salary;
+    @NotBlank(message = "备注不能为空")
     private String remarks;
 
     public Long getStuId() {
@@ -18,7 +28,7 @@ public class UpdEmploymentDto {
         this.stuId = stuId;
     }
 
-    public Long geteId() {
+    public Long getEId() {
         return eId;
     }
 

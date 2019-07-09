@@ -8,11 +8,9 @@ import com.practice.management.bean.model.ResultModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.EmploymentStatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class EmploymentStatisticsController extends BaseController {
      * @return 添加成功的就业统计
      */
     @PostMapping("/add")
-    public ResultModel<Employment> add(@RequestBody AddEmploymentDto dto) {
+    public ResultModel<Employment> add(@Valid @RequestBody AddEmploymentDto dto) {
         Employment employment = statisticService.add(dto);
         return success("添加成功", employment);
     }
@@ -46,8 +44,8 @@ public class EmploymentStatisticsController extends BaseController {
      * @param dto 就业统计dto
      * @return 更新成功的就业统计
      */
-    @PostMapping("/upd")
-    public ResultModel<Employment> upd(@RequestBody UpdEmploymentDto dto) {
+    @PutMapping("/upd")
+    public ResultModel<Employment> upd(@Valid @RequestBody UpdEmploymentDto dto) {
         Employment employment = statisticService.update(dto);
         return success("修改成功", employment);
     }
@@ -60,7 +58,7 @@ public class EmploymentStatisticsController extends BaseController {
      * @return 查询的就业统计的结果列表
      */
     @PostMapping("/query")
-    public ResultModel<List<Employment>> query(@RequestBody EmploymentQueryModel queryCondition) {
+    public ResultModel<List<Employment>> query(@Valid @RequestBody EmploymentQueryModel queryCondition) {
         List<Employment> employmentList = statisticService.query(queryCondition);
         return success("查询成功", employmentList);
     }
