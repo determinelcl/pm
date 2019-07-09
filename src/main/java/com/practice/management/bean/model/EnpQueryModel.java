@@ -1,5 +1,7 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 企业查询条件模型
  */
@@ -12,11 +14,12 @@ public class EnpQueryModel {
     /**
      * 企业负责人id
      */
+    @NotNull(message = "企业负责人id不能为空")
     private Long erId;
     /**
      * 企业老师工号：account
      */
-    private Long account;
+    private String account;
     /**
      * 企业老师姓名：name
      */
@@ -38,11 +41,11 @@ public class EnpQueryModel {
         this.erId = erId;
     }
 
-    public Long getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(Long account) {
+    public void setAccount(String account) {
         this.account = account;
     }
 

@@ -61,6 +61,10 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         SchoolResponsibility sr = findById(srId);
         dto.setSchoolId(sr.getSchoolId());
 
+        SchoolResponsibility srTemp = srMapper.findByScIdAndAccount(sr.getSchoolId(), dto.getAccount());
+        if (srTemp != null)
+            throw new RuntimeException("学校id为:" + sr.getSchoolId() + "的老师账号:" + dto.getAccount() + "已存在");
+
         // 验证角色：学校老师的权限不可比学校负责人的权限高
         if (dto.getRoleId() != null)
             roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());

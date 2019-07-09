@@ -48,6 +48,10 @@ public class StudentServiceImpl implements StudentService {
         // 验证校企合作
         seService.findByScIdAndEnpId(sr.getSchoolId(), dto.getEnterpriseId());
 
+        Student student = studentMapper.findByScIdAndAccount(sr.getSchoolId(), dto.getAccount());
+        if (student != null)
+            throw new RuntimeException("学校id为:" + sr.getSchoolId() + "的学生账号:" + dto.getAccount() + "已存在");
+
         // 验证角色：学校学生的权限不可比老师的权限高
         if (dto.getRoleId() != null)
             roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());

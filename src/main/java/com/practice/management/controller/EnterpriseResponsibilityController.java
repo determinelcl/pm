@@ -12,6 +12,7 @@ import com.practice.management.service.EnterpriseResponsibilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 添加是否成功的消息
      */
     @PostMapping("/enp/upd")
-    public ResultModel<String> updEnterprise(@RequestBody UpdEnterpriseDto dto) {
+    public ResultModel<String> updEnterprise(@Valid @RequestBody UpdEnterpriseDto dto) {
         erService.updEnterprise(dto);
         return success("添加成功");
     }
@@ -47,7 +48,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 添加是否成功的消息
      */
     @PostMapping("/teacher/add")
-    public ResultModel<String> addTeacher(@RequestBody AddEnterpriseTeacherDto dto) {
+    public ResultModel<String> addTeacher(@Valid @RequestBody AddEnterpriseTeacherDto dto) {
         erService.addTeacher(dto);
         return success("添加成功");
     }
@@ -60,7 +61,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<EnterpriseResponsibility> updateER(@RequestBody UpdErDto dto) {
+    public ResultModel<EnterpriseResponsibility> updateER(@Valid @RequestBody UpdErDto dto) {
         EnterpriseResponsibility er = erService.updEr(dto);
         return success(er);
     }
@@ -73,7 +74,7 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @return 更新结果
      */
     @PutMapping("/upd/teacher")
-    public ResultModel<EnterpriseResponsibility> updateERTeacher(@RequestBody UpdEnterpriseTeacherDto dto) {
+    public ResultModel<EnterpriseResponsibility> updateERTeacher(@Valid @RequestBody UpdEnterpriseTeacherDto dto) {
         EnterpriseResponsibility er = erService.updErTeacher(dto);
         return success(er);
     }
@@ -103,8 +104,8 @@ public class EnterpriseResponsibilityController extends BaseController {
      * @param queryCondition 企业负责人实体的所有字段都可以作为查询条件
      * @return 查询到的企业负责人信息
      */
-    @GetMapping("/query")
-    public ResultModel<List<EnterpriseResponsibility>> query(@RequestBody EnpQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<EnterpriseResponsibility>> query(@Valid @RequestBody EnpQueryModel queryCondition) {
         List<EnterpriseResponsibility> list = erService.queryByCondition(queryCondition);
         return success(list);
     }

@@ -63,13 +63,20 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
     @Transactional
     @Override
     public void addTeacher(AddEnterpriseTeacherDto dto) {
-        EnterpriseResponsibility enterpriseResponsibility = findById(dto.getErId());
+        EnterpriseResponsibility er = findById(dto.getErId());
         // 将添加的企业老师设置和企业负责人同样的id
-        Long enterpriseId = enterpriseResponsibility.getEnterpriseId();
+        Long enterpriseId = er.getEnterpriseId();
         dto.setEnterpriseId(enterpriseId);
 
+        EnterpriseResponsibility temp = erMapper.findByEIdAndAccount(enterpriseId, dto.getAccount());
+        if (temp != null)
+            throw new RuntimeException("企业id为:" + er.getEnterpriseId() + "的老师账号:" + dto.getAccount() + "已存在");
+
         // 验证角色：企业老师的权限不可比企业负责人的权限高
-        roleService.authorityValidate(enterpriseResponsibility.getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(er.getRoleId(), dto.getRoleId());
+        else dto.setRoleId(3L);
+
         authService.register(dto);
     }
 
@@ -90,7 +97,10 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         validateErAndEt(dto.getErId(), dto.getEtId());
 
         // 验证角色：企业老师的权限不可比企业负责人的权限高
-        roleService.authorityValidate(findById(dto.getErId()).getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(findById(dto.getErId()).getRoleId(), dto.getRoleId());
+        else dto.setRoleId(2L);
+
         erMapper.updateErTeacherById(dto);
         return findById(dto.getEtId());
     }
@@ -132,7 +142,7 @@ public class EnterpriseResponsibilityServiceImpl implements EnterpriseResponsibi
         EnterpriseResponsibility er = findById(queryCondition.getErId());
         Enterprise enterprise = enterpriseService.findById(queryCondition.getEnpId());
 
-        if (er.getEnterpriseId().equals(enterprise.getId()))
+        if (!er.getEnterpriseId().equals(enterprise.getId()))
             throw new RuntimeException("企业负责人:" + er.getName() + "不属于企业:" + enterprise.getName());
 
         return erMapper.queryByCondition(queryCondition);

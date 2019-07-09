@@ -17,7 +17,7 @@ public class SrQueryModel {
     /**
      * 学校负责人id
      */
-    @NotNull(message = "企业负责人id不能为空")
+    @NotNull(message = "学校负责人id不能为空")
     private Long srId;
 
     /**
