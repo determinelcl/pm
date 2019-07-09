@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface AdminMapper {
 
-    @Select("select * from admin where account=#{id}")
+    @Select("select * from admin where id=#{id}")
     Admin findById(@Param("id") Long id);
 
     @Select("select * from admin where account=#{account}")

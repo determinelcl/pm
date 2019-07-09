@@ -11,6 +11,7 @@ import com.practice.management.service.MonthlyReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class MonthlyReportController extends BaseController {
      * @return 添加成功之后的月报对象
      */
     @PostMapping("/add")
-    public ResultModel<MonthReport> add(@RequestBody MonthReport monthReport) {
+    public ResultModel<MonthReport> add(@Valid @RequestBody MonthReport monthReport) {
         MonthReport mr = monthlyReportService.add(monthReport);
         return success(mr);
     }
@@ -47,7 +48,7 @@ public class MonthlyReportController extends BaseController {
      * @return 修改成功之后的月报对象
      */
     @PutMapping("/upd/stu")
-    public ResultModel<MonthReport> updateByStu(@RequestBody UpdStuMReportDto dto) {
+    public ResultModel<MonthReport> updateByStu(@Valid @RequestBody UpdStuMReportDto dto) {
         MonthReport mr = monthlyReportService.updateByStu(dto);
         return success(mr);
     }
@@ -60,7 +61,7 @@ public class MonthlyReportController extends BaseController {
      * @return 审核的月报对象
      */
     @PutMapping("/upd/sr")
-    public ResultModel<MonthReport> updateBySr(@RequestBody UpdSrMReportDto dto) {
+    public ResultModel<MonthReport> updateBySr(@Valid @RequestBody UpdSrMReportDto dto) {
         MonthReport mr = monthlyReportService.updateBySr(dto);
         return success(mr);
     }
@@ -73,7 +74,7 @@ public class MonthlyReportController extends BaseController {
      * @return 修改成功之后的月报对象
      */
     @PutMapping("/upd/er")
-    public ResultModel<MonthReport> updateEr(@RequestBody UpdErMReportDto dto) {
+    public ResultModel<MonthReport> updateEr(@Valid @RequestBody UpdErMReportDto dto) {
         MonthReport mr = monthlyReportService.updateByEr(dto);
         return success(mr);
     }
@@ -86,7 +87,7 @@ public class MonthlyReportController extends BaseController {
      * @param monthReportId 月报id
      * @return 删除成功之后的月报对象
      */
-    @PutMapping("/del//{stuId:\\d+}/{mrId:\\d+}")
+    @DeleteMapping("/del//{stuId:\\d+}/{mrId:\\d+}")
     public ResultModel<MonthReport> delete(
             @PathVariable("stuId") Long stuId, @PathVariable("mrId") Long monthReportId) {
         MonthReport mr = monthlyReportService.deleteById(stuId, monthReportId);
@@ -101,8 +102,8 @@ public class MonthlyReportController extends BaseController {
      * @param queryCondition 查询条件
      * @return 查询的月报信息列表
      */
-    @PutMapping("/query")
-    public ResultModel<List<MonthReport>> query(@RequestBody MonthlyReportQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<MonthReport>> query(@Valid @RequestBody MonthlyReportQueryModel queryCondition) {
         List<MonthReport> list = monthlyReportService.queryByCondition(queryCondition);
         return success(list);
     }

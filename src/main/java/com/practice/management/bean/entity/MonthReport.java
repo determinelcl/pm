@@ -1,23 +1,41 @@
 package com.practice.management.bean.entity;
 
-/*
-* 月报
-* */
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
+/**
+ * 月报
+ */
 public class MonthReport {
     private Long id;
+
+    @NotNull(message = "开始时间不能为空")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date startTime;
+    @NotNull(message = "结束时间不能为空")
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date endTime;
+
+    @NotBlank(message = "训练内容不能为空")
     private String trainContent;
+    @NotBlank(message = "训练总结不能为空")
     private String trainHarvest;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date submitTime;
     private String year;
+    @Null(message = "学生不能自己填写企业意见")
     private String enterpriseOpinion;
+    @Null(message = "学生不可以自己进行审核")
     private String schoolExamine;
+    @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
+    @NotNull(message = "学校id不能为空")
     private Long schoolId;
+    @NotNull(message = "学生id不能为空")
     private Long studentId;
 
     public Long getId() {

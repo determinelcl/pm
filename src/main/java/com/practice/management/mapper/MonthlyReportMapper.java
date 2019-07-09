@@ -11,18 +11,18 @@ import java.util.List;
 
 @Mapper
 public interface MonthlyReportMapper {
-    @Insert("insert into monthreport(start_time, end_time, train_content, train_harvest, year, enterprise_opinion, " +
-            "                       school_examine, submit_time, enterprise_id, school_id, student_id)" +
-            " values(#{startTime}, #{endTime}, #{trainContent}, #{trainHarvest}, #{year}, #{enterpriseOpinion}," +
-            "           #{schoolExamine}, #{submitTime}, #{enterpriseId}, #{schoolId}, #{studentId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Insert("insert into monthreport(start_time, end_time, train_content, train_harvest, year," +
+            "                                   submit_time, enterprise_id, school_id, student_id)" +
+            " values(#{startTime}, #{endTime}, #{trainContent}, #{trainHarvest}, #{year}, " +
+            "        #{submitTime}, #{enterpriseId}, #{schoolId}, #{studentId})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(MonthReport monthReport);
 
     @Select("select * from monthreport where id=#{id}")
     MonthReport findById(@Param("id") Long monthReportId);
 
     @Update("update monthreport " +
-            "set train_content=#{trainContent}, train_harvest={trainHarvest} " +
+            "set train_content=#{trainContent}, train_harvest=#{trainHarvest} " +
             "where id=#{monthReportId}")
     void updateByStu(UpdStuMReportDto dto);
 

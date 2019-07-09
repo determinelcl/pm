@@ -1,15 +1,22 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdStuMReportDto {
     /**
      * 学生ID
      */
+    @NotNull(message = "学生id不能为空")
     private Long stuId;
     /**
      * 月报id
      */
+    @NotNull(message = "月报id不能为空")
     private Long monthReportId;
+    @NotBlank(message = "实训内容不能为空")
     private String trainContent;
+    @NotBlank(message = "实训总结不能为空")
     private String trainHarvest;
 
     public Long getStuId() {
