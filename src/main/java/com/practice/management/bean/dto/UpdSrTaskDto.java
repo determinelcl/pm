@@ -1,8 +1,14 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdSrTaskDto {
+    @NotNull(message = "学校老师id不能为空")
     private Long srId;
+    @NotNull(message = "任务书id不能为空")
     private Long taskId;
+    @NotBlank(message = "学校审核意见不能为空")
     private String schoolExamine;
 
     public Long getSrId() {

@@ -1,5 +1,6 @@
 package com.practice.management.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.practice.management.bean.dto.AddTaskDto;
 import com.practice.management.bean.dto.UpdErTaskDto;
 import com.practice.management.bean.dto.UpdSrTaskDto;
@@ -11,7 +12,9 @@ import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.TaskBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,22 +35,32 @@ public class TaskBookController extends BaseController {
      * 角色：学生
      *
      * @param task 任务书对象
+     * @param file 上传的任务书文件
      * @return 添加的结果
      */
-    public ResultModel<Task> add(@RequestBody AddTaskDto task) {
-        Task rs = taskBookService.add(task);
-        return success("添加成功", rs);
+    @PostMapping("/add")
+    public ResultModel<Task> add(@Valid @RequestParam("data") String task, MultipartFile file) {
+        if (file == null)
+            return error("文件不能为空");
+
+        AddTaskDto taskDto = JSON.parseObject(task, AddTaskDto.class);
+        taskDto.setEnclosureFile(file);
+        Task rs = taskBookService.add(taskDto);
+        return success(rs);
     }
 
     /**
      * 修改任务书信息
      * 角色：学生
      *
-     * @param dto 任务书
+     * @param task 任务书
+     * @param file 上传的任务书文件
      * @return 修改成功之后的任务书对象
      */
     @PutMapping("/upd/stu")
-    public ResultModel<Task> updateByStu(@RequestBody UpdStuTaskDto dto) {
+    public ResultModel<Task> updateByStu(@Valid @RequestParam("data") String task, MultipartFile file) {
+        UpdStuTaskDto dto = JSON.parseObject(task, UpdStuTaskDto.class);
+        dto.setEnclosureFile(file);
         Task mr = taskBookService.updateByStu(dto);
         return success(mr);
     }
@@ -60,7 +73,7 @@ public class TaskBookController extends BaseController {
      * @return 审核的任务书对象
      */
     @PutMapping("/upd/sr")
-    public ResultModel<Task> updateBySr(@RequestBody UpdSrTaskDto dto) {
+    public ResultModel<Task> updateBySr(@Valid @RequestBody UpdSrTaskDto dto) {
         Task mr = taskBookService.updateBySr(dto);
         return success(mr);
     }
@@ -73,7 +86,7 @@ public class TaskBookController extends BaseController {
      * @return 修改成功之后的任务书对象
      */
     @PutMapping("/upd/er")
-    public ResultModel<Task> updateEr(@RequestBody UpdErTaskDto dto) {
+    public ResultModel<Task> updateEr(@Valid @RequestBody UpdErTaskDto dto) {
         Task mr = taskBookService.updateByEr(dto);
         return success(mr);
     }
@@ -86,7 +99,7 @@ public class TaskBookController extends BaseController {
      * @param taskId 任务书id
      * @return 删除成功之后的任务书对象
      */
-    @PutMapping("/del/{stuId:\\d+}/{taskId:\\d+}")
+    @DeleteMapping("/del/{stuId:\\d+}/{taskId:\\d+}")
     public ResultModel<Task> delete(
             @PathVariable("stuId") Long stuId, @PathVariable("taskId") Long taskId) {
         Task mr = taskBookService.deleteById(stuId, taskId);
@@ -101,8 +114,8 @@ public class TaskBookController extends BaseController {
      * @param queryCondition 查询条件
      * @return 查询的任务书信息列表
      */
-    @PutMapping("/query")
-    public ResultModel<List<Task>> query(@RequestBody TaskQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<Task>> query(@Valid @RequestBody TaskQueryModel queryCondition) {
         List<Task> list = taskBookService.queryByCondition(queryCondition);
         return success(list);
     }

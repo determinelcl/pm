@@ -14,10 +14,10 @@ public interface TaskBookService {
      * 添加任务书
      * 角色：学生
      *
-     * @param task 任务书对象
+     * @param dto 任务书对象
      * @return 添加的结果
      */
-    Task add(AddTaskDto task);
+    Task add(AddTaskDto dto);
 
     /**
      * 根据指定id查询任务书

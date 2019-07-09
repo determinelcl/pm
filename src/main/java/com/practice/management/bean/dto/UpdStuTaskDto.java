@@ -2,14 +2,24 @@ package com.practice.management.bean.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdStuTaskDto {
+    @NotNull(message = "学生id不能为空")
     private Long stuId;
+    @NotNull(message = "任务书id不能为空")
     private Long taskId;
 
+    @NotNull(message = "项目名称不能为空")
     private String projectName;
+    @NotBlank(message = "任务内容不能为空")
     private String trainContent;
+    @NotBlank(message = "设计内容不能为空")
     private String projectDesignContent;
+    @NotBlank(message = "需求分析不能为空")
     private String designRequirement;
+
     private String enclosureUrl;
 
     // 附件

@@ -8,7 +8,6 @@ import com.practice.management.bean.entity.Task;
 import com.practice.management.bean.model.TaskQueryModel;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -20,14 +19,11 @@ public interface TaskBookMapper {
     @Insert("insert into task(project_name, year, submit_time, enterprise_teacher_name, school_teacher_name," +
             "                   train_content, project_design_content, design_requirement, enclosure_url, " +
             "                   enterprise_opinion, school_examine, enterprise_id, school_id, student_id)" +
-            "values(#{projectName}, #{year}, #{submitTime}, #{enterpiseTeracherName}, #{schoolTeacherName}," +
-            "       #{trainContent}, #{projectDesignContent}, #{designRequirment}, #{enclosureUrl}," +
-            "       #{enterpriseOpinion}, #{schoolEamine}, #{enterpriseId}, #{schoolId}, #{studentId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+            "values(#{projectName}, #{year}, #{submitTime}, #{enterpriseTeacherName}, #{schoolTeacherName}," +
+            "       #{trainContent}, #{projectDesignContent}, #{designRequirement}, #{enclosureUrl}," +
+            "       #{enterpriseOpinion}, #{schoolExamine}, #{enterpriseId}, #{schoolId}, #{studentId})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddTaskDto task);
-
-    @Select("select * from task where submit_time=#{submitTime} and student_id=#{stuId}")
-    Task findBySubmitTimeAndStuId(@Param("submitTime") Date submitTime, @Param("stuId") Long stuId);
 
     @Update("update task " +
             "set project_name=#{projectName}, project_design_content=#{projectDesignContent}, " +

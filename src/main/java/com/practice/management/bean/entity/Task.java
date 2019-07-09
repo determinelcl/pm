@@ -1,22 +1,39 @@
 package com.practice.management.bean.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 public class Task {
     private Long id;
+    @NotNull(message = "项目名称不能为空")
     private String projectName;
     private String year;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     private Date submitTime;
-    private String enterpiseTeracherName;
+    @NotBlank(message = "企业老师姓名不能为空")
+    private String enterpriseTeacherName;
+    @NotBlank(message = "学校老师姓名不能为空")
     private String schoolTeacherName;
+    @NotBlank(message = "任务内容不能为空")
     private String trainContent;
+    @NotBlank(message = "设计内容不能为空")
     private String projectDesignContent;
-    private String designRequirment;
+    @NotBlank(message = "需求分析不能为空")
+    private String designRequirement;
     private String enclosureUrl;
+    @Null(message = "学生不能自己填写企业意见")
     private String enterpriseOpinion;
-    private String schoolEamine;
+    @Null(message = "学生不可以自己进行审核")
+    private String schoolExamine;
+    @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
+    @NotNull(message = "学校id不能为空")
     private Long schoolId;
+    @NotNull(message = "学生id不能为空")
     private Long studentId;
 
     public Long getId() {
@@ -51,12 +68,12 @@ public class Task {
         this.submitTime = submitTime;
     }
 
-    public String getEnterpiseTeracherName() {
-        return enterpiseTeracherName;
+    public String getEnterpriseTeacherName() {
+        return enterpriseTeacherName;
     }
 
-    public void setEnterpiseTeracherName(String enterpiseTeracherName) {
-        this.enterpiseTeracherName = enterpiseTeracherName;
+    public void setEnterpriseTeacherName(String enterpriseTeacherName) {
+        this.enterpriseTeacherName = enterpriseTeacherName;
     }
 
     public String getSchoolTeacherName() {
@@ -83,12 +100,12 @@ public class Task {
         this.projectDesignContent = projectDesignContent;
     }
 
-    public String getDesignRequirment() {
-        return designRequirment;
+    public String getDesignRequirement() {
+        return designRequirement;
     }
 
-    public void setDesignRequirment(String designRequirment) {
-        this.designRequirment = designRequirment;
+    public void setDesignRequirement(String designRequirement) {
+        this.designRequirement = designRequirement;
     }
 
     public String getEnclosureUrl() {
@@ -107,12 +124,12 @@ public class Task {
         this.enterpriseOpinion = enterpriseOpinion;
     }
 
-    public String getSchoolEamine() {
-        return schoolEamine;
+    public String getSchoolExamine() {
+        return schoolExamine;
     }
 
-    public void setSchoolEamine(String schoolEamine) {
-        this.schoolEamine = schoolEamine;
+    public void setSchoolExamine(String schoolExamine) {
+        this.schoolExamine = schoolExamine;
     }
 
     public Long getEnterpriseId() {

@@ -1,8 +1,14 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdErTaskDto {
+    @NotNull(message = "企业老师id不能为空")
     private Long erId;
+    @NotNull(message = "任务书id不能为空")
     private Long taskId;
+    @NotBlank(message = "企业老师意见不能为空")
     private String enterpriseOpinion;
 
     public Long getErId() {

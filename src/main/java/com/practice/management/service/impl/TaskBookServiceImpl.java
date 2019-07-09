@@ -38,30 +38,30 @@ public class TaskBookServiceImpl implements TaskBookService {
     private FileService fileService;
 
     @Override
-    public Task add(AddTaskDto task) {
-        Student student = studentService.findById(task.getStudentId());
+    public Task add(AddTaskDto dto) {
+        Student student = studentService.findById(dto.getStudentId());
         Major major = majorService.findById(student.getMajorId());
-        if (task.getEnterpriseId().equals(student.getEnterpriseId()))
+        if (!dto.getEnterpriseId().equals(student.getEnterpriseId()))
             throw new RuntimeException("提交的任务书关联的企业不属于学生实习的企业");
 
-        if (major.getSchoolId().equals(task.getSchoolId()))
+        if (!major.getSchoolId().equals(dto.getSchoolId()))
             throw new RuntimeException("提交的任务书关联的学校不属于学生所在的学校");
 
         Date submitTime = new Date();
-        task.setSubmitTime(submitTime);
-        task.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
+        dto.setSubmitTime(submitTime);
+        dto.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
-        task.setSchoolId(major.getSchoolId());
-        task.setStudentId(student.getId());
+        dto.setSchoolId(major.getSchoolId());
+        dto.setStudentId(student.getId());
 
         // 存储上传的任务书附件
         String identification = major.getSchoolId() + "_" + student.getEnterpriseId() + "_" + student.getAccount();
-        String filename = fileService.saveFile(task.getEnclosureFile(), identification);
-        task.setEnclosureUrl(filename);
+        String filename = fileService.saveFile(dto.getEnclosureFile(), identification);
+        dto.setEnclosureUrl(filename);
 
-        Long taskId = taskBookMapper.insert(task);
+        taskBookMapper.insert(dto);
 
-        return taskBookMapper.findById(taskId);
+        return taskBookMapper.findById(dto.getId());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class TaskBookServiceImpl implements TaskBookService {
             dto.setEnclosureUrl(task.getEnclosureUrl());
 
         taskBookMapper.updateByStu(dto);
-        return findById(dto.getTaskId());
+        return taskBookMapper.findById(dto.getTaskId());
     }
 
     /**

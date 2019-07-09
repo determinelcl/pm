@@ -1,5 +1,6 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class TaskQueryModel {
@@ -7,11 +8,13 @@ public class TaskQueryModel {
     /**
      * 查询用户的id
      */
+    @NotNull(message = "用户id不能为空")
     private Long id;
 
     /**
      * 查询用户类型
      */
+    @NotNull(message = "用户类型不能为空")
     private Integer type;
 
     /**
