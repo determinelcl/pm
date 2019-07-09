@@ -1,5 +1,7 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 学校查询条件模型
  * <p>
@@ -15,6 +17,7 @@ public class SrQueryModel {
     /**
      * 学校负责人id
      */
+    @NotNull(message = "企业负责人id不能为空")
     private Long srId;
 
     /**
@@ -25,7 +28,7 @@ public class SrQueryModel {
     /**
      * 学校老师工号
      */
-    private String teacherId;
+    private String teacherAccount;
 
     /**
      * 学校老师姓名
@@ -57,12 +60,12 @@ public class SrQueryModel {
         this.majorName = majorName;
     }
 
-    public String getTeacherId() {
-        return teacherId;
+    public String getTeacherAccount() {
+        return teacherAccount;
     }
 
-    public void setTeacherId(String teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacherAccount(String teacherAccount) {
+        this.teacherAccount = teacherAccount;
     }
 
     public String getTeacherName() {

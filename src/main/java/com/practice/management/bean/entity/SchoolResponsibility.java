@@ -1,10 +1,13 @@
 package com.practice.management.bean.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class SchoolResponsibility extends Account {
+    @NotBlank(message = "学校老师职称不能为空")
     private String rank;
-
+    @NotNull(message = "专业id不能为空")
     private Long majorId;
-
     private Long schoolId;
 
     // 用于注册用户时同时添加学校，非实体属性

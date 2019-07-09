@@ -62,7 +62,10 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         dto.setSchoolId(sr.getSchoolId());
 
         // 验证角色：学校老师的权限不可比学校负责人的权限高
-        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        else dto.setRoleId(2L);
+
         authService.register(dto);
     }
 
@@ -81,7 +84,9 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         validateSrAndSt(dto.getSrId(), dto.getStId());
 
         // 验证角色：学校老师的权限不可比学校负责人的权限高
-        roleService.authorityValidate(findById(dto.getSrId()).getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(findById(dto.getSrId()).getRoleId(), dto.getRoleId());
+        else dto.setRoleId(2L);
 
         srMapper.updateSrTeacherById(dto);
         return findById(dto.getStId());
@@ -124,7 +129,7 @@ public class SchoolResponsibilityServiceImpl implements SchoolResponsibilityServ
         SchoolResponsibility sr = findById(queryCondition.getSrId());
         School school = schoolService.findById(queryCondition.getSchoolId());
 
-        if (sr.getSchoolId().equals(school.getId()))
+        if (!sr.getSchoolId().equals(school.getId()))
             throw new RuntimeException("学校负责人:" + sr.getName() + "不属于学校:" + school.getName());
 
         return srMapper.queryByCondition(queryCondition);

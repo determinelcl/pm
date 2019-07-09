@@ -13,6 +13,7 @@ import com.practice.management.service.SchoolResponsibilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -47,7 +48,8 @@ public class SchoolResponsibilityController extends BaseController {
      * @return 添加是否成功的消息
      */
     @PostMapping("/teacher/add")
-    public ResultModel<String> addTeacher(@RequestBody AddSchoolTeacherDto dto) {
+    public ResultModel<String> addTeacher(@Valid @RequestBody AddSchoolTeacherDto dto) {
+
         srService.addSchoolTeacher(dto);
         return success("添加成功");
     }
@@ -60,7 +62,7 @@ public class SchoolResponsibilityController extends BaseController {
      * @return 更新结果
      */
     @PutMapping("/upd")
-    public ResultModel<SchoolResponsibility> updateSR(UpdSrDto dto) {
+    public ResultModel<SchoolResponsibility> updateSR(@Valid @RequestBody UpdSrDto dto) {
         SchoolResponsibility sr = srService.updateSr(dto);
         return success(sr);
     }
@@ -73,7 +75,7 @@ public class SchoolResponsibilityController extends BaseController {
      * @return 更新的老师信息
      */
     @PutMapping("/upd/teacher")
-    public ResultModel<SchoolResponsibility> updateSrTeacher(UpdSchoolTeacherDto dto) {
+    public ResultModel<SchoolResponsibility> updateSrTeacher(@Valid @RequestBody UpdSchoolTeacherDto dto) {
         SchoolResponsibility sr = srService.updSrTeacher(dto);
         return success(sr);
     }
@@ -102,8 +104,8 @@ public class SchoolResponsibilityController extends BaseController {
      * @param queryCondition 学校负责人实体的所有字段都可以作为查询条件
      * @return 查询到的学校负责人信息
      */
-    @GetMapping("/query")
-    public ResultModel<List<SchoolResponsibility>> query(SrQueryModel queryCondition) {
+    @PostMapping("/query")
+    public ResultModel<List<SchoolResponsibility>> query(@Valid @RequestBody SrQueryModel queryCondition) {
         List<SchoolResponsibility> list = srService.queryByCondition(queryCondition);
         return success(list);
     }

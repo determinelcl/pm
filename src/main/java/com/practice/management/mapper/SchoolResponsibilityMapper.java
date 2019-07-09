@@ -22,7 +22,7 @@ public interface SchoolResponsibilityMapper {
 
     @Update("update schoolresponsibility " +
             "set name=#{name}, age=#{age}, gender=#{gender}, rank=#{rank}, phone=#{phone}, " +
-            "email=#{email}, role_id=#{roleId},  remarks=#{remarks}, school_id=#{majorId} where id=#{stId} ")
+            "email=#{email}, role_id=#{roleId},  remarks=#{remarks}, major_id=#{majorId} where id=#{stId} ")
     void updateSrTeacherById(UpdSchoolTeacherDto dto);
 
     @Delete("delete from schoolresponsibility where id=#{id}")
@@ -34,8 +34,8 @@ public interface SchoolResponsibilityMapper {
             "<if test=\"schoolId != null\"> " +
             "   and school_id=#{schoolId}" +
             "</if>" +
-            "<if test=\"teacherId != null\"> " +
-            "   and account=#{teacherId}" +
+            "<if test=\"teacherAccount != null\"> " +
+            "   and account=#{teacherAccount}" +
             "</if>" +
             "<if test=\"teacherName != null\"> " +
             "   and name=#{teacherName}" +
