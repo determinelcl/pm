@@ -1,13 +1,20 @@
 package com.practice.management.bean.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Student extends Account {
 
+    @NotBlank(message = "学生班级不能为空")
     private String classes;
 
+    @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
 
+    @NotNull(message = "企业课程id不能为空")
     private Long enterpriseProgrammeId;
 
+    @NotNull(message = "专业id不能为空")
     private Long majorId;
 
     public String getClasses() {

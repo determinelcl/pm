@@ -5,6 +5,7 @@ import com.practice.management.bean.dto.UpdSrMReportDto;
 import com.practice.management.bean.dto.UpdStuMReportDto;
 import com.practice.management.bean.entity.*;
 import com.practice.management.bean.model.MonthlyReportQueryModel;
+import com.practice.management.mapper.AdminMapper;
 import com.practice.management.mapper.MonthlyReportMapper;
 import com.practice.management.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,17 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
     @Autowired
     private EnterpriseResponsibilityService erSerVice;
 
+    @Autowired
+    private AdminMapper adminMapper;
+
     @Override
     public MonthReport add(MonthReport monthReport) {
         Student student = studentService.findById(monthReport.getStudentId());
         Major major = majorService.findById(student.getMajorId());
-        if (monthReport.getEnterpriseId().equals(student.getEnterpriseId()))
+        if (!monthReport.getEnterpriseId().equals(student.getEnterpriseId()))
             throw new RuntimeException("提交的月报关联的企业不属于学生实习的企业");
 
-        if (major.getSchoolId().equals(monthReport.getSchoolId()))
+        if (!major.getSchoolId().equals(monthReport.getSchoolId()))
             throw new RuntimeException("提交的月报关联的学校不属于学生所在的学校");
 
         Date submitTime = new Date();
@@ -47,8 +51,8 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
         monthReport.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
         monthReport.setStudentId(student.getId());
-        Long mrId = monthlyReportMapper.insert(monthReport);
-        return monthlyReportMapper.findById(mrId);
+        monthlyReportMapper.insert(monthReport);
+        return monthReport;
     }
 
     @Override
@@ -116,6 +120,12 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
 
     @Override
     public List<MonthReport> queryByCondition(MonthlyReportQueryModel queryCondition) {
+        if (queryCondition.getType() == 0) {
+            Admin admin = adminMapper.findById(queryCondition.getId());
+            if (admin == null)
+                throw new RuntimeException("使用管理员进行查询，操作违法，请谨慎处理！");
+        }
+
         return monthlyReportMapper.queryByCondition(queryCondition);
     }
 }

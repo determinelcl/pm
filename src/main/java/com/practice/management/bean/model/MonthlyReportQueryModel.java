@@ -1,5 +1,8 @@
 package com.practice.management.bean.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -9,11 +12,13 @@ public class MonthlyReportQueryModel {
     /**
      * 查询用户的id
      */
+    @NotNull(message = "查询月报的用户id不能为空")
     private Long id;
 
     /**
      * 查询用户类型
      */
+    @NotNull(message = "查询月报的用户的类型不能为空")
     private Integer type;
 
     /**
@@ -21,6 +26,7 @@ public class MonthlyReportQueryModel {
      */
     private String account;
 
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date submitTime;
 
     private String schoolName;
