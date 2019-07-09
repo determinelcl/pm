@@ -11,6 +11,9 @@ import com.practice.management.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 /**
  * 用户：包含三个角色的个人信息的CURD操作
  */
@@ -29,7 +32,7 @@ public class StudentController extends BaseController {
      * @return 添加是否成功
      */
     @PostMapping("/add")
-    public ResultModel<Account> addStudent(@RequestBody AddStudentDto dto) {
+    public ResultModel<Account> addStudent(@Valid @RequestBody AddStudentDto dto) {
         Student student = studentService.addStudent(dto);
         return success("添加成功", student);
     }
@@ -42,7 +45,7 @@ public class StudentController extends BaseController {
      * @return 更新之后的学生信息对象
      */
     @PutMapping("/upd")
-    public ResultModel<Student> updStudent(@RequestBody UpdStudentDto dto) {
+    public ResultModel<Student> updStudent(@Valid @RequestBody UpdStudentDto dto) {
         Student student = studentService.updStudent(dto);
         return success("修改成功", student);
     }
@@ -57,7 +60,8 @@ public class StudentController extends BaseController {
      */
     @DeleteMapping("/del/{srId:\\d+}/{stId:\\d+}")
     public ResultModel<Student> deleteSR(
-            @PathVariable("srId") Long srId, @PathVariable("stId") Long stuId) {
+            @Valid @NotNull(message = "学校老师id不能为空") @PathVariable("srId") Long srId,
+            @Valid @NotNull(message = "学生id不能为空") @PathVariable("stId") Long stuId) {
         Student student = studentService.deleteById(srId, stuId);
         return success("删除成功", student);
     }
@@ -70,7 +74,7 @@ public class StudentController extends BaseController {
      * @return 更新之后的学生信息对象
      */
     @PutMapping("/sr/upd")
-    public ResultModel<Student> updStudentBySr(@RequestBody UpdSrStudentDto dto) {
+    public ResultModel<Student> updStudentBySr(@Valid @RequestBody UpdSrStudentDto dto) {
         Student student = studentService.updStudentBySr(dto);
         return success("修改成功", student);
     }

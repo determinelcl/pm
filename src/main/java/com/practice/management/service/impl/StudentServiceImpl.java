@@ -49,7 +49,10 @@ public class StudentServiceImpl implements StudentService {
         seService.findByScIdAndEnpId(sr.getSchoolId(), dto.getEnterpriseId());
 
         // 验证角色：学校学生的权限不可比老师的权限高
-        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        else
+            dto.setRoleId(1L);
 
         return addStudent(dto, sr.getSchoolId());
     }
@@ -84,11 +87,10 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     @Override
     public Student updStudent(UpdStudentDto dto) {
-        Long stuId = dto.getStuId();
-        findById(stuId);
+        findById(dto.getStuId());
 
         studentMapper.updStudentById(dto);
-        return findById(stuId);
+        return findById(dto.getStuId());
     }
 
     @Transactional
@@ -96,12 +98,17 @@ public class StudentServiceImpl implements StudentService {
     public Student updStudentBySr(UpdSrStudentDto dto) {
         // 验证学生是否存在
         Long stuId = dto.getStuId();
-        findById(stuId);
+        Student student = findById(stuId);
 
         // 验证学校老师是否存在
         Long srId = dto.getSrId();
         SchoolResponsibility sr = srService.findById(srId);
         Long schoolId = sr.getSchoolId();
+
+        // 验证学校老师和学生是否在一个学校
+        Major temp = majorService.findById(student.getMajorId());
+        if (!temp.getSchoolId().equals(schoolId))
+            throw new RuntimeException("学校老师和学生不属于同一个学校，对学生没有操作权限");
 
         // 验证专业是否存在
         Long majorId = dto.getMajorId();
@@ -111,7 +118,7 @@ public class StudentServiceImpl implements StudentService {
         // 验证学校是否开设选定的专业
         School school = schoolService.findById(schoolId);
         String schoolName = school.getName();
-        if (schoolId.equals(majorSchoolId))
+        if (!schoolId.equals(majorSchoolId))
             throw new RuntimeException("学校:" + schoolName + "没有开设专业:" + major.getName());
 
         // 验证校企合作
@@ -121,11 +128,13 @@ public class StudentServiceImpl implements StudentService {
         // 验证企业开设的方向
         Enterprise enterprise = enterpriseService.findById(enterpriseId);
         EnterpriseProgramme programme = programmeService.findById(dto.getEnterpriseProgrammeId());
-        if (programme.getEnterpriseId().equals(enterpriseId))
+        if (!programme.getEnterpriseId().equals(enterpriseId))
             throw new RuntimeException("企业:" + enterprise.getName() + "不存在企业课程:" + programme.getName());
 
         // 验证角色：学校学生的权限不可比老师的权限高
-        roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        if (dto.getRoleId() != null)
+            roleService.authorityValidate(sr.getRoleId(), dto.getRoleId());
+        else dto.setRoleId(1L);
 
         studentMapper.updStudentBySr(dto);
         return findById(dto.getStuId());
