@@ -41,11 +41,9 @@ public class TaskBookServiceImpl implements TaskBookService {
     public Task add(AddTaskDto dto) {
         Student student = studentService.findById(dto.getStudentId());
         Major major = majorService.findById(student.getMajorId());
+        dto.setSchoolId(major.getSchoolId());
         if (!dto.getEnterpriseId().equals(student.getEnterpriseId()))
             throw new RuntimeException("提交的任务书关联的企业不属于学生实习的企业");
-
-        if (!major.getSchoolId().equals(dto.getSchoolId()))
-            throw new RuntimeException("提交的任务书关联的学校不属于学生所在的学校");
 
         Date submitTime = new Date();
         dto.setSubmitTime(submitTime);

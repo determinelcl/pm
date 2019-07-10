@@ -39,9 +39,6 @@ public class PracticeSummaryServiceImpl implements PracticeSummaryService {
         Student student = studentService.findById(summary.getStudentId());
         Major major = majorService.findById(student.getMajorId());
 
-        if (!major.getSchoolId().equals(summary.getSchoolId()))
-            throw new RuntimeException("提交的实训总结关联的学校不属于学生所在的学校");
-
         summary.setSchoolId(major.getSchoolId());
         summary.setStudentId(student.getId());
 

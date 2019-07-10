@@ -12,7 +12,7 @@ public class Task {
     @NotNull(message = "项目名称不能为空")
     private String projectName;
     private String year;
-    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date submitTime;
     @NotBlank(message = "企业老师姓名不能为空")
     private String enterpriseTeacherName;
@@ -31,7 +31,7 @@ public class Task {
     private String schoolExamine;
     @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
-    @NotNull(message = "学校id不能为空")
+
     private Long schoolId;
     @NotNull(message = "学生id不能为空")
     private Long studentId;
