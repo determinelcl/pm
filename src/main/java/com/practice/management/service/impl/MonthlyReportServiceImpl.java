@@ -40,6 +40,8 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
     public MonthReport add(MonthReport monthReport) {
         Student student = studentService.findById(monthReport.getStudentId());
         Major major = majorService.findById(student.getMajorId());
+        monthReport.setSchoolId(major.getSchoolId());
+
         if (!monthReport.getEnterpriseId().equals(student.getEnterpriseId()))
             throw new RuntimeException("提交的月报关联的企业不属于学生实习的企业");
 
@@ -47,7 +49,6 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
             throw new RuntimeException("提交的月报关联的学校不属于学生所在的学校");
 
         Date submitTime = new Date();
-        monthReport.setSchoolId(major.getSchoolId());
         monthReport.setSubmitTime(submitTime);
         monthReport.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
