@@ -13,7 +13,7 @@ public interface EnpFileUploadMapper {
 
     @Insert("insert into fileupload(title, year, enclosure, submit_time, enterprise_id, filetype_id, school_id)" +
             "values(#{title}, #{year}, #{enclosure}, #{submitTime}, #{enterpriseId}, #{fileTypeId}, #{schoolId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddEnpFileUploadDto dto);
 
     @Select("select * from fileupload where id=#{id}")

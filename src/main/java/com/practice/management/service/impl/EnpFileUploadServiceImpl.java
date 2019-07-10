@@ -12,6 +12,7 @@ import com.practice.management.service.*;
 import com.practice.management.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -38,6 +39,7 @@ public class EnpFileUploadServiceImpl implements EnpFileUploadService {
     @Autowired
     private SchoolService schoolService;
 
+    @Transactional
     @Override
     public FileUpload add(AddEnpFileUploadDto dto) {
         EnterpriseResponsibility er = erService.findById(dto.getErId());
@@ -62,8 +64,8 @@ public class EnpFileUploadServiceImpl implements EnpFileUploadService {
         dto.setYear(String.valueOf(Calendar.YEAR));
         dto.setSubmitTime(date);
 
-        Long fileId = uploadMapper.insert(dto);
-        return uploadMapper.findById(fileId);
+        uploadMapper.insert(dto);
+        return uploadMapper.findById(dto.getId());
     }
 
     @Override
@@ -75,6 +77,7 @@ public class EnpFileUploadServiceImpl implements EnpFileUploadService {
         return fileUpload;
     }
 
+    @Transactional
     @Override
     public FileUpload update(UpdEnpFileUploadDto dto) {
         Long fileId = dto.getFileId();
@@ -107,6 +110,7 @@ public class EnpFileUploadServiceImpl implements EnpFileUploadService {
         return fileUpload;
     }
 
+    @Transactional
     @Override
     public FileUpload delete(Long erId, Long fileId) {
         FileUpload fileUpload = validateErAuthority(erId, fileId);

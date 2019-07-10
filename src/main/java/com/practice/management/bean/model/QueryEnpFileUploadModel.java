@@ -1,5 +1,6 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class QueryEnpFileUploadModel {
@@ -7,6 +8,7 @@ public class QueryEnpFileUploadModel {
     /**
      * 企业负责人/老师
      */
+    @NotNull(message = "企业负责人id不能为空")
     private Long erId;
 
     private Date submitTime;

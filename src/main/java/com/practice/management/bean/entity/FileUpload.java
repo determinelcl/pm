@@ -1,5 +1,7 @@
 package com.practice.management.bean.entity;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /*
@@ -7,12 +9,16 @@ import java.util.Date;
  * */
 public class FileUpload {
     private Long id;
+    @NotBlank(message = "文件标题不能为空")
     private String title;
     private String year;
     private String enclosure;
     private Date submitTime;
+    @NotBlank(message = "企业id不能为空")
     private Long enterpriseId;
+    @NotNull(message = "文件类型id不能为空")
     private Long fileTypeId;
+    @NotNull(message = "学校id不能为空")
     private Long schoolId;
 
     // 文件的类型，非属性字段
