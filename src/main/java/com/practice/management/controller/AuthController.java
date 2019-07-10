@@ -5,7 +5,7 @@ import com.practice.management.bean.entity.Account;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.entity.SchoolResponsibility;
 import com.practice.management.bean.model.AuthModel;
-import com.practice.management.constrant.SchoolAndEnpEnum;
+import com.practice.management.constant.SchoolAndEnpEnum;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;

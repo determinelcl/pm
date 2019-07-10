@@ -3,8 +3,8 @@ package com.practice.management.service;
 
 import com.practice.management.bean.entity.*;
 import com.practice.management.bean.model.JwtUser;
-import com.practice.management.constrant.SchoolAndEnpEnum;
-import com.practice.management.constrant.UserAuth;
+import com.practice.management.constant.SchoolAndEnpEnum;
+import com.practice.management.constant.UserAuth;
 import com.practice.management.exception.IdentificationException;
 import com.practice.management.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;

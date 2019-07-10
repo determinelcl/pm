@@ -7,7 +7,7 @@ import com.practice.management.bean.entity.Admin;
 import com.practice.management.bean.entity.MenuRole;
 import com.practice.management.bean.entity.Role;
 import com.practice.management.bean.model.RoleQueryModel;
-import com.practice.management.constrant.RoleType;
+import com.practice.management.constant.RoleType;
 import com.practice.management.mapper.AdminMapper;
 import com.practice.management.mapper.RoleMapper;
 import com.practice.management.service.*;

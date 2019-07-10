@@ -3,7 +3,7 @@ package com.practice.management.filter;
 import com.practice.management.bean.entity.Menu;
 import com.practice.management.bean.entity.Role;
 import com.practice.management.bean.model.JwtUser;
-import com.practice.management.constrant.RequestAttrConstant;
+import com.practice.management.constant.RequestAttrConstant;
 import com.practice.management.mapper.MenuMapper;
 import com.practice.management.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;

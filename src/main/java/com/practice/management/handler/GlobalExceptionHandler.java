@@ -1,7 +1,7 @@
 package com.practice.management.handler;
 
 import com.practice.management.bean.model.GlobalExceptionInfoModel;
-import com.practice.management.constrant.ResultCode;
+import com.practice.management.constant.ResultCode;
 import com.practice.management.exception.IdentificationException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

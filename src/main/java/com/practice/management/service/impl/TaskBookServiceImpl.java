@@ -6,7 +6,7 @@ import com.practice.management.bean.dto.UpdSrTaskDto;
 import com.practice.management.bean.dto.UpdStuTaskDto;
 import com.practice.management.bean.entity.*;
 import com.practice.management.bean.model.TaskQueryModel;
-import com.practice.management.constrant.FileConstrant;
+import com.practice.management.constant.FileConstant;
 import com.practice.management.mapper.TaskBookMapper;
 import com.practice.management.service.*;
 import com.practice.management.util.FileUtil;
@@ -139,7 +139,7 @@ public class TaskBookServiceImpl implements TaskBookService {
     public List<Task> queryByCondition(TaskQueryModel queryCondition) {
         List<Task> taskList = taskBookMapper.queryByCondition(queryCondition);
         taskList.forEach(task -> task.setEnclosureUrl(
-                FileUtil.getFileDownloadUri(task.getEnclosureUrl(), FileConstrant.FILE_DOWNLOAD_URI)));
+                FileUtil.getFileDownloadUri(task.getEnclosureUrl(), FileConstant.FILE_DOWNLOAD_URI)));
         return taskList;
     }
 }

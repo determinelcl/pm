@@ -1,4 +1,4 @@
-package com.practice.management.constrant;
+package com.practice.management.constant;
 
 public interface RoleType {
 

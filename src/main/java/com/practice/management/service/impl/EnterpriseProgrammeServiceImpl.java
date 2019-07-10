@@ -6,7 +6,7 @@ import com.practice.management.bean.entity.Enterprise;
 import com.practice.management.bean.entity.EnterpriseProgramme;
 import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.model.EpQueryModel;
-import com.practice.management.constrant.FileConstrant;
+import com.practice.management.constant.FileConstant;
 import com.practice.management.mapper.EnterpriseProgrammeMapper;
 import com.practice.management.service.EnterpriseProgrammeService;
 import com.practice.management.service.EnterpriseResponsibilityService;
@@ -124,7 +124,7 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
         List<EnterpriseProgramme> enterpriseProgrammes = programmeMapper.queryByCondition(queryCondition);
         enterpriseProgrammes.forEach(programme ->
                 programme.setEnclosure(FileUtil.getFileDownloadUri(
-                        programme.getEnclosure(), FileConstrant.FILE_DOWNLOAD_URI)));
+                        programme.getEnclosure(), FileConstant.FILE_DOWNLOAD_URI)));
 
         return enterpriseProgrammes;
     }

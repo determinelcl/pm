@@ -6,7 +6,7 @@ import com.practice.management.bean.entity.EnterpriseResponsibility;
 import com.practice.management.bean.entity.FileType;
 import com.practice.management.bean.entity.FileUpload;
 import com.practice.management.bean.model.QueryEnpFileUploadModel;
-import com.practice.management.constrant.FileConstrant;
+import com.practice.management.constant.FileConstant;
 import com.practice.management.mapper.EnpFileUploadMapper;
 import com.practice.management.service.*;
 import com.practice.management.util.FileUtil;
@@ -126,7 +126,7 @@ public class EnpFileUploadServiceImpl implements EnpFileUploadService {
 
         List<FileUpload> fileUploadList = uploadMapper.queryByCondition(queryCondition);
         fileUploadList.forEach(file ->
-                file.setEnclosure(FileUtil.getFileDownloadUri(file.getEnclosure(), FileConstrant.FILE_DOWNLOAD_URI)));
+                file.setEnclosure(FileUtil.getFileDownloadUri(file.getEnclosure(), FileConstant.FILE_DOWNLOAD_URI)));
 
         return fileUploadList;
     }

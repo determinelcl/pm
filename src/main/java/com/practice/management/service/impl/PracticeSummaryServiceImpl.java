@@ -6,7 +6,7 @@ import com.practice.management.bean.entity.Major;
 import com.practice.management.bean.entity.Student;
 import com.practice.management.bean.entity.TrainSummary;
 import com.practice.management.bean.model.TrainSummaryQueryModel;
-import com.practice.management.constrant.FileConstrant;
+import com.practice.management.constant.FileConstant;
 import com.practice.management.mapper.PracticeSummaryMapper;
 import com.practice.management.service.FileService;
 import com.practice.management.service.MajorService;
@@ -128,9 +128,9 @@ public class PracticeSummaryServiceImpl implements PracticeSummaryService {
         List<TrainSummary> trainSummaryList = summaryMapper.queryByCondition(queryCondition);
         trainSummaryList.forEach(trainSummary -> {
             trainSummary.setTrainReportUrl(
-                    FileUtil.getFileDownloadUri(trainSummary.getTrainReportUrl(), FileConstrant.FILE_DOWNLOAD_URI));
+                    FileUtil.getFileDownloadUri(trainSummary.getTrainReportUrl(), FileConstant.FILE_DOWNLOAD_URI));
             trainSummary.setTrainDesignUrl(
-                    FileUtil.getFileDownloadUri(trainSummary.getTrainDesignUrl(), FileConstrant.FILE_DOWNLOAD_URI));
+                    FileUtil.getFileDownloadUri(trainSummary.getTrainDesignUrl(), FileConstant.FILE_DOWNLOAD_URI));
         });
         return trainSummaryList;
     }

@@ -1,4 +1,4 @@
-package com.practice.management.constrant;
+package com.practice.management.constant;
 
 /**
  * 存放响应时的状态码

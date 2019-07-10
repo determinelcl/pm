@@ -1,7 +1,7 @@
 package com.practice.management.handler;
 
 import com.practice.management.bean.model.GlobalExceptionInfoModel;
-import com.practice.management.constrant.ResultCode;
+import com.practice.management.constant.ResultCode;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

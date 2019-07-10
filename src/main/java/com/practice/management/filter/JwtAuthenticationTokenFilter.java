@@ -1,6 +1,6 @@
 package com.practice.management.filter;
 
-import com.practice.management.constrant.RequestAttrConstant;
+import com.practice.management.constant.RequestAttrConstant;
 import com.practice.management.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
