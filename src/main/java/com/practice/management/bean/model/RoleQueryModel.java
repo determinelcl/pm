@@ -1,10 +1,16 @@
 package com.practice.management.bean.model;
 
+import org.hibernate.validator.constraints.Range;
+
 public class RoleQueryModel {
     private String roleName;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private Integer query;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private Integer save;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private Integer del;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private Integer upd;
 
     public String getRoleName() {

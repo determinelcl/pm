@@ -19,7 +19,7 @@ public interface MenuRoleMapper {
     @Insert("<script>" +
             "insert into menurole(menu_id, role_id) " +
             "values" +
-            "<foreach collection=\"mrList\" item=\"mr\" index=\"index\" separator=\",\">" +
+            "<foreach collection=\"list\" item=\"mr\" index=\"index\" separator=\",\">" +
             "   (#{mr.menuId}, #{mr.roleId})" +
             "</foreach>" +
             "</script>")

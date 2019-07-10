@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper
 public interface RoleMapper {
 
-    @Insert("add into role(type, query, save, del, upd, en) " +
-            "values(#{type}, #{queryByCondition}, #{save}, #{del}, #{upd}, #{en})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Insert("insert into role(type, query, save, del, upd, en) " +
+            "values(#{type}, #{query}, #{save}, #{del}, #{upd}, #{en})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long add(Role role);
 
     @Select("select * from role where id=#{id}")
@@ -30,7 +30,7 @@ public interface RoleMapper {
             "select * from role " +
             "where 1=1 " +
             "<if test=\"roleName != null\"> " +
-            "   and type like '%#{roleName}%'" +
+            "   and type like concat(concat('%', #{roleName}), '%')" +
             "</if>" +
             "<if test=\"query != null\"> " +
             "   and query=#{query}" +

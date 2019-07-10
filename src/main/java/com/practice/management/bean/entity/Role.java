@@ -1,17 +1,25 @@
 package com.practice.management.bean.entity;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Role {
     private Long id;
+    @NotBlank(message = "角色名称不能为空")
     private String type;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private int query;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private int save;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private int del;
+    @Range(min = 0, max = 1, message = "权限设置1表示拥有权限，0则表示没有权限")
     private int upd;
+    @NotBlank(message = "角色英文标识不能为空")
     private String en;
 
     // 用于关联角色对应的菜单，非角色属性

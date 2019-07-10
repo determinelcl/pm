@@ -11,6 +11,7 @@ import com.practice.management.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class RoleController extends BaseController {
      * @return 添加完成的角色对象
      */
     @PostMapping("/add")
-    public ResultModel<Role> add(@RequestBody AddRoleDto dto) {
+    public ResultModel<Role> add(@Valid @RequestBody AddRoleDto dto) {
         Role role = roleService.add(dto);
         return success("添加成功", role);
     }
@@ -45,7 +46,7 @@ public class RoleController extends BaseController {
      * @return 修改完成的角色对象
      */
     @PutMapping("/update")
-    public ResultModel<Role> Update(@RequestBody UpdRoleDto dto) {
+    public ResultModel<Role> Update(@Valid @RequestBody UpdRoleDto dto) {
         Role role = roleService.update(dto);
         return success("修改成功", role);
     }
@@ -61,7 +62,7 @@ public class RoleController extends BaseController {
      * @return 分配完成的信息
      */
     @PutMapping("/assign/authority")
-    public ResultModel<Role> assignAuthority(@RequestBody AssignRoleAuthorityDto dto) {
+    public ResultModel<Role> assignAuthority(@Valid @RequestBody AssignRoleAuthorityDto dto) {
         Role role = roleService.assignAuthority(dto);
         return success("权限分配成功", role);
     }
@@ -91,8 +92,8 @@ public class RoleController extends BaseController {
      * @param queryModel 查询条件
      * @return 查询的角色列表
      */
-    @GetMapping("/query")
-    public ResultModel<List<Role>> query(@RequestBody RoleQueryModel queryModel) {
+    @PostMapping("/query")
+    public ResultModel<List<Role>> query(@Valid @RequestBody RoleQueryModel queryModel) {
         List<Role> roleList = roleService.query(queryModel);
         return success("查询完成", roleList);
     }

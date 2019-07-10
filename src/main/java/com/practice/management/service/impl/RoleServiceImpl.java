@@ -50,8 +50,8 @@ public class RoleServiceImpl implements RoleService {
     public Role add(AddRoleDto dto) {
         validateRoleAuthority(dto, validateUser(dto.getUserType(), dto.getUserId()));
 
-        Long roleId = roleMapper.add(dto);
-        return roleMapper.findById(roleId);
+        roleMapper.add(dto);
+        return roleMapper.findById(dto.getId());
     }
 
     private void validateRoleAuthority(Role dto, Long highRoleId) {
@@ -131,6 +131,10 @@ public class RoleServiceImpl implements RoleService {
             throw new RuntimeException("权限分配不能超出授权人的权限范围！");
 
         // 在验证分配功能的权限
+        validateMenuAuthority(highRoleId, lowRoleId);
+    }
+
+    private void validateMenuAuthority(Long highRoleId, Long lowRoleId) {
         List<MenuRole> highMenuRoleList = menuRoleService.findByRoleId(highRoleId);
         List<MenuRole> lowMenuRoleList = menuRoleService.findByRoleId(lowRoleId);
         List<Long> highMenuIds = highMenuRoleList.stream().map(MenuRole::getMenuId).collect(Collectors.toList());
