@@ -2,7 +2,7 @@ package com.practice.management.service;
 
 import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
-import com.practice.management.controller.EnterpriseQueryModel;
+import com.practice.management.bean.model.EnterpriseQueryModel;
 
 import java.util.List;
 

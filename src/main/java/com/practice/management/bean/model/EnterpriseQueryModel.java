@@ -1,4 +1,4 @@
-package com.practice.management.controller;
+package com.practice.management.bean.model;
 
 public class EnterpriseQueryModel {
     private String enpName;

@@ -2,7 +2,7 @@ package com.practice.management.service.impl;
 
 import com.practice.management.bean.dto.UpdEnterpriseParamDto;
 import com.practice.management.bean.entity.Enterprise;
-import com.practice.management.controller.EnterpriseQueryModel;
+import com.practice.management.bean.model.EnterpriseQueryModel;
 import com.practice.management.mapper.EnterpriseMapper;
 import com.practice.management.service.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;

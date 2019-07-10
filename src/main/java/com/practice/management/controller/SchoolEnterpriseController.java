@@ -2,13 +2,17 @@ package com.practice.management.controller;
 
 import com.practice.management.bean.entity.Enterprise;
 import com.practice.management.bean.entity.School;
+import com.practice.management.bean.model.EnterpriseQueryModel;
 import com.practice.management.bean.model.ResultModel;
 import com.practice.management.bean.model.SchoolQueryModel;
 import com.practice.management.controller.common.BaseController;
 import com.practice.management.service.EnterpriseService;
 import com.practice.management.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
