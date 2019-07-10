@@ -47,6 +47,7 @@ public class MonthlyReportServiceImpl implements MonthlyReportService {
             throw new RuntimeException("提交的月报关联的学校不属于学生所在的学校");
 
         Date submitTime = new Date();
+        monthReport.setSchoolId(major.getSchoolId());
         monthReport.setSubmitTime(submitTime);
         monthReport.setYear(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 

@@ -1,12 +1,18 @@
 package com.practice.management.bean.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class WtQueryModel {
+    @NotNull(message = "用户id不能为空")
     private Long id;
     /**
      * 用户操作类型：0:admin, 1:student, 2:school, 3:enterprises
      */
+    @NotNull(message = "用户类型不能为空")
+    @Range(min = 0, max = 3, message = "用户类型不存在")
     private Integer type;
 
     private String majorName;

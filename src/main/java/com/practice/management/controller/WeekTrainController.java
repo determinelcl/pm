@@ -10,6 +10,7 @@ import com.practice.management.service.WeekTrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class WeekTrainController extends BaseController {
      * @return 添加成功的每周实训对象
      */
     @PostMapping("/add")
-    public ResultModel<WeekTrain> add(@RequestBody AddWtDto dto) {
+    public ResultModel<WeekTrain> add(@Valid @RequestBody AddWtDto dto) {
         WeekTrain weekTrain = wtService.add(dto);
         return success("添加成功", weekTrain);
     }
@@ -40,7 +41,7 @@ public class WeekTrainController extends BaseController {
      * @return 修改完成的每周实训对象
      */
     @PutMapping("/upd")
-    public ResultModel<WeekTrain> upd(@RequestBody UpdWtDto dto) {
+    public ResultModel<WeekTrain> upd(@Valid @RequestBody UpdWtDto dto) {
         WeekTrain weekTrain = wtService.update(dto);
         return success("修改成功", weekTrain);
     }
@@ -68,7 +69,7 @@ public class WeekTrainController extends BaseController {
      * @return 查询到的每周实训对象列表
      */
     @PostMapping("/query")
-    public ResultModel<List<WeekTrain>> query(@RequestBody WtQueryModel queryCondition) {
+    public ResultModel<List<WeekTrain>> query(@Valid @RequestBody WtQueryModel queryCondition) {
         List<WeekTrain> weekTrainList = wtService.query(queryCondition);
         return success("查询完成", weekTrainList);
     }

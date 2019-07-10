@@ -33,7 +33,6 @@ public class MonthReport {
     private String schoolExamine;
     @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
-    @NotNull(message = "学校id不能为空")
     private Long schoolId;
     @NotNull(message = "学生id不能为空")
     private Long studentId;

@@ -23,9 +23,9 @@ public interface WeekTrainMapper {
 
     @Insert("insert into weektrain(train_times, train_number, start_time, end_time, base_name, week_teach, " +
             "           week_student_learn, feedback_focus, train_assessment_situation, enterprise_id, major_id)" +
-            " values(#{trainTimes},#{trainNumber} #{startTime}, #{endTime}, #{baseName}, #{weekTeach}, " +
+            " values(#{trainTimes},#{trainNumber}, #{startTime}, #{endTime}, #{baseName}, #{weekTeach}, " +
             "       #{weekStudentLearn}, #{feedbackFocus}, #{trainAssessmentSituation}, #{enterpriseId}, #{majorId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddWtDto dto);
 
     @Update("update weektrain " +

@@ -1,15 +1,27 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdWtDto {
+    @NotNull(message = "企业负责人不能为空")
     private Long erId;
+    @NotNull(message = "每周实训情况id不能为空")
     private Long wtId;
 
+    @NotNull(message = "实训周次不能为空")
     private Integer trainTimes;
+    @NotNull(message = "实训人数不能为空")
     private Integer trainNumber;
+    @NotBlank(message = "实训基地不能为空")
     private String baseName;
+    @NotBlank(message = "教学情况不能为空")
     private String weekTeach;
+    @NotBlank(message = "学生每周学习情况不能为空")
     private String weekStudentLearn;
+    @NotBlank(message = "反馈重点不能为空")
     private String feedbackFocus;
+    @NotBlank(message = "实训考核情况")
     private String trainAssessmentSituation;
 
     public Long getErId() {

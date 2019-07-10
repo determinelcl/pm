@@ -45,8 +45,8 @@ public class WeekTrainServiceImpl implements WeekTrainService {
 
         validateUniqueWeekTrain(dto.getEnterpriseId(), dto.getMajorId(), dto.getStartTime(), dto.getEndTime());
 
-        Long wtId = wtMapper.insert(dto);
-        return wtMapper.findById(wtId);
+        wtMapper.insert(dto);
+        return wtMapper.findById(dto.getId());
     }
 
     private void validateUniqueWeekTrain(Long enterpriseId, Long majorId, Date startTime, Date endTime) {
