@@ -1,7 +1,14 @@
 package com.practice.management.bean.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotNull;
+
 public class MenuQueryModel {
+    @NotNull(message = "用户id不能为空")
     private Long id;
+    @NotNull(message = "用户类型不能为空")
+    @Range(min = 0, max = 3, message = "用户类型不存在")
     private int type;
     private String menuName;
 
