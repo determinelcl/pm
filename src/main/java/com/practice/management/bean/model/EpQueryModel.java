@@ -1,8 +1,18 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
+
 public class EpQueryModel {
+    @NotNull(message = "企业id不能为空")
     private Long enterpriseId;
+
+    /**
+     * 企业课程名称
+     */
     private String epName;
+    /**
+     * 企业名称
+     */
     private String enterpriseName;
 
     public Long getEnterpriseId() {

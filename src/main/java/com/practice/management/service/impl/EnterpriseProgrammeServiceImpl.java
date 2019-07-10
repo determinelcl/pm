@@ -60,10 +60,10 @@ public class EnterpriseProgrammeServiceImpl implements EnterpriseProgrammeServic
         // 上传文件
         String identification = dto.getEnterpriseId() + "_" + dto.getAddTime() + "_" + dto.getName();
         String filename = fileService.saveFile(dto.getFile(), identification);
-        dto.setEnclosure(filename);
+        dto.setEnclosure(filename.replace(" ", "_"));
 
-        Long epId = programmeMapper.insert(dto);
-        return programmeMapper.findById(epId);
+        programmeMapper.insert(dto);
+        return programmeMapper.findById(dto.getId());
     }
 
     private void validateEpUnique(Long enterpriseId, String epName) {

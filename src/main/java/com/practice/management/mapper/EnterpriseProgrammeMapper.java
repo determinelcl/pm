@@ -16,7 +16,7 @@ public interface EnterpriseProgrammeMapper {
 
     @Insert("insert into enterpriseprogramme(name, enclosure, add_time, remarks, enterprise_id)" +
             "values(#{name}, #{enclosure}, #{addTime}, #{remarks}, #{enterpriseId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddEpDto dto);
 
     @Update("update enterpriseprogramme " +

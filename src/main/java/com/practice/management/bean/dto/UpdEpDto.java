@@ -2,11 +2,18 @@ package com.practice.management.bean.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdEpDto {
+    @NotNull(message = "企业负责人id不能为空")
     private Long erId;
+    @NotNull(message = "企业课程id不能为空")
     private Long epId;
+    @NotBlank(message = "备注不能为空")
     private String name;
     private String enclosure;
+    @NotNull(message = "企业id不能为空")
     private String remarks;
 
     private MultipartFile file;
