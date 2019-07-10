@@ -45,8 +45,8 @@ public class MajorServiceImpl implements MajorService {
         validateSr(dto.getSchoolId(), sr.getAccount(), sr.getName());
         validateUniqueMajor(dto.getName(), dto.getFacultyName());
 
-        Long majorId = majorMapper.insert(dto);
-        return majorMapper.findById(majorId);
+        majorMapper.insert(dto);
+        return majorMapper.findById(dto.getId());
     }
 
     private void validateUniqueMajor(String majorName, String facultyName) {

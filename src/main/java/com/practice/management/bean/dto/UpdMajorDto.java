@@ -1,10 +1,18 @@
 package com.practice.management.bean.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class UpdMajorDto {
+    @NotNull(message = "学校负责人id不能为空")
     private Long srId;
+    @NotNull(message = "专业id不能为空")
     private Long majorId;
+    @NotBlank(message = "专业所在学院不能为空")
     private String facultyName;
+    @NotBlank(message = "专业名称不能为空")
     private String name;
+    @NotBlank(message = "专业简介不能为空")
     private String introduce;
 
     public Long getSrId() {

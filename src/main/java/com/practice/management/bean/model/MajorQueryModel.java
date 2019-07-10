@@ -1,9 +1,12 @@
 package com.practice.management.bean.model;
 
+import javax.validation.constraints.NotNull;
+
 public class MajorQueryModel {
+    @NotNull(message = "学校id不能为空")
     private Long schoolId;
     private String name;
-    private String schoolName;
+    private String facultyName;
 
     public Long getSchoolId() {
         return schoolId;
@@ -21,11 +24,11 @@ public class MajorQueryModel {
         this.name = name;
     }
 
-    public String getSchoolName() {
-        return schoolName;
+    public String getFacultyName() {
+        return facultyName;
     }
 
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
     }
 }

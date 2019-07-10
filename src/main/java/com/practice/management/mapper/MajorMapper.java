@@ -19,7 +19,7 @@ public interface MajorMapper {
 
     @Insert("insert into major(faculty_name, name, introduce, school_id)" +
             "values(#{facultyName}, #{name}, #{introduce}, #{schoolId})")
-    @Options(useGeneratedKeys = true, keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     Long insert(AddMajorDto dto);
 
     @Update("update major " +
@@ -36,8 +36,8 @@ public interface MajorMapper {
             "<if test=\"name != null\"> " +
             "   and name=#{name}" +
             "</if>" +
-            "<if test=\"schoolName != null\"> " +
-            "   and school_id in (select id from school where name=#{schoolName})" +
+            "<if test=\"facultyName != null\"> " +
+            "   and faculty_name=#{facultyName}" +
             "</if>" +
             "<if test=\"schoolId != null\"> " +
             "   and school_id=#{schoolId}" +

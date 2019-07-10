@@ -10,6 +10,7 @@ import com.practice.management.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class MajorController extends BaseController {
      * @return 添加完成的专业对象
      */
     @PostMapping("/add")
-    public ResultModel<Major> add(@RequestBody AddMajorDto dto) {
+    public ResultModel<Major> add(@Valid @RequestBody AddMajorDto dto) {
         Major major = majorService.add(dto);
         return success("添加成功", major);
     }
@@ -39,8 +40,8 @@ public class MajorController extends BaseController {
      * @param dto 专业
      * @return 修改完成的专业对象
      */
-    @PostMapping("/upd")
-    public ResultModel<Major> update(@RequestBody UpdMajorDto dto) {
+    @PutMapping("/upd")
+    public ResultModel<Major> update(@Valid @RequestBody UpdMajorDto dto) {
         Major major = majorService.update(dto);
         return success("修改成功", major);
     }
@@ -53,7 +54,7 @@ public class MajorController extends BaseController {
      * @param majorId 专业id
      * @return 删除完成的专业对象
      */
-    @PostMapping("/del/{erId:\\d+}/{majorId:\\d+}}")
+    @DeleteMapping("/del/{erId:\\d+}/{majorId:\\d+}")
     public ResultModel<Major> delete(@PathVariable("erId") Long srId, @PathVariable("majorId") Long majorId) {
         Major major = majorService.delete(srId, majorId);
         return success("删除成功", major);
@@ -68,8 +69,8 @@ public class MajorController extends BaseController {
      * @return 查询的学校专业列表
      */
     @PostMapping("/query")
-    public ResultModel<List<Major>> query(@RequestBody MajorQueryModel queryCondition) {
+    public ResultModel<List<Major>> query(@Valid @RequestBody MajorQueryModel queryCondition) {
         List<Major> majorList = majorService.query(queryCondition);
-        return success("修改成功", majorList);
+        return success("查询完成", majorList);
     }
 }
